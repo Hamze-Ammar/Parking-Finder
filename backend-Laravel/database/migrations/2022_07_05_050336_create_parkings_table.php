@@ -16,16 +16,16 @@ class CreateParkingsTable extends Migration
         Schema::create('parkings', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('location');
+            $table->string('location')->nullable();
             $table->integer('opening_hr');
             $table->integer('closing_hr');
             $table->mediumText('description');
             $table->integer('total_slots');
-            $table->integer('is_open');
-            $table->integer('is_full');
-            $table->integer('is_approved');
+            $table->integer('is_open')->default(1);
+            $table->integer('is_full')->default(0);
+            $table->integer('is_approved')->default(0);
             $table->foreignId('city_id');
-            $table->foreignId('photo_id');
+            $table->foreignId('photo_id')->nullable();
             $table->foreignId('user_id');
             $table->timestamps();
         });
