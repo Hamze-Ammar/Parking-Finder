@@ -19,3 +19,4 @@ Route::post('/becomePartner', [UserController::class, 'becomePartner']);
 
 Route::get('/getPendingRequests/{id?}', [AdminController::class, 'getPendingRequests']);
 Route::post('/acceptRequest/{id}', [AdminController::class, 'acceptRequest']);
+Route::post('/declineRequest/{id}', [AdminController::class, 'declineRequest']);
