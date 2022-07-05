@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Parking;
+use App\Models\Slot;
 use App\Models\User;
 use Auth;
 
@@ -45,4 +46,46 @@ class UserController extends Controller
 
         }
     }
+
+    public function viewParking($id)
+    {
+        $parking = Parking::find($id);
+        $parking->availableSlots;
+
+        return response()->json([
+            "status" => "Success",
+            "res"   => $parking
+        ], 200);
+    }
+
+    // Takes the slot id as parameter
+    public function makeReservation($id)
+    {
+        $slot = Slot::find($id);
+        $slot->is_reserved = '1';
+        $slot->save();
+
+        return response()->json([
+            "status" => "Success",
+            "res"   => $slot
+        ], 200);
+    }
+
+    //reset reservation is sleeps for 5 min and the it resets
+    public function resetReservation($id)
+    {
+        sleep(5);
+        $slot = Slot::find($id);
+        $slot->is_reserved = '0';
+        $slot->save();
+
+        return response()->json([
+            "status" => "Success",
+            "res"   => $slot
+        ], 200);
+    
+    } 
+
+
 }
+
