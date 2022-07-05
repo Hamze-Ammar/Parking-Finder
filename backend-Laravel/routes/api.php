@@ -7,6 +7,7 @@ use App\Http\Controllers\Owner\OwnerController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\General\CityController;
+use App\Http\Controllers\General\ParkingController;
 
 Route::group(['middleware' => 'api'], function($router) {
     Route::post('/register', [JWTController::class, 'register']);
@@ -23,3 +24,5 @@ Route::post('/acceptRequest/{id}', [AdminController::class, 'acceptRequest']);
 Route::post('/declineRequest/{id}', [AdminController::class, 'declineRequest']);
 
 Route::get('/getCitiesByCountryId/{id?}', [CityController::class, 'getCitiesByCountryId']);
+
+Route::get('/getParkingsByCityId/{id?}', [ParkingController::class, 'getParkingsByCityId']);
