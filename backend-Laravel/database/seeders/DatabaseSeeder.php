@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         //     UserSeeder::class,
         // ]);
         $this->call(CountrySeeder::class);
+        $this->call(CitySeeder::class);
     }
 }
