@@ -3,8 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\Authentication\JWTController;
-
 use App\Http\Controllers\Owner\OwnerController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\User\UserController;
 
 Route::group(['middleware' => 'api'], function($router) {
@@ -16,3 +16,6 @@ Route::group(['middleware' => 'api'], function($router) {
 });
 
 Route::post('/becomePartner', [UserController::class, 'becomePartner']);
+
+Route::get('/getPendingRequests/{id?}', [AdminController::class, 'getPendingRequests']);
+Route::post('/acceptRequest/{id}', [AdminController::class, 'acceptRequest']);
