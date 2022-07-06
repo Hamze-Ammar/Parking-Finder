@@ -31,4 +31,4 @@ Route::get('/getCitiesByCountryId/{id?}', [CityController::class, 'getCitiesByCo
 
 Route::get('/getParkingsByCityId/{id?}', [ParkingController::class, 'getParkingsByCityId']);
 
-Route::put('/changeSlotState/{id}', [SensorController::class, 'changeSlotState']);
+Route::get('/changeSlotState/{id}', [SensorController::class, 'changeSlotState']);
