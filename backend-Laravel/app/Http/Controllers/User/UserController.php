@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\Photo;
 use App\Models\Favourite;
 use App\Models\SearchRequest;
+use App\Models\Review;
 use Auth;
 
 // About the queue: go to .env and make sure that 'QUEUE_CONNECTION=database
@@ -233,5 +234,20 @@ class UserController extends Controller
             "res"   => $search_request
         ], 200);
     }
-}
 
+    public function addReview(Request $request)
+    {
+        $user = Auth::user();
+        $review = new Review;
+        $review->context = $request->context;
+        $review->rate = $request->rate;
+        $review->parking_id = $request->parking_id;
+        $review->user_id = $user->id;
+
+        $review->save();
+        return response()->json([
+            "status" => "Success",
+            "res"   => $review
+        ], 200);
+    }
+}
