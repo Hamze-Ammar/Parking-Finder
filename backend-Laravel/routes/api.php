@@ -49,7 +49,6 @@ Route::group(['prefix' => 'v1'], function(){
         });
     });
     
-
     Route::group(['prefix' => 'admin'], function(){
         Route::group(['middleware' => 'role.admin'], function(){
             Route::get('/getPendingRequests/{id?}', [AdminController::class, 'getPendingRequests']);
@@ -59,16 +58,17 @@ Route::group(['prefix' => 'v1'], function(){
     });
     
     Route::group(['prefix' => 'info'], function(){
-        Route::get('/getCitiesByCountryId/{id?}', [CityController::class, 'getCitiesByCountryId']);
-        Route::get('/getParkingsByCityId/{id?}', [ParkingController::class, 'getParkingsByCityId']);
-        Route::get('/getParkingRate/{id}', [ParkingController::class, 'getParkingRate']);
-        Route::get('/changeSlotState/{id}', [SensorController::class, 'changeSlotState']);
-        Route::post('/addToHistory', [HistoryController::class, 'addToHistory']);
-        Route::post('/updateHistory', [HistoryController::class, 'updateHistory']);
+        Route::group(['middleware' => 'role.user'], function(){
+            Route::get('/getCitiesByCountryId/{id?}', [CityController::class, 'getCitiesByCountryId']);
+            Route::get('/getParkingsByCityId/{id?}', [ParkingController::class, 'getParkingsByCityId']);
+            Route::get('/getParkingRate/{id}', [ParkingController::class, 'getParkingRate']);
+            Route::post('/addToHistory', [HistoryController::class, 'addToHistory']);
+            Route::post('/updateHistory', [HistoryController::class, 'updateHistory']);
+        });
     });
 
     Route::group(['prefix' => 'system'], function(){
+        Route::get('/changeSlotState/{id}', [SensorController::class, 'changeSlotState']);
         Route::get('/not_found', [NotFoundController::class, 'notFound'])->name("not-found");
     });
-
 });
