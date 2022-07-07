@@ -9,6 +9,7 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\General\CityController;
 use App\Http\Controllers\General\ParkingController;
 use App\Http\Controllers\General\SensorController;
+use App\Http\Controllers\General\HistoryController;
 
 Route::group(['middleware' => 'api'], function($router) {
     Route::post('/register', [JWTController::class, 'register']);
@@ -32,3 +33,6 @@ Route::get('/getCitiesByCountryId/{id?}', [CityController::class, 'getCitiesByCo
 Route::get('/getParkingsByCityId/{id?}', [ParkingController::class, 'getParkingsByCityId']);
 
 Route::get('/changeSlotState/{id}', [SensorController::class, 'changeSlotState']);
+
+Route::post('/addToHistory', [HistoryController::class, 'addToHistory']);
+Route::post('/updateHistory', [HistoryController::class, 'updateHistory']);
