@@ -41,7 +41,7 @@ class AdminController extends Controller
         // Once approved we need to update the user type to Owner
         $user_id = $parking->user_id;
         $user = User::find($user_id);
-        $user->type = "1";
+        $user->user_type_id = "2";
         $user->is_approved = "1";
         $user->save();
 
