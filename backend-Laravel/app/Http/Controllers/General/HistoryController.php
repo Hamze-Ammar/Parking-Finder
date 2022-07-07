@@ -12,8 +12,8 @@ use Carbon\Carbon;
 
 class HistoryController extends Controller
 {
-    // Histories will be intialized every time a slot became occupied and updated once is free
-    // it should take the slot id for now as parameter and it could take the user id if needed
+    // Histories will be stored every time a slot became occupied and updated once it is free
+    // it should take the slot id for now as parameter and it could take the user id when applicable 
 
     public function addToHistory(Request $request)
     {
