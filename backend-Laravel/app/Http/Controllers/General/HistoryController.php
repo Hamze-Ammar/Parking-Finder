@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\General;
 
 use Illuminate\Http\Request;
-// use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use App\Models\History;
 use App\Models\Slot;
