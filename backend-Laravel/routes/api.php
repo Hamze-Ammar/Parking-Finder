@@ -30,6 +30,7 @@ Route::group(['prefix' => 'v1'], function(){
         Route::delete('/clearHistories', [UserController::class, 'clearHistories']);
         Route::get('/getUserProfile', [UserController::class, 'getUserProfile']);
         Route::put('/editProfile', [UserController::class, 'editProfile']);
+        Route::post('/addToFavorite', [UserController::class, 'addToFavorite']);
 
     });
 

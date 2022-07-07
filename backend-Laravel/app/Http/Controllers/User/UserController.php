@@ -10,6 +10,7 @@ use App\Models\Parking;
 use App\Models\Slot;
 use App\Models\User;
 use App\Models\Photo;
+use App\Models\Favourite;
 use Auth;
 
 // About the queue: go to .env and make sure that 'QUEUE_CONNECTION=database
@@ -190,5 +191,19 @@ class UserController extends Controller
         }
     }
 
+    public function addToFavorite(Request $request)
+    {
+        $user = Auth::user();
+        $favourite = new Favourite;
+        $favourite->user_id = $user->id;
+        $favourite->parking_id = $request->parking_id;
+
+        $favourite->save();
+
+        return response()->json([
+            "status" => "Success",
+            "res"   => $favourite
+        ], 200);
+    }
 }
 
