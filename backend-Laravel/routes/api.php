@@ -39,13 +39,16 @@ Route::group(['prefix' => 'v1'], function(){
     });
 
     Route::group(['prefix' => 'owner'], function(){
-        Route::post('/addParking', [OwnerController::class, 'addParking']);
-        Route::put('/reserveSlot/{id}', [OwnerController::class, 'reserveSlot']);
-        Route::put('/removeReservation/{id}', [OwnerController::class, 'removeReservation']);
-        Route::put('/toggleSlotAvailability/{id}', [OwnerController::class, 'toggleSlotAvailability']);
-        Route::put('/toggleSlotReservation/{id}', [OwnerController::class, 'toggleSlotReservation']);
+        Route::group(['middleware' => 'role.owner'], function(){
+            Route::post('/addParking', [OwnerController::class, 'addParking']);
+            Route::put('/reserveSlot/{id}', [OwnerController::class, 'reserveSlot']);
+            Route::put('/removeReservation/{id}', [OwnerController::class, 'removeReservation']);
+            Route::put('/toggleSlotAvailability/{id}', [OwnerController::class, 'toggleSlotAvailability']);
+            Route::put('/toggleSlotReservation/{id}', [OwnerController::class, 'toggleSlotReservation']);
 
+        });
     });
+    
 
     Route::group(['prefix' => 'admin'], function(){
         Route::get('/getPendingRequests/{id?}', [AdminController::class, 'getPendingRequests']);
