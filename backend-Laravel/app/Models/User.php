@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use App\Models\History;
+use App\Models\UserType;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -47,5 +48,10 @@ class User extends Authenticatable implements JWTSubject
     public function histories()
     {
         return $this->hasMany(History::class);
+    }
+
+    public function type()
+    {
+        return $this->hasOne(UserType::class);
     }
 }
