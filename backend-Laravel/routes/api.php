@@ -57,6 +57,7 @@ Route::group(['prefix' => 'v1'], function(){
     Route::get('/getCitiesByCountryId/{id?}', [CityController::class, 'getCitiesByCountryId']);
 
     Route::get('/getParkingsByCityId/{id?}', [ParkingController::class, 'getParkingsByCityId']);
+    Route::get('/getParkingRate/{id}', [ParkingController::class, 'getParkingRate']);
 
     Route::get('/changeSlotState/{id}', [SensorController::class, 'changeSlotState']);
 
