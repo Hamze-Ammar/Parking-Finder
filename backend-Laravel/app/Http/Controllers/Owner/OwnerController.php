@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Parking;
 use App\Models\User;
+use App\Models\Slot;
 use Auth;
 
 
@@ -31,6 +32,66 @@ class OwnerController extends Controller
         return response()->json([
             "status" => "Success",
             "res"   => $parking
+        ], 200);
+    }
+
+    public function reserveSlot($id)
+    {
+        $slot = Slot::find($id);
+        $slot->is_reserved = '1';
+        $slot->save();
+
+        return response()->json([
+            "status" => "Success",
+            "res"   => $slot
+        ], 200);
+    }
+
+    public function removeReservation($id)
+    {
+        $slot = Slot::find($id);
+        $slot->is_reserved = '0';
+        $slot->save();
+
+        return response()->json([
+            "status" => "Success",
+            "res"   => $slot
+        ], 200);
+    }
+
+    public function toggleSlotAvailability($id)
+    {
+        $slot = Slot::find($id);
+        $is_available = $slot->is_available;
+
+        if ($is_available=='0'){
+            $slot->is_available='1';
+        }else{
+            $slot->is_available='0';
+        }
+        $slot->save();
+
+        return response()->json([
+            "status" => "Success",
+            "res"   => $slot
+        ], 200);
+    }
+
+    public function toggleSlotReservation($id)
+    {
+        $slot = Slot::find($id);
+        $is_reserved = $slot->is_reserved;
+
+        if ($is_reserved=='0'){
+            $slot->is_reserved='1';
+        }else{
+            $slot->is_reserved='0';
+        }
+        $slot->save();
+
+        return response()->json([
+            "status" => "Success",
+            "res"   => $slot
         ], 200);
     }
 

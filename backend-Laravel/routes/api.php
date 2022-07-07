@@ -31,17 +31,28 @@ Route::group(['prefix' => 'v1'], function(){
         Route::get('/getUserProfile', [UserController::class, 'getUserProfile']);
         Route::put('/editProfile', [UserController::class, 'editProfile']);
         Route::post('/addToFavorite', [UserController::class, 'addToFavorite']);
+        Route::delete('/removeFromFavorite', [UserController::class, 'removeFromFavorite']);
+        Route::post('/searchRequest', [UserController::class, 'searchRequest']);
+        Route::post('/addReview', [UserController::class, 'addReview']);
 
     });
 
     Route::group(['prefix' => 'owner'], function(){
         Route::post('/addParking', [OwnerController::class, 'addParking']);
+        Route::put('/reserveSlot/{id}', [OwnerController::class, 'reserveSlot']);
+        Route::put('/removeReservation/{id}', [OwnerController::class, 'removeReservation']);
+        Route::put('/toggleSlotAvailability/{id}', [OwnerController::class, 'toggleSlotAvailability']);
+        Route::put('/toggleSlotReservation/{id}', [OwnerController::class, 'toggleSlotReservation']);
 
     });
 
-    Route::get('/getPendingRequests/{id?}', [AdminController::class, 'getPendingRequests']);
-    Route::post('/acceptRequest/{id}', [AdminController::class, 'acceptRequest']);
-    Route::post('/declineRequest/{id}', [AdminController::class, 'declineRequest']);
+    Route::group(['prefix' => 'admin'], function(){
+        Route::get('/getPendingRequests/{id?}', [AdminController::class, 'getPendingRequests']);
+        Route::post('/acceptRequest/{id}', [AdminController::class, 'acceptRequest']);
+        Route::post('/declineRequest/{id}', [AdminController::class, 'declineRequest']);
+
+    });
+    
 
     Route::get('/getCitiesByCountryId/{id?}', [CityController::class, 'getCitiesByCountryId']);
 
