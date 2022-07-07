@@ -10,6 +10,7 @@ use App\Http\Controllers\General\CityController;
 use App\Http\Controllers\General\ParkingController;
 use App\Http\Controllers\General\SensorController;
 use App\Http\Controllers\General\HistoryController;
+use App\Http\Controllers\System\NotFoundController;
 
 Route::group(['prefix' => 'v1'], function(){
     Route::group(['prefix' => 'user'], function(){
@@ -63,5 +64,8 @@ Route::group(['prefix' => 'v1'], function(){
 
     Route::post('/addToHistory', [HistoryController::class, 'addToHistory']);
     Route::post('/updateHistory', [HistoryController::class, 'updateHistory']);
+
+    Route::get('/not_found', [NotFoundController::class, 'notFound'])->name("not-found");
+
 
 });
