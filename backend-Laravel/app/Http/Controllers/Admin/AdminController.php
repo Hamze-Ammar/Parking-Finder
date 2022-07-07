@@ -55,7 +55,6 @@ class AdminController extends Controller
             $slot->save();
         }
 
-        
         return response()->json([
             "status" => "Success",
             "msg"   => "Parking has been accepted"

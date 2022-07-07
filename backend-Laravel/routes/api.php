@@ -51,10 +51,11 @@ Route::group(['prefix' => 'v1'], function(){
     
 
     Route::group(['prefix' => 'admin'], function(){
-        Route::get('/getPendingRequests/{id?}', [AdminController::class, 'getPendingRequests']);
-        Route::post('/acceptRequest/{id}', [AdminController::class, 'acceptRequest']);
-        Route::post('/declineRequest/{id}', [AdminController::class, 'declineRequest']);
-
+        Route::group(['middleware' => 'role.admin'], function(){
+            Route::get('/getPendingRequests/{id?}', [AdminController::class, 'getPendingRequests']);
+            Route::post('/acceptRequest/{id}', [AdminController::class, 'acceptRequest']);
+            Route::post('/declineRequest/{id}', [AdminController::class, 'declineRequest']);
+        });
     });
     
     Route::group(['prefix' => 'info'], function(){
