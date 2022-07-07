@@ -23,6 +23,8 @@ Route::post('/becomePartner', [UserController::class, 'becomePartner']);
 Route::get('/viewParking/{id}', [UserController::class, 'viewParking']);
 Route::put('/makeReservation/{id}', [UserController::class, 'makeReservation']);
 Route::put('/resetReservation/{id}', [UserController::class, 'resetReservation']);
+Route::get('/getHistories', [UserController::class, 'getHistories']);
+Route::delete('/clearHistories', [UserController::class, 'clearHistories']);
 
 Route::get('/getPendingRequests/{id?}', [AdminController::class, 'getPendingRequests']);
 Route::post('/acceptRequest/{id}', [AdminController::class, 'acceptRequest']);

@@ -99,6 +99,40 @@ class UserController extends Controller
     
     } 
 
+    public function getHistories()
+    {
+        //Get user ID
+        $user = Auth::user();
+        $histories = $user->histories;
+
+        if (!count($histories)){
+            $response = "No records found";
+        }else{
+            $response = $histories;
+        }
+
+        return response()->json([
+            "status" => "Success",
+            "res"   => $response
+        ], 200);
+    }
+
+    public function clearHistories()
+    {
+        //Get user ID
+        $user = Auth::user();
+        $histories = $user->histories;
+
+        foreach ($histories as $history) {
+            $history->user_id = 0 ;
+            $history->save();
+          }
+
+        return response()->json([
+            "status" => "Success",
+            "res"   => $histories
+        ], 200);
+    }
 
 }
 
