@@ -4,11 +4,14 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Jobs\ResetReservation;
 use App\Models\Parking;
 use App\Models\Slot;
 use App\Models\User;
 use Auth;
 
+// About the queue: go to .env and make sure that 'QUEUE_CONNECTION=database
+// php artisan queue:work | Run this command to start a worker
 
 
 class UserController extends Controller
@@ -65,6 +68,16 @@ class UserController extends Controller
         $slot->is_reserved = '1';
         $slot->save();
 
+        // $reset = new ResetReservation($id);
+        // $reset->handle();
+
+        // $batch = [ new ResetReservation($id)];
+        // \Illuminate\Support\Facades\Bus::batch($batch)->dispatch();
+        
+        // ResetReservation::dispatch()->delay(2);
+
+        echo "making reservation";
+
         return response()->json([
             "status" => "Success",
             "res"   => $slot
@@ -74,15 +87,15 @@ class UserController extends Controller
     //reset reservation is sleeps for 5 min and the it resets
     public function resetReservation($id)
     {
-        sleep(5);
-        $slot = Slot::find($id);
-        $slot->is_reserved = '0';
-        $slot->save();
+        // sleep(5);
+        // $slot = Slot::find($id);
+        // $slot->is_reserved = '0';
+        // $slot->save();
 
-        return response()->json([
-            "status" => "Success",
-            "res"   => $slot
-        ], 200);
+        // return response()->json([
+        //     "status" => "Success",
+        //     "res"   => $slot
+        // ], 200);
     
     } 
 
