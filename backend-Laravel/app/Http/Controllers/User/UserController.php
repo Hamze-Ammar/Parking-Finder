@@ -15,8 +15,7 @@ use App\Models\SearchRequest;
 use App\Models\Review;
 use Auth;
 
-// About the queue: go to .env and make sure that 'QUEUE_CONNECTION=database
-// php artisan queue:work | Run this command to start a worker
+
 
 
 class UserController extends Controller
@@ -70,21 +69,14 @@ class UserController extends Controller
     }
 
     // Takes the slot id as parameter
-    public function makeReservation($id)
-    {
+    public function makeReservation($id){
+
         $slot = Slot::find($id);
         $slot->is_reserved = '1';
         $slot->save();
 
-        // $reset = new ResetReservation($id);
-        // $reset->handle();
-
-        // $batch = [ new ResetReservation($id)];
-        // \Illuminate\Support\Facades\Bus::batch($batch)->dispatch();
-        
-        // ResetReservation::dispatch()->delay(2);
-
-        echo "making reservation";
+        // Push job to queue to reset reservation after 5 mins
+        ResetReservation::dispatch($slot)->delay(300);
 
         return response()->json([
             "status" => "Success",
@@ -92,23 +84,8 @@ class UserController extends Controller
         ], 200);
     }
 
-    //reset reservation is sleeps for 5 min and the it resets
-    public function resetReservation($id)
-    {
-        // sleep(5);
-        // $slot = Slot::find($id);
-        // $slot->is_reserved = '0';
-        // $slot->save();
+    public function getHistories(){
 
-        // return response()->json([
-        //     "status" => "Success",
-        //     "res"   => $slot
-        // ], 200);
-    
-    } 
-
-    public function getHistories()
-    {
         //Get user ID
         $user = Auth::user();
         $histories = $user->histories;
@@ -125,8 +102,8 @@ class UserController extends Controller
         ], 200);
     }
 
-    public function clearHistories()
-    {
+    public function clearHistories(){
+
         //Get user ID
         $user = Auth::user();
         $histories = $user->histories;
@@ -142,8 +119,8 @@ class UserController extends Controller
         ], 200);
     }
 
-    public function getUserProfile()
-    {
+    public function getUserProfile(){
+
         $user = Auth::user();
 
         return response()->json([
@@ -152,8 +129,7 @@ class UserController extends Controller
         ], 200);
     }
 
-    public function editProfile(Request $request)
-    {
+    public function editProfile(Request $request){
         try {
             $user = Auth::user();
             $user->name = $request->name;
@@ -193,8 +169,7 @@ class UserController extends Controller
         }
     }
 
-    public function addToFavorite(Request $request)
-    {
+    public function addToFavorite(Request $request){
         $user = Auth::user();
         $favourite = new Favourite;
         $favourite->user_id = $user->id;
@@ -208,8 +183,7 @@ class UserController extends Controller
         ], 200);
     }
 
-    public function removeFromFavorite(Request $request)
-    {
+    public function removeFromFavorite(Request $request){
         $favourite = Favourite::find($request->favourite_id);
         $favourite->delete();
 
@@ -220,8 +194,7 @@ class UserController extends Controller
     }
 
     // Everytime the user press the search button to look for parkings; collecting data
-    public function searchRequest(Request $request)
-    {
+    public function searchRequest(Request $request){
         $user = Auth::user();
         $search_request = new SearchRequest;
         $search_request->user_id = $user->id;
@@ -235,8 +208,7 @@ class UserController extends Controller
         ], 200);
     }
 
-    public function addReview(Request $request)
-    {
+    public function addReview(Request $request){
         $user = Auth::user();
         $review = new Review;
         $review->context = $request->context;
