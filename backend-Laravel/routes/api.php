@@ -22,20 +22,20 @@ Route::group(['prefix' => 'v1'], function(){
             Route::post('/profile', [JWTController::class, 'profile']);
         });
     
-
-        Route::post('/becomePartner', [UserController::class, 'becomePartner']);
-        Route::get('/viewParking/{id}', [UserController::class, 'viewParking']);
-        Route::put('/makeReservation/{id}', [UserController::class, 'makeReservation']);
-        Route::put('/resetReservation/{id}', [UserController::class, 'resetReservation']);
-        Route::get('/getHistories', [UserController::class, 'getHistories']);
-        Route::delete('/clearHistories', [UserController::class, 'clearHistories']);
-        Route::get('/getUserProfile', [UserController::class, 'getUserProfile']);
-        Route::put('/editProfile', [UserController::class, 'editProfile']);
-        Route::post('/addToFavorite', [UserController::class, 'addToFavorite']);
-        Route::delete('/removeFromFavorite', [UserController::class, 'removeFromFavorite']);
-        Route::post('/searchRequest', [UserController::class, 'searchRequest']);
-        Route::post('/addReview', [UserController::class, 'addReview']);
-
+        Route::group(['middleware' => 'role.user'], function(){
+            Route::post('/becomePartner', [UserController::class, 'becomePartner']);
+            Route::get('/viewParking/{id}', [UserController::class, 'viewParking']);
+            Route::put('/makeReservation/{id}', [UserController::class, 'makeReservation']);
+            Route::put('/resetReservation/{id}', [UserController::class, 'resetReservation']);
+            Route::get('/getHistories', [UserController::class, 'getHistories']);
+            Route::delete('/clearHistories', [UserController::class, 'clearHistories']);
+            Route::get('/getUserProfile', [UserController::class, 'getUserProfile']);
+            Route::put('/editProfile', [UserController::class, 'editProfile']);
+            Route::post('/addToFavorite', [UserController::class, 'addToFavorite']);
+            Route::delete('/removeFromFavorite', [UserController::class, 'removeFromFavorite']);
+            Route::post('/searchRequest', [UserController::class, 'searchRequest']);
+            Route::post('/addReview', [UserController::class, 'addReview']);
+        });
     });
 
     Route::group(['prefix' => 'owner'], function(){
@@ -54,18 +54,17 @@ Route::group(['prefix' => 'v1'], function(){
 
     });
     
+    Route::group(['prefix' => 'info'], function(){
+        Route::get('/getCitiesByCountryId/{id?}', [CityController::class, 'getCitiesByCountryId']);
+        Route::get('/getParkingsByCityId/{id?}', [ParkingController::class, 'getParkingsByCityId']);
+        Route::get('/getParkingRate/{id}', [ParkingController::class, 'getParkingRate']);
+        Route::get('/changeSlotState/{id}', [SensorController::class, 'changeSlotState']);
+        Route::post('/addToHistory', [HistoryController::class, 'addToHistory']);
+        Route::post('/updateHistory', [HistoryController::class, 'updateHistory']);
+    });
 
-    Route::get('/getCitiesByCountryId/{id?}', [CityController::class, 'getCitiesByCountryId']);
-
-    Route::get('/getParkingsByCityId/{id?}', [ParkingController::class, 'getParkingsByCityId']);
-    Route::get('/getParkingRate/{id}', [ParkingController::class, 'getParkingRate']);
-
-    Route::get('/changeSlotState/{id}', [SensorController::class, 'changeSlotState']);
-
-    Route::post('/addToHistory', [HistoryController::class, 'addToHistory']);
-    Route::post('/updateHistory', [HistoryController::class, 'updateHistory']);
-
-    Route::get('/not_found', [NotFoundController::class, 'notFound'])->name("not-found");
-
+    Route::group(['prefix' => 'system'], function(){
+        Route::get('/not_found', [NotFoundController::class, 'notFound'])->name("not-found");
+    });
 
 });
