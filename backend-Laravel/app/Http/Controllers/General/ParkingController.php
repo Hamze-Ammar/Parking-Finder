@@ -11,8 +11,15 @@ class ParkingController extends Controller
 {
     public function getParkingsByCityId($id=null)
     {
+
+
         if ($id){
             $response = Parking::where('city_id', $id)->get();
+            if(count($response)){
+                foreach ($response as $parking) {
+                    $parking->reviews;
+                }
+            }
 
             if (count($response)==0){
                 $response='No parkings available in this area!';
@@ -20,6 +27,9 @@ class ParkingController extends Controller
         }
         else {
             $response = Parking::all();
+            foreach ($response as $parking) {
+                $parking->reviews;
+            }
         }
 
         return response()->json([
@@ -27,4 +37,7 @@ class ParkingController extends Controller
             "res"   => $response
         ], 200);
     }
+
 }
+
+
