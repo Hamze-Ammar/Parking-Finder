@@ -11,6 +11,7 @@ use App\Models\Slot;
 use App\Models\User;
 use App\Models\Photo;
 use App\Models\Favourite;
+use App\Models\SearchRequest;
 use Auth;
 
 // About the queue: go to .env and make sure that 'QUEUE_CONNECTION=database
@@ -203,6 +204,33 @@ class UserController extends Controller
         return response()->json([
             "status" => "Success",
             "res"   => $favourite
+        ], 200);
+    }
+
+    public function removeFromFavorite(Request $request)
+    {
+        $favourite = Favourite::find($request->favourite_id);
+        $favourite->delete();
+
+        return response()->json([
+            "status" => "Success",
+            "res"   => $favourite
+        ], 200);
+    }
+
+    // Everytime the user press the search button to look for parkings; collecting data
+    public function searchRequest(Request $request)
+    {
+        $user = Auth::user();
+        $search_request = new SearchRequest;
+        $search_request->user_id = $user->id;
+        $search_request->city_id = $request->city_id;
+
+        $search_request->save();
+
+        return response()->json([
+            "status" => "Success",
+            "res"   => $search_request
         ], 200);
     }
 }
