@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\User;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Jobs\ResetReservation;
 use App\Models\Parking;
 use App\Models\Slot;
 use App\Models\User;
+use App\Models\Photo;
 use Auth;
 
 // About the queue: go to .env and make sure that 'QUEUE_CONNECTION=database
@@ -22,11 +24,14 @@ class UserController extends Controller
         try {
             $parking = new Parking;
             $parking->name = $request->name;
+            $parking->location = $request->location;
             $parking->opening_hr = $request->opening_hr;
             $parking->closing_hr = $request->closing_hr;
             $parking->description = $request->description;
             $parking->total_slots = $request->total_slots;
             $parking->city_id = $request->city_id;
+            $parking->photo_id = $request->photo_id;
+
 
             //Get user ID
             $user = Auth::user();
@@ -132,6 +137,57 @@ class UserController extends Controller
             "status" => "Success",
             "res"   => $histories
         ], 200);
+    }
+
+    public function getUserProfile()
+    {
+        $user = Auth::user();
+
+        return response()->json([
+            "status" => "Success",
+            "res"   => $user
+        ], 200);
+    }
+
+    public function editProfile(Request $request)
+    {
+        try {
+            $user = Auth::user();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            if($request->password){
+                $user->password = Hash::make($request->password);
+            }
+            $user->address = $request->address;
+            $user->plate_number = $request->plate_number;
+            $user->phone_number = $request->phone_number;
+            $user->city_id = $request->city_id;
+
+            // Check if profile pic was uploaded
+            if($request->photo_src){
+                $photo = new Photo;
+                $photo->src = $request->photo_src;
+                $photo->user_id = $user->id;
+                $photo->save();
+                $photo_id = $photo->id;
+                $user->photo_id = $photo_id;
+            }
+
+            $user->save();
+
+            return response()->json([
+                "status" => "Success",
+                "res"   => $user
+            ], 200);
+        }
+        catch (\Exception $e) {
+            // return $e->getMessage();
+            return "Invalid input!";
+        }
+        catch (\QueryException $e) {
+            // return $e->getMessage();
+            return "Missing fields error!";
+        }
     }
 
 }

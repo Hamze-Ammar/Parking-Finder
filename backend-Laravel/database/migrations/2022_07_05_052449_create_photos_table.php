@@ -19,6 +19,8 @@ class CreatePhotosTable extends Migration
             $table->string('title')->nullable();
             $table->string('alt')->nullable();
             $table->text('description')->nullable();
+            $table->foreignId('user_id')->nullable();
+            $table->foreignId('parking_id')->nullable();
             $table->timestamps();
         });
     }
