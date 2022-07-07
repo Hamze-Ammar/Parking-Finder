@@ -18,7 +18,7 @@ class OwnerMiddleware
     public function handle(Request $request, Closure $next)
     {
         $user = Auth::user();
-        if($user && $user->type=='1'){
+        if($user && $user->user_type_id=='2'){
             return $next($request);
         }
         return redirect(route("not-found"));
