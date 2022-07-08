@@ -45,7 +45,6 @@ Route::group(['prefix' => 'v1'], function(){
             Route::put('/removeReservation/{id}', [OwnerController::class, 'removeReservation']);
             Route::put('/toggleSlotAvailability/{id}', [OwnerController::class, 'toggleSlotAvailability']);
             Route::put('/toggleSlotReservation/{id}', [OwnerController::class, 'toggleSlotReservation']);
-
         });
     });
     
