@@ -1,5 +1,4 @@
 export const Colors = {
-  //   primary500: "#5874D9",
   primary500: "#4d79ff",
   secondary500: "#1B3773",
   background500: "#e6eeff",
