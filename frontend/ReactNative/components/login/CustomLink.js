@@ -1,6 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
+import { Colors } from "../../constants/styles";
+
 const CustomLink = ({ text }) => {
   return (
     <View>
@@ -15,5 +17,6 @@ const styles = StyleSheet.create({
   text: {
     color: "blue",
     fontWeight: "300",
+    color: Colors.primary500,
   },
 });
