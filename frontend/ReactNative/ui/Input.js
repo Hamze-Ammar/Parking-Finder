@@ -1,16 +1,7 @@
 import { Text, View, TextInput, StyleSheet } from "react-native";
 import { Colors } from "../constants/styles";
 
-export function Input({
-  label,
-  keyboardType,
-  secure,
-  onUpdateValue,
-  value,
-  isInvalid,
-  placeholder,
-}) {
-  console.log("placeholder", placeholder);
+export function Input({ isInvalid, placeholder }) {
   return (
     <View style={styles.inputContainer}>
       <TextInput
