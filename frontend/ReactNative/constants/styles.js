@@ -6,3 +6,7 @@ export const Colors = {
   error200: "#F34913",
   error500: "#F34913",
 };
+
+export const BorderRadius = {
+  primary: 15,
+};

@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { Colors } from "../constants/styles";
+import { BorderRadius } from "../constants/styles";
 
 export function SpecialButton({ children, onPress }) {
   return (
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
   button: {
     width: 330,
     height: 60,
-    borderRadius: 6,
+    borderRadius: BorderRadius.primary,
     paddingVertical: 6,
     paddingHorizontal: 12,
     marginVertical: 10,
