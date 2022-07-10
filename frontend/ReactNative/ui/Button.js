@@ -8,7 +8,7 @@ export function Button({ children, onPress }) {
       style={({ pressed }) => [styles.button, pressed && styles.pressed]}
       onPress={onPress}
     >
-      <View>
+      <View style={styles.textContainer}>
         <Text style={styles.buttonText}>{children}</Text>
       </View>
     </Pressable>
@@ -35,11 +35,16 @@ const styles = StyleSheet.create({
   pressed: {
     opacity: 0.7,
   },
+  textContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1,
+  },
   buttonText: {
     textAlign: "center",
     color: "white",
     fontSize: 24,
-    fontWeight: "bold",
+    fontWeight: "500",
     // fontFamily: "Montserrat",
   },
 });
