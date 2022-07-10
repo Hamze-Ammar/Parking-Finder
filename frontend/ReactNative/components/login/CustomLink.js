@@ -1,13 +1,29 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { Colors } from "../../constants/styles";
 
 const CustomLink = ({ text }) => {
+  const navigation = useNavigation();
+
+  function handleClick() {
+    if (text === "create an account") {
+      navigation.replace("Signup");
+    }
+  }
+
   return (
-    <View>
-      <Text style={styles.text}>{text}</Text>
-    </View>
+    <Pressable
+      // style={({ pressed }) => [styles.button, pressed && styles.pressed]}
+      style={styles.button}
+      onPress={handleClick}
+      android_ripple={{ color: "#64eee3" }}
+    >
+      <View>
+        <Text style={styles.text}>{text}</Text>
+      </View>
+    </Pressable>
   );
 };
 
@@ -18,5 +34,8 @@ const styles = StyleSheet.create({
     color: "blue",
     fontWeight: "300",
     color: Colors.primary500,
+  },
+  pressed: {
+    opacity: 0.7,
   },
 });
