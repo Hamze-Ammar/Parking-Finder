@@ -1,5 +1,6 @@
 import { Text, View, TextInput, StyleSheet } from "react-native";
 import { Colors } from "../constants/styles";
+import { BorderRadius } from "../constants/styles";
 
 export function Input({ isInvalid, placeholder }) {
   return (
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 12,
     backgroundColor: Colors.background500,
-    borderRadius: 4,
+    borderRadius: BorderRadius.primary,
     fontSize: 16,
   },
   inputInvalid: {
