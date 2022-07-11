@@ -1,13 +1,18 @@
-import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Image } from "react-native";
 
-const Logo = () => {
+const Logo = ({ logo }) => {
+  let mini;
+  if (logo === "mini") {
+    mini = true;
+  }
+  mini = false;
   return (
     <View>
-      <Image
-        // style={styles.image}
-        source={require("../assets/images/logo.png")}
-      />
+      {mini ? (
+        <Image source={require(`../assets/images/logo-mini.png`)} />
+      ) : (
+        <Image source={require(`../assets/images/logo.png`)} />
+      )}
     </View>
   );
 };
