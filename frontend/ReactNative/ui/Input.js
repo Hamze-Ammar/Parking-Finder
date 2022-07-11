@@ -2,12 +2,23 @@ import { Text, View, TextInput, StyleSheet } from "react-native";
 import { Colors } from "../constants/styles";
 import { BorderRadius } from "../constants/styles";
 
-export function Input({ isInvalid, placeholder }) {
+export function Input({
+  placeholder,
+  keyboardType,
+  secure,
+  onUpdateValue,
+  value,
+  isInvalid,
+}) {
   return (
     <View style={styles.inputContainer}>
       <TextInput
         style={[styles.input, isInvalid && styles.inputInvalid]}
+        keyboardType={keyboardType}
+        secureTextEntry={secure}
+        onChangeText={onUpdateValue}
         placeholder={placeholder}
+        value={value}
       />
     </View>
   );
