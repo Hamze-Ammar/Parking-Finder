@@ -3,6 +3,7 @@ import { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { Input } from "../../ui/Input";
 import { Button } from "../../ui/Button";
+import validateInput from "./SignUpController";
 
 const FormSignUp = () => {
   const [enteredName, setEnteredName] = useState("");
@@ -18,8 +19,8 @@ const FormSignUp = () => {
   });
 
   const {
-    email: nameIsInvalid,
-    confirmEmail: emailIsInvalid,
+    name: nameIsInvalid,
+    email: emailIsInvalid,
     password: passwordIsInvalid,
     confirmPassword: passwordsDontMatch,
   } = credentialsInvalid;
@@ -42,12 +43,19 @@ const FormSignUp = () => {
   }
 
   function submitHandler() {
-    onSubmit({
+    let validation = validateInput({
+      name: enteredName,
       email: enteredEmail,
-      confirmEmail: enteredConfirmEmail,
       password: enteredPassword,
       confirmPassword: enteredConfirmPassword,
     });
+    console.log({ validation });
+    if (validation !== "valid") {
+      setCredentialsInvalid(validation);
+    } else {
+      console.log("Valid Input Gooo");
+      //   RegisterNewUser();
+    }
   }
 
   return (
