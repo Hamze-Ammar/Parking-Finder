@@ -1,21 +1,22 @@
 import { View, Text, Image, StyleSheet } from "react-native";
 
 import { Input } from "../ui/Input";
-import Form from "../components/login/Form";
+import Form from "../components/login/FormLogin";
 import Title from "../ui/Title";
 import Logo from "../ui/Logo";
 import CustomLink from "../components/login/CustomLink";
+import FormLogin from "../components/login/FormLogin";
 
 const LoginScreen = () => {
   return (
     <>
       <View style={styles.mainContainer}>
         <View style={styles.logoContainer}>
-          <Logo logo="logo" />
+          <Logo />
         </View>
         {/* <Title>Sign In</Title> */}
         <View style={styles.formContainer}>
-          <Form />
+          <FormLogin />
         </View>
         <View style={styles.footer}>
           <CustomLink text="forget password" />
