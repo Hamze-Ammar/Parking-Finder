@@ -15,6 +15,7 @@ export function Input({
       <TextInput
         style={[styles.input, isInvalid && styles.inputInvalid]}
         keyboardType={keyboardType}
+        autoCapitalize="none"
         secureTextEntry={secure}
         onChangeText={onUpdateValue}
         placeholder={placeholder}

@@ -1,12 +1,15 @@
-import React from "react";
+import { Alert } from "react-native";
 
-const LoginController = () => {
+const LoginUser = () => {
   return;
 };
 
-export default LoginController;
+export default LoginUser;
 
-export function validateInput(email, password) {
+export function validateInput(credentials) {
+  let { email, password } = credentials;
+
+  console.log({ email });
   email = email.trim();
   password = password.trim();
 
