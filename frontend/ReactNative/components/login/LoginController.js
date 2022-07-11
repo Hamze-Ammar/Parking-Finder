@@ -1,4 +1,6 @@
 import { Alert } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
 
 const LoginUser = async (credentials) => {
   try {
@@ -10,7 +12,6 @@ const LoginUser = async (credentials) => {
       body: JSON.stringify(credentials),
     });
     const data = await res.json();
-    // console.log(data);
     handleResponse(data);
   } catch (err) {
     console.log(err);
@@ -19,14 +20,15 @@ const LoginUser = async (credentials) => {
 export default LoginUser;
 
 const handleResponse = (data) => {
-  //   console.log(data.error);
   if (data.error) {
     if (data.error === "Unauthorized") {
       Alert.alert("Invalid credentials", "Wrong email or password!");
     }
   }
   if (data.access_token) {
-    Alert.alert("Success", "You are now logged in");
+    AsyncStorage.setItem("token", data.access_token);
+    const navigation = useNavigation();
+    navigation.replace("landing");
   }
 };
 
