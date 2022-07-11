@@ -4,6 +4,7 @@ import { View, StyleSheet } from "react-native";
 import { Input } from "../../ui/Input";
 import { Button } from "../../ui/Button";
 import validateInput from "./SignUpController";
+import { RegisterNewUser } from "./SignUpController";
 
 const FormSignUp = () => {
   const [enteredName, setEnteredName] = useState("");
@@ -49,12 +50,16 @@ const FormSignUp = () => {
       password: enteredPassword,
       confirmPassword: enteredConfirmPassword,
     });
-    console.log({ validation });
     if (validation !== "valid") {
       setCredentialsInvalid(validation);
     } else {
-      console.log("Valid Input Gooo");
-      //   RegisterNewUser();
+      let credentials = {
+        name: enteredName,
+        email: enteredEmail,
+        password: enteredPassword,
+        password_confirmation: enteredConfirmPassword,
+      };
+      RegisterNewUser(credentials);
     }
   }
 
