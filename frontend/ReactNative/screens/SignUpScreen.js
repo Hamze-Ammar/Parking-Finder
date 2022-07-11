@@ -1,5 +1,4 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import Logo from "../ui/Logo";
@@ -12,19 +11,17 @@ const SignUpScreen = () => {
   function handleClick() {
     navigation.replace("Login");
   }
-  return (
-    <>
-      <View style={styles.mainContainer}>
-        <View style={styles.header}>
-          <BackIcon onPress={handleClick} />
-          <Logo logo="logo-min" />
-        </View>
 
-        <View style={styles.formContainer}>
-          <FormSignUp />
-        </View>
+  return (
+    <View style={styles.mainContainer}>
+      <View style={styles.header}>
+        <BackIcon onPress={handleClick} />
+        <Logo logo="logo-min" />
       </View>
-    </>
+      <View style={styles.formContainer}>
+        <FormSignUp />
+      </View>
+    </View>
   );
 };
 
