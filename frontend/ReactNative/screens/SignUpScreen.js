@@ -16,7 +16,7 @@ const SignUpScreen = () => {
     <View style={styles.mainContainer}>
       <View style={styles.header}>
         <BackIcon onPress={handleClick} />
-        <Logo logo="logo-min" />
+        <Logo logo="mini" />
       </View>
       <View style={styles.formContainer}>
         <FormSignUp />
