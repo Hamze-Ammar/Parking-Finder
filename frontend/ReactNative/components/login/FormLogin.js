@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { View, Text } from "react-native";
 import { Button } from "../../ui/Button";
 import { SpecialButton } from "../../ui/SpecialButton";
@@ -6,12 +6,14 @@ import { Input } from "../../ui/Input";
 
 import { validateInput } from "./loginController";
 import { loginUser } from "./loginController";
+import LoadingOverlay from "../../ui/LoadingOverlay";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "../../store/auth-context";
 
-const FormLogin = () => {
+const FormLogin = ({ setIsAuthenticating }) => {
   const authCtx = useContext(AuthContext);
+
   const [sendRequest, setSendRequest] = useState(false);
   const [credentials, setCredentials] = useState({});
   const [token, setToken] = useState();
@@ -38,7 +40,18 @@ const FormLogin = () => {
     }
   }
 
+  useEffect(() => {
+    if (sendRequest) {
+      submitHandler();
+      return () => {
+        setIsAuthenticating(false);
+        setSendRequest(false);
+      };
+    }
+  }, [sendRequest]);
+
   const submitHandler = async () => {
+    setIsAuthenticating(true);
     const validation = validateInput({
       email: enteredEmail,
       password: enteredPassword,
@@ -57,7 +70,7 @@ const FormLogin = () => {
       let response = await loginUser(input);
       if (!response) {
         return;
-      } else {  
+      } else {
         await authCtx.authenticate(response);
       }
     }
@@ -80,7 +93,13 @@ const FormLogin = () => {
         isInvalid={passwordIsInvalid}
         placeholder="Enter Your Password"
       />
-      <Button onPress={submitHandler}>Sign In</Button>
+      <Button
+        onPress={() => {
+          setSendRequest(true);
+        }}
+      >
+        Sign In
+      </Button>
       <SpecialButton>Continue with google</SpecialButton>
     </View>
   );

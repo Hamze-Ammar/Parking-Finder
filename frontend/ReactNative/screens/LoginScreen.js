@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 
 import { Input } from "../ui/Input";
@@ -6,8 +7,15 @@ import Title from "../ui/Title";
 import Logo from "../ui/Logo";
 import CustomLink from "../components/login/CustomLink";
 import FormLogin from "../components/login/FormLogin";
+import LoadingOverlay from "../ui/LoadingOverlay";
 
 const LoginScreen = () => {
+  const [isAuthenticating, setIsAuthenticating] = useState(false);
+
+
+  if (isAuthenticating) {
+    return <LoadingOverlay message="Logging you in..." />;
+  }
   return (
     <>
       <View style={styles.mainContainer}>
@@ -15,7 +23,7 @@ const LoginScreen = () => {
           <Logo />
         </View>
         <View style={styles.formContainer}>
-          <FormLogin />
+          <FormLogin setIsAuthenticating={setIsAuthenticating} />
         </View>
         <View style={styles.footer}>
           <CustomLink text="forget password" />
