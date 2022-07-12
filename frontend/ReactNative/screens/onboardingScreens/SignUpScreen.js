@@ -1,9 +1,9 @@
 import { View, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import Logo from "../ui/Logo";
-import BackIcon from "../ui/BackIcon";
-import FormSignUp from "../components/signup/FormSignUp";
+import Logo from "../../ui/Logo";
+import BackIcon from "../../ui/BackIcon";
+import FormSignUp from "../../components/signup/FormSignUp";
 
 const SignUpScreen = () => {
   const navigation = useNavigation();

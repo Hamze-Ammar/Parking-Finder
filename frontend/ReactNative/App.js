@@ -9,16 +9,17 @@ import AuthContextProvider, { AuthContext } from "./store/auth-context";
 import AppLoading from "expo-app-loading";
 import { Colors } from "./constants/styles";
 
-import LoginScreen from "./screens/LoginScreen";
-import SignUpScreen from "./screens/SignUpScreen";
-import LandingScreen from "./screens/LandingScreen";
+import LoginScreen from "./screens/onboardingScreens/LoginScreen";
+import SignUpScreen from "./screens/onboardingScreens/SignUpScreen";
+import LandingScreen from "./screens/authenticatedScreens/LandingScreen";
+import ParkingScreen from "./screens/authenticatedScreens/ParkingScreen";
 
 const Stack = createNativeStackNavigator();
 LogBox.ignoreLogs(["Require cycle:"]);
 
 function Root() {
   const [isTryingLogin, setIsTryingLogin] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState();
+  // const [isAuthenticated, setIsAuthenticated] = useState();
   const authCtx = useContext(AuthContext);
 
   useEffect(() => {
@@ -27,13 +28,11 @@ function Root() {
       console.log({ storedToken });
 
       if (storedToken) {
-        setIsAuthenticated(true);
+        // setIsAuthenticated(true);
         authCtx.authenticate(storedToken);
       }
-
       setIsTryingLogin(false);
     }
-
     fetchToken();
   }, []);
 
@@ -77,6 +76,7 @@ function AuthenticatedStack() {
       }}
     >
       <Stack.Screen name="landing" component={LandingScreen} />
+      <Stack.Screen name="parking" component={ParkingScreen} />
     </Stack.Navigator>
   );
 }
