@@ -5,6 +5,7 @@ import { Input } from "../../ui/Input";
 import { Button } from "../../ui/Button";
 import validateInput from "./SignUpController";
 import { RegisterNewUser } from "./SignUpController";
+import SignUpScreen from "../../screens/SignUpScreen";
 
 const FormSignUp = () => {
   const [enteredName, setEnteredName] = useState("");
