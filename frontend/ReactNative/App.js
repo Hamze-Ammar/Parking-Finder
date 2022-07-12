@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import AuthContextProvider, { AuthContext } from "./store/auth-context";
 import AppLoading from "expo-app-loading";
 import { Colors } from "./constants/styles";
 
@@ -17,6 +18,7 @@ const Stack = createNativeStackNavigator();
 function Root() {
   const [isTryingLogin, setIsTryingLogin] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState();
+  const authCtx = useContext(AuthContext);
 
   useEffect(() => {
     async function fetchToken() {
@@ -25,6 +27,7 @@ function Root() {
 
       if (storedToken) {
         setIsAuthenticated(true);
+        authCtx.authenticate(storedToken);
       }
 
       setIsTryingLogin(false);
@@ -36,14 +39,16 @@ function Root() {
   if (isTryingLogin) {
     return <AppLoading />;
   }
-  return <Navigation isAuthenticated={isAuthenticated} />;
+  return <Navigation />;
 }
 
-function Navigation({ isAuthenticated }) {
+function Navigation() {
+  const authCtx = useContext(AuthContext);
+
   return (
     <NavigationContainer>
-      {!isAuthenticated && <AuthStack />}
-      {isAuthenticated && <AuthenticatedStack />}
+      {!authCtx.isAuthenticated && <AuthStack />}
+      {authCtx.isAuthenticated && <AuthenticatedStack />}
     </NavigationContainer>
   );
 }
@@ -78,8 +83,10 @@ function AuthenticatedStack() {
 export default function App() {
   return (
     <>
-      <StatusBar style="light" />
-      <Root />
+      <StatusBar style="dark" />
+      <AuthContextProvider>
+        <Root />
+      </AuthContextProvider>
     </>
   );
 }
