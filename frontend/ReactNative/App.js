@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet } from "react-native";
+import { LogBox } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -14,6 +14,7 @@ import SignUpScreen from "./screens/SignUpScreen";
 import LandingScreen from "./screens/LandingScreen";
 
 const Stack = createNativeStackNavigator();
+LogBox.ignoreLogs(["Require cycle:"]);
 
 function Root() {
   const [isTryingLogin, setIsTryingLogin] = useState(true);
