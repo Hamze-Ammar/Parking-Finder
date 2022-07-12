@@ -1,13 +1,21 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { View, Text } from "react-native";
 import { Button } from "../../ui/Button";
 import { SpecialButton } from "../../ui/SpecialButton";
 import { Input } from "../../ui/Input";
 
-import { validateInput } from "./LoginController";
-import LoginUser from "./LoginController";
+import { validateInput } from "./loginController";
+import { loginUser } from "./loginController";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AuthContext } from "../../store/auth-context";
 
 const FormLogin = () => {
+  const authCtx = useContext(AuthContext);
+  const [sendRequest, setSendRequest] = useState(false);
+  const [credentials, setCredentials] = useState({});
+  const [token, setToken] = useState();
+
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
 
@@ -30,7 +38,7 @@ const FormLogin = () => {
     }
   }
 
-  const submitHandler = () => {
+  const submitHandler = async () => {
     const validation = validateInput({
       email: enteredEmail,
       password: enteredPassword,
@@ -38,11 +46,20 @@ const FormLogin = () => {
     if (validation !== "valid") {
       setCredentialsInvalid(validation);
     } else {
-      let credentials = {
+      setCredentials({
+        email: enteredEmail,
+        password: enteredPassword,
+      });
+      const input = {
         email: enteredEmail,
         password: enteredPassword,
       };
-      LoginUser(credentials);
+      let response = await loginUser(input);
+      if (!response) {
+        return;
+      } else {  
+        await authCtx.authenticate(response);
+      }
     }
   };
 
