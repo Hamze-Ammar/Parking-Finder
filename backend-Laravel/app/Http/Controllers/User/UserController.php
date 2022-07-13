@@ -193,7 +193,7 @@ class UserController extends Controller
         ], 200);
     }
 
-    // Everytime the user press the search button to look for parkings; collecting data
+    // Everytime the user presses the search button to look for parkings; collecting data
     public function searchRequest(Request $request){
         $user = Auth::user();
         $search_request = new SearchRequest;
