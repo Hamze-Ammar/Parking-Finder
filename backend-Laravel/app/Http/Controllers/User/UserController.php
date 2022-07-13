@@ -61,10 +61,12 @@ class UserController extends Controller
     {
         $parking = Parking::find($id);
         $parking->slots;
+        $count = $parking->availableSlots()->count();
 
         return response()->json([
             "status" => "Success",
-            "res"   => $parking
+            "res"   => $parking,
+            "availableSpots"   => $count,
         ], 200);
     }
 
