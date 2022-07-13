@@ -5,7 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 // Get Parking from server
 export const getParkingById = async (id) => {
   let token = await AsyncStorage.getItem("token");
-  //   console.log({ token });
+
   //Just in case
   if (!token) {
     return;
