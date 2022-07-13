@@ -4,6 +4,7 @@ import { View, Text, Image, StyleSheet } from "react-native";
 import Logo from "../../ui/Logo";
 import FormLogin from "../../components/login/FormLogin";
 import LoadingOverlay from "../../ui/LoadingOverlay";
+import CustomLink from "../../components/login/CustomLink";
 
 const LoginScreen = () => {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
