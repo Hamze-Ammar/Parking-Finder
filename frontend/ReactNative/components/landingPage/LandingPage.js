@@ -53,9 +53,15 @@ const LandingPage = () => {
     console.log(regionName);
   }
 
-  function handleClick() {
-    getLocationHandler();
-    // navigation.replace("parking");
+  async function handleClick() {
+    if (locationPermissionInformation.status === "denied") {
+      const permissionResponse = await requestPermission();
+      return permissionResponse.granted;
+    }
+    await getLocationHandler();
+    if (locationPermissionInformation.status === "granted") {
+      navigation.navigate("parking");
+    }
   }
 
   return (
