@@ -19,7 +19,6 @@ LogBox.ignoreLogs(["Require cycle:"]);
 
 function Root() {
   const [isTryingLogin, setIsTryingLogin] = useState(true);
-  // const [isAuthenticated, setIsAuthenticated] = useState();
   const authCtx = useContext(AuthContext);
 
   useEffect(() => {
@@ -28,7 +27,6 @@ function Root() {
       console.log({ storedToken });
 
       if (storedToken) {
-        // setIsAuthenticated(true);
         authCtx.authenticate(storedToken);
       }
       setIsTryingLogin(false);
