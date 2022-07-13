@@ -45,12 +45,13 @@ const LandingPage = () => {
     console.log(location);
     let latitude = location.coords.latitude;
     let longitude = location.coords.longitude;
-    // console.log({ latitude }, { latitude });
     let regionName = await reverseGeocodeAsync({
       latitude: latitude,
       longitude: longitude,
     });
-    console.log(regionName);
+    if (regionName) {
+      return regionName;
+    }
   }
 
   async function handleClick() {
@@ -58,10 +59,12 @@ const LandingPage = () => {
       const permissionResponse = await requestPermission();
       return permissionResponse.granted;
     }
-    await getLocationHandler();
-    if (locationPermissionInformation.status === "granted") {
-      navigation.navigate("parking");
-    }
+    const regionName = await getLocationHandler();
+    // if (locationPermissionInformation.status === "granted") {
+    navigation.navigate("parking", {
+      city: regionName,
+    });
+    // }
   }
 
   return (
