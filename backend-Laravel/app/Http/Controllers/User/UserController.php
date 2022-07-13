@@ -60,7 +60,7 @@ class UserController extends Controller
     public function viewParking($id)
     {
         $parking = Parking::find($id);
-        $parking->availableSlots;
+        $parking->slots;
 
         return response()->json([
             "status" => "Success",
