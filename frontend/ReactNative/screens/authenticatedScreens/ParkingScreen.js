@@ -47,12 +47,9 @@ const ParkingScreen = () => {
 export default ParkingScreen;
 
 const styles = StyleSheet.create({
-  main: {
-    // justifyContent: "center",
-  },
+  main: {},
   parking: {
     backgroundColor: "#eee",
-    // padding: 10,
   },
   gate: {
     height: 15,
@@ -63,15 +60,9 @@ const styles = StyleSheet.create({
   outerContainer: {
     borderWidth: 10,
     borderBottomWidth: 0,
-    // padding: 10,
-    // paddingBottom: 0,
-
     borderColor: Colors.background500,
-    // flex: 1,
     flexDirection: "row",
-    // alignItems: "baseline",
     justifyContent: "space-between",
-    // paddingHorizontal: 20,
   },
   btnContainer: {
     alignItems: "center",
