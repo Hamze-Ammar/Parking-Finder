@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import { URL } from "../../constants/IP_address";
 // AsyncStorage.removeItem("token");
 
 // Get Parking from server
@@ -11,16 +12,13 @@ export const getParkingById = async (id) => {
     return;
   }
 
-  const res = await fetch(
-    `http://192.168.1.95:8000/api/v1/user/viewParking/${id}`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + token,
-        "Content-type": "application/json",
-      },
-    }
-  );
+  const res = await fetch(`${URL}/user/viewParking/${id}`, {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + token,
+      "Content-type": "application/json",
+    },
+  });
   const data = await res.json();
   if (data.status === "Success") {
     return data;
@@ -36,16 +34,13 @@ export const sendReservation = async (id) => {
   if (!token) {
     return;
   }
-  const res = await fetch(
-    `http://192.168.1.95:8000/api/v1/user/makeReservation/${id}`,
-    {
-      method: "PUT",
-      headers: {
-        Authorization: "Bearer " + token,
-        "Content-type": "application/json",
-      },
-    }
-  );
+  const res = await fetch(`${URL}/user/makeReservation/${id}`, {
+    method: "PUT",
+    headers: {
+      Authorization: "Bearer " + token,
+      "Content-type": "application/json",
+    },
+  });
   const data = await res.json();
   if (data.status === "Success") {
     // console.log(data);

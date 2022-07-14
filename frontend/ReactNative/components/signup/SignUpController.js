@@ -1,4 +1,5 @@
 import { Alert } from "react-native";
+import { URL } from "../../constants/IP_address";
 
 const validateInput = (credentials) => {
   let { name, email, password, confirmPassword } = credentials;
@@ -29,7 +30,7 @@ export default validateInput;
 // Send Post request to server
 export const RegisterNewUser = async (credentials) => {
   try {
-    const res = await fetch("http://192.168.1.95:8000/api/v1/user/register", {
+    const res = await fetch(`${URL}/user/register`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",

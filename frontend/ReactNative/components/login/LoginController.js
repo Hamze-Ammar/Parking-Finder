@@ -1,4 +1,5 @@
 import { Alert } from "react-native";
+import { URL } from "../../constants/IP_address";
 
 export const loginUser = async (credentials) => {
 
@@ -22,7 +23,7 @@ export const loginUser = async (credentials) => {
   };
 
   try {
-    const res = await fetch("http://192.168.1.95:8000/api/v1/user/login", {
+    const res = await fetch(`${URL}/user/login`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
