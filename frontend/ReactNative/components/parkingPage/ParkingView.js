@@ -8,25 +8,34 @@ import { getParkingById } from "./parkingController";
 import ParkingHeader from "./ParkingHeader";
 import NotFound from "../../util/NotFound";
 import Slots from "./Slots";
+import LoadingOverlay from "../../ui/LoadingOverlay";
 
 const ParkingView = ({ city_name }) => {
   const [parking, setParking] = useState(null);
   const [parkingName, setParkingName] = useState("");
-  const [slots, setSlots] = useState([]);
+  const [slots, setSlots] = useState(null);
   const [numberOfSlots, setNumberOfSlots] = useState();
   const [availableSlots, setAvailableSlots] = useState(0);
+  const [not_found, setNotFound] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+  console.log({ refresh });
 
   // Controller get parking by id
-  let id = "1";
   useEffect(() => {
+    setLoading(true);
     const fetchData = async () => {
+      let id = "1";
       const res = await getParkingById(id);
       if (res) {
         setParking(res);
+      } else if (!res) {
+        setNotFound(true);
       }
+      setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [refresh]);
 
   useEffect(() => {
     if (parking) {
@@ -37,19 +46,32 @@ const ParkingView = ({ city_name }) => {
     }
   }, [parking]);
 
+  if (not_found) {
+    return <NotFound />;
+  }
+
+  if (loading) {
+    return <LoadingOverlay />;
+  }
+
   return (
     <>
-      {parking ? (
+      {parking && (
         <ParkingHeader
           name={parkingName}
           total={numberOfSlots}
           available_slots={availableSlots}
           min_away={"7"}
         />
-      ) : (
-        <NotFound />
       )}
-      {slots && <Slots slots={slots} />}
+      {slots && (
+        <Slots
+          slots={slots}
+          setRefresh={() => {
+            setRefresh(!refresh);
+          }}
+        />
+      )}
     </>
   );
 };
