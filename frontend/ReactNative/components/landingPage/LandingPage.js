@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, Alert } from "react-native";
 import {
   getCurrentPositionAsync,
@@ -7,12 +7,14 @@ import {
   reverseGeocodeAsync,
 } from "expo-location";
 
+import LoadingOverlay from "../../ui/LoadingOverlay";
 import Title from "../../ui/Title";
 import { Button } from "../../ui/Button";
 
 import { useNavigation } from "@react-navigation/native";
 
 const LandingPage = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation();
   const [locationPermissionInformation, requestPermission] =
     useForegroundPermissions();
@@ -42,7 +44,7 @@ const LandingPage = () => {
       return;
     }
     const location = await getCurrentPositionAsync();
-    console.log(location);
+    // console.log(location);
     let latitude = location.coords.latitude;
     let longitude = location.coords.longitude;
     let regionName = await reverseGeocodeAsync({
@@ -55,16 +57,20 @@ const LandingPage = () => {
   }
 
   async function handleClick() {
+    setIsLoading(true);
     if (locationPermissionInformation.status === "denied") {
       const permissionResponse = await requestPermission();
       return permissionResponse.granted;
     }
     const regionName = await getLocationHandler();
-    // if (locationPermissionInformation.status === "granted") {
     navigation.navigate("parking", {
       city: regionName,
     });
-    // }
+    setIsLoading(false);
+  }
+
+  if (isLoading) {
+    return <LoadingOverlay />;
   }
 
   return (
