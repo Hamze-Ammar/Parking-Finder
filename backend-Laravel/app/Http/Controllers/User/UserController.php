@@ -34,7 +34,6 @@ class UserController extends Controller
             $parking->city_id = $request->city_id;
             $parking->photo_id = $request->photo_id;
 
-
             //Get user ID
             $user = Auth::user();
             $parking->user_id = $user->id;
@@ -78,11 +77,15 @@ class UserController extends Controller
     public function makeReservation($id){
 
         $slot = Slot::find($id);
+
+        if(!$slot){
+            return redirect(route("not-found"));
+        }
         $slot->is_reserved = '1';
         $slot->save();
 
         // Push job to queue to reset reservation after 5 mins
-        ResetReservation::dispatch($slot)->delay(300);
+        ResetReservation::dispatch($slot)->delay(15);
 
         return response()->json([
             "status" => "Success",
