@@ -7,6 +7,7 @@ import {
 import React, { useState } from "react";
 import Slot from "./Slot";
 import { Colors } from "../../constants/styles";
+import DashedCircle from "../../ui/DashedCircle";
 
 const Slots = ({ slots, setRefresh }) => {
   // function reserveSlot() {
@@ -14,8 +15,15 @@ const Slots = ({ slots, setRefresh }) => {
   // }
   // const [refresh, setRefresh] = useState(false);
 
+  // if (true) {
+  //   return <DashedCircle />;
+  // }
+
   return (
     <>
+      <View style={styles.DashedCircle}>
+        <DashedCircle />
+      </View>
       <ScrollView>
         <KeyboardAvoidingView behavior="position">
           <View style={styles.main}>
@@ -100,5 +108,14 @@ const styles = StyleSheet.create({
   },
   btnContainer: {
     alignItems: "center",
+  },
+  DashedCircle: {
+    zIndex: 1,
+    flex: 1,
+    position: "absolute",
+    margin: "auto",
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0.2)",
   },
 });
