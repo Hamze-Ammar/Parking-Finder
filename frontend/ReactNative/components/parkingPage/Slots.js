@@ -4,11 +4,16 @@ import {
   ScrollView,
   KeyboardAvoidingView,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import Slot from "./Slot";
 import { Colors } from "../../constants/styles";
 
-const Slots = ({ slots }) => {
+const Slots = ({ slots, setRefresh }) => {
+  // function reserveSlot() {
+  //   console.log("left");
+  // }
+  // const [refresh, setRefresh] = useState(false);
+
   return (
     <>
       <ScrollView>
@@ -30,9 +35,13 @@ const Slots = ({ slots }) => {
                       return (
                         <Slot
                           key={slot.id}
+                          id={slot.id}
                           name={name}
                           side={side}
                           number={slot.number}
+                          is_reserved={slot.is_reserved}
+                          SetRefresh={setRefresh}
+                          // onPress={reserveSlot}
                         />
                       );
                     })}
@@ -50,9 +59,12 @@ const Slots = ({ slots }) => {
                       return (
                         <Slot
                           key={slot.id}
+                          id={slot.id}
                           name={name}
                           side={side}
                           number={slot.number}
+                          is_reserved={slot.is_reserved}
+                          SetRefresh={setRefresh}
                         />
                       );
                     })}
@@ -82,7 +94,6 @@ const styles = StyleSheet.create({
   },
   outerContainer: {
     borderWidth: 10,
-    borderBottomWidth: 0,
     borderColor: Colors.background500,
     flexDirection: "row",
     justifyContent: "space-between",
