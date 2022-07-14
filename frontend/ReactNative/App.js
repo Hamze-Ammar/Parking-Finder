@@ -13,9 +13,14 @@ import LoginScreen from "./screens/onboardingScreens/LoginScreen";
 import SignUpScreen from "./screens/onboardingScreens/SignUpScreen";
 import LandingScreen from "./screens/authenticatedScreens/LandingScreen";
 import ParkingScreen from "./screens/authenticatedScreens/ParkingScreen";
+import IconHeaderButton from "./ui/IconHeaderButton";
 
 const Stack = createNativeStackNavigator();
+
+// Handling error Require cycle
 LogBox.ignoreLogs(["Require cycle:"]);
+
+global.__reanimatedWorkletInit = () => {};
 
 function Root() {
   const [isTryingLogin, setIsTryingLogin] = useState(true);
@@ -24,7 +29,7 @@ function Root() {
   useEffect(() => {
     async function fetchToken() {
       const storedToken = await AsyncStorage.getItem("token");
-      console.log({ storedToken });
+      // console.log({ storedToken });
 
       if (storedToken) {
         authCtx.authenticate(storedToken);
@@ -75,7 +80,20 @@ function AuthenticatedStack() {
         // headerBackButtonMenuEnabled: true,
       }}
     >
-      <Stack.Screen name="landing" component={LandingScreen} />
+      <Stack.Screen
+        name="landing"
+        component={LandingScreen}
+        options={({ navigation }) => ({
+          headerRight: ({ tintColor }) => (
+            <IconHeaderButton
+              icon="options-vertical"
+              size={24}
+              color={tintColor}
+              // onPress={() => navigation.navigate("AddPlace")}
+            />
+          ),
+        })}
+      />
       <Stack.Screen name="parking" component={ParkingScreen} />
     </Stack.Navigator>
   );
@@ -84,7 +102,7 @@ function AuthenticatedStack() {
 export default function App() {
   return (
     <>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <AuthContextProvider>
         <Root />
       </AuthContextProvider>

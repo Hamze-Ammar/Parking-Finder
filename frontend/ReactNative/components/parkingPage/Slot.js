@@ -3,6 +3,7 @@ import React from "react";
 import { Colors } from "../../constants/styles";
 import { sendReservation } from "./parkingController";
 import ReservedSlot from "./ReservedSlot";
+import DashedCircle from "../../ui/DashedCircle";
 
 const Slot = ({ id, name, side, number, SetRefresh, is_reserved }) => {
   const test = {
@@ -25,9 +26,11 @@ const Slot = ({ id, name, side, number, SetRefresh, is_reserved }) => {
   }
 
   // if (is_reserved == true) {
-  //   return <>
-  //   <ReservedSlot />
-  //   </>
+  //   return (
+  //     <>
+  //       <DashedCircle />
+  //     </>
+  //   );
   // }
 
   if (side === "right") {
@@ -38,7 +41,7 @@ const Slot = ({ id, name, side, number, SetRefresh, is_reserved }) => {
       >
         <View style={[styles.slotContainer, styles.slotContainerReverse]}>
           {is_reserved ? (
-            <ReservedSlot />
+            <DashedCircle />
           ) : (
             <Image style={styles.image} source={test[name]} />
           )}
