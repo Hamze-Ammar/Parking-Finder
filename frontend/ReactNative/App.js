@@ -5,6 +5,7 @@ import { LogBox } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -25,47 +26,58 @@ LogBox.ignoreLogs(["Require cycle:"]);
 global.__reanimatedWorkletInit = () => {};
 
 const Stack = createNativeStackNavigator();
-const Drawer = createDrawerNavigator();
+const BottomTab = createBottomTabNavigator();
 
-function DrawerNavigator() {
+function BottomTabNavigator() {
   return (
-    <Drawer.Navigator
+    <BottomTab.Navigator
+      initialRouteName="Home"
       screenOptions={{
-        headerStyle: { backgroundColor: "#351401" },
-        headerTintColor: "white",
-        // headerShown: 'false',
-        // headerShown: false,
-        // sceneContainerStyle: { backgroundColor: "#3f2f25" },
-        // drawerContentStyle: { backgroundColor: "#351401" },
-        drawerInactiveTintColor: "white",
-        // drawerActiveTintColor: "#e4baa1",
-
         headerStyle: { backgroundColor: Colors.primary500 },
         headerTintColor: "white",
-        // contentStyle: { backgroundColor: Colors.primary100 },
       }}
     >
-      <Drawer.Screen
-        name="Categories"
-        component={UserProfile}
-        // options={{
-        //   title: "Profile",
-        //   drawerIcon: ({ color, size }) => (
-        //     <Ionicons name="list" color={color} size={18} />
-        //   ),
-        // }}
+      <BottomTab.Screen
+        name="Home"
+        component={LandingScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home" color={Colors.secondary500} size={size} />
+          ),
+        }}
       />
-      <Drawer.Screen
+      <BottomTab.Screen
+        name="Parking"
+        component={ParkingScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons
+              name="car-sport"
+              color={Colors.secondary500}
+              size={size}
+            />
+          ),
+        }}
+      />
+      <BottomTab.Screen
         name="Favorites"
         component={Instrutions}
-        // options={{
-        //   title: "Favorites",
-        //   drawerIcon: ({ color, size }) => (
-        //     <Ionicons name="star" color={color} size={18} />
-        //   ),
-        // }}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="md-bookmark" color={Colors.secondary500} size={size} />
+          ),
+        }}
       />
-    </Drawer.Navigator>
+      <BottomTab.Screen
+        name="Profile"
+        component={UserProfile}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person" color={Colors.secondary500} size={size} />
+          ),
+        }}
+      />
+    </BottomTab.Navigator>
   );
 }
 
@@ -98,8 +110,8 @@ function Navigation() {
   return (
     <NavigationContainer>
       {!authCtx.isAuthenticated && <AuthStack />}
-      {/* {true && <AuthStack />} */}
-      {authCtx.isAuthenticated && <AuthenticatedStack />}
+      {true && <BottomTabNavigator />}
+      {/* {authCtx.isAuthenticated && <AuthenticatedStack />} */}
     </NavigationContainer>
   );
 }
@@ -132,38 +144,22 @@ function AuthenticatedStack() {
         // headerBackButtonMenuEnabled: true,
       }}
     >
-      <Stack.Screen
-        name="landing"
-        component={LandingScreen}
-        options={({ navigation }) => ({
-          headerRight: ({ tintColor }) => (
-            <IconHeaderButton
-              icon="options-vertical"
-              size={24}
-              color={tintColor}
-              onPress={() => navigation.navigate("UserProfile")}
-            />
-          ),
-        })}
-      />
-      <Stack.Screen
-        name="Drawer"
-        component={DrawerNavigator}
+      {/* <Stack.Screen
+        name="BottomTab"
+        component={BottomTabNavigator}
         // options={{
         //   title: "All Categories",
         //   headerShown: false,
         // }}
-      />
-      <Stack.Screen
+      /> */}
+      {/* <Stack.Screen
         name="UserProfile"
         component={UserProfile}
         // options={{
         //   title: "All Categories",
         //   headerShown: false,
         // }}
-      />
-
-      <Stack.Screen name="parking" component={ParkingScreen} />
+      /> */}
     </Stack.Navigator>
   );
 }
