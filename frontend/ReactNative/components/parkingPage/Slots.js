@@ -1,6 +1,7 @@
 import {
   StyleSheet,
   View,
+  Text,
   ScrollView,
   KeyboardAvoidingView,
 } from "react-native";
@@ -9,21 +10,23 @@ import Slot from "./Slot";
 import { Colors } from "../../constants/styles";
 import DashedCircle from "../../ui/DashedCircle";
 
-const Slots = ({ slots, setRefresh }) => {
-  // function reserveSlot() {
-  //   console.log("left");
-  // }
-  // const [refresh, setRefresh] = useState(false);
+const Slots = ({ slots, setRefresh, setShowTimer, showTimer }) => {
 
-  // if (true) {
-  //   return <DashedCircle />;
-  // }
+
+  function displayTimer() {
+    setShowTimer(true);
+  }
+  function hideTimer() {
+    setShowTimer(false);
+  }
 
   return (
     <>
-      <View style={styles.DashedCircle}>
-        <DashedCircle />
-      </View>
+      {showTimer && (
+        <View style={styles.DashedCircle}>
+          <DashedCircle  setShowTimer={hideTimer}  setRefresh={setRefresh} />
+        </View>
+      )}
       <ScrollView>
         <KeyboardAvoidingView behavior="position">
           <View style={styles.main}>
@@ -33,23 +36,23 @@ const Slots = ({ slots, setRefresh }) => {
                 <View style={styles.container}>
                   {slots &&
                     slots.slice(0, slots.length / 2).map((slot) => {
-                      let name;
+                      let state;
                       let side = "left";
                       if (!slot.is_available || slot.is_reserved) {
-                        name = "left";
+                        state = "left";
                       } else {
-                        name = "empty";
+                        state = "empty";
                       }
                       return (
                         <Slot
                           key={slot.id}
                           id={slot.id}
-                          name={name}
+                          state={state}
                           side={side}
                           number={slot.number}
                           is_reserved={slot.is_reserved}
-                          SetRefresh={setRefresh}
-                          // onPress={reserveSlot}
+                          setRefresh={setRefresh}
+                          setShowTimer={displayTimer}
                         />
                       );
                     })}
@@ -57,22 +60,23 @@ const Slots = ({ slots, setRefresh }) => {
                 <View style={styles.container}>
                   {slots &&
                     slots.slice(slots.length / 2, slots.length).map((slot) => {
-                      let name;
+                      let state;
                       let side = "right";
                       if (!slot.is_available || slot.is_reserved) {
-                        name = "right";
+                        state = "right";
                       } else {
-                        name = "empty";
+                        state = "empty";
                       }
                       return (
                         <Slot
                           key={slot.id}
                           id={slot.id}
-                          name={name}
+                          state={state}
                           side={side}
                           number={slot.number}
                           is_reserved={slot.is_reserved}
-                          SetRefresh={setRefresh}
+                          setRefresh={setRefresh}
+                          setShowTimer={displayTimer}
                         />
                       );
                     })}

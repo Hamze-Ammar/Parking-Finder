@@ -79,7 +79,6 @@ const LandingPage = () => {
       <Title myFontSize={35}>Reinventing The Wheels</Title>
       <Title myFontSize={22}>Life is too short to be spent on PARKING!</Title>
       <Button onPress={handleClick}>GO</Button>
-      <DashedCircle />
     </View>
   );
 };

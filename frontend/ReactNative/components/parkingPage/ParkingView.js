@@ -19,7 +19,7 @@ const ParkingView = ({ city_name }) => {
   const [not_found, setNotFound] = useState(false);
   const [loading, setLoading] = useState(false);
   const [refresh, setRefresh] = useState(false);
-  console.log({ refresh });
+  const [showTimer, setShowTimer] = useState(false);
 
   // Controller get parking by id
   useEffect(() => {
@@ -70,6 +70,10 @@ const ParkingView = ({ city_name }) => {
           setRefresh={() => {
             setRefresh(!refresh);
           }}
+          setShowTimer={(boolean) => {
+            setShowTimer(boolean);
+          }}
+          showTimer={showTimer}
         />
       )}
     </>

@@ -1,38 +1,44 @@
-import { StyleSheet, Text, View, Image, Pressable } from "react-native";
-import React from "react";
+import { StyleSheet, Text, View, Image, Pressable, Alert } from "react-native";
+import React, { useState } from "react";
 import { Colors } from "../../constants/styles";
 import { sendReservation } from "./parkingController";
-import ReservedSlot from "./ReservedSlot";
-import DashedCircle from "../../ui/DashedCircle";
 
-const Slot = ({ id, name, side, number, SetRefresh, is_reserved }) => {
-  const test = {
+const Slot = ({ id, state, side, number, setRefresh, setShowTimer }) => {
+  // Preparing images
+  const images = {
     empty: require("../../assets/images/emptySlot.png"),
     left: require("../../assets/images/busySlotLeft.png"),
     right: require("../../assets/images/busySlotRight.png"),
   };
-  // console.log(is_reserved == true);
 
+  const [localState, setLocalState] = useState(state);
+  // console.log(localState, number);
   function onPress() {
-    if (name === "empty") {
+    if (localState === "empty") {
       sendReservation(id);
-      SetRefresh();
+      setRefresh();
+      setShowTimer(true);
     }
   }
 
+  // Localy reset the state of the slot after reservation time ends
+  function resetSlotState() {
+    console.log(localState);
+    // setTimeout(() => {
+    console.log("timeout?");
+    console.log({ localState });
+    setLocalState("empty");
+    console.log({ localState });
+    // }, 10000);
+  }
+
+  // Change Color of slot number in front of each slot based on status
   let color = false;
-  if (name === "empty") {
+  if (localState === "empty") {
     color = true;
   }
 
-  // if (is_reserved == true) {
-  //   return (
-  //     <>
-  //       <DashedCircle />
-  //     </>
-  //   );
-  // }
-
+  // Handling display for the right column of cars in parking => Rotation
   if (side === "right") {
     return (
       <Pressable
@@ -40,11 +46,8 @@ const Slot = ({ id, name, side, number, SetRefresh, is_reserved }) => {
         onPress={onPress}
       >
         <View style={[styles.slotContainer, styles.slotContainerReverse]}>
-          {is_reserved ? (
-            <DashedCircle />
-          ) : (
-            <Image style={styles.image} source={test[name]} />
-          )}
+          <Image style={styles.image} source={images[localState]} />
+
           <Text
             style={[styles.text, styles.textReverse, color && styles.colored]}
           >
@@ -61,7 +64,7 @@ const Slot = ({ id, name, side, number, SetRefresh, is_reserved }) => {
       onPress={onPress}
     >
       <View style={styles.slotContainer}>
-        <Image source={test[name]} />
+        <Image style={styles.image} source={images[localState]} />
         <Text style={[styles.text, , color && styles.colored]}>{number}</Text>
       </View>
     </Pressable>
@@ -95,6 +98,6 @@ const styles = StyleSheet.create({
     opacity: 0.7,
   },
   image: {
-    opacity: 0.5,
+    opacity: 0.7,
   },
 });
