@@ -1,5 +1,5 @@
 import { Alert } from "react-native";
-import { URL } from "../../constants/IP_address";
+import { URL } from "../../constants/backendSync";
 
 export const loginUser = async (credentials) => {
 

@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { URL } from "../../constants/IP_address";
+import { URL } from "../../constants/backendSync";
 // AsyncStorage.removeItem("token");
 
 // Get Parking from server
