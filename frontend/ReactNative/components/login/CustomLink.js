@@ -4,20 +4,16 @@ import { useNavigation } from "@react-navigation/native";
 
 import { Colors } from "../../constants/styles";
 
-const CustomLink = ({ text }) => {
+const CustomLink = ({ text, navigateTo }) => {
   const navigation = useNavigation();
-
-  function handleClick() {
-    if (text === "create an account") {
-      navigation.replace("Signup");
-    }
-  }
 
   return (
     <Pressable
       // style={({ pressed }) => [styles.button, pressed && styles.pressed]}
       style={styles.button}
-      onPress={handleClick}
+      onPress={() => {
+        navigation.replace(navigateTo);
+      }}
       android_ripple={{ color: "#64eee3" }}
     >
       <View>

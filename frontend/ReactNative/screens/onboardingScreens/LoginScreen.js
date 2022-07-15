@@ -23,7 +23,7 @@ const LoginScreen = () => {
         </View>
         <View style={styles.footer}>
           <CustomLink text="forget password" />
-          <CustomLink text="create an account" />
+          <CustomLink text="create an account" navigateTo="Signup" />
         </View>
       </View>
     </>
