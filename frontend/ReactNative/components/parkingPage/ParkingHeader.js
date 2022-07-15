@@ -7,10 +7,10 @@ import { FontAwesome5 } from "@expo/vector-icons";
 const ParkingHeader = ({ name, total, available_slots, min_away }) => {
   return (
     <>
-      <View style={styles.titleContainer}>
+      {/* <View style={styles.titleContainer}>
         <FontAwesome5 name="parking" size={44} color={Colors.secondary500} />
         <Text style={styles.title}>{name}</Text>
-      </View>
+      </View> */}
       <View style={styles.info}>
         <View style={styles.infoCol}>
           <Text style={styles.bold}>{total}</Text>
@@ -52,11 +52,12 @@ const styles = StyleSheet.create({
     // marginBottom: 8,
   },
   info: {
+    width: "100%",
     flexDirection: "row",
     justifyContent: "space-around",
     backgroundColor: Colors.background500,
-    marginHorizontal: 20,
-    marginBottom: 5,
+    // marginHorizontal: 20,
+    // marginBottom: 5,
     padding: 5,
     borderRadius: 10,
     borderColor: Colors.secondary500,
