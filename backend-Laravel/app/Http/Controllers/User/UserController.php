@@ -85,7 +85,7 @@ class UserController extends Controller
         $slot->save();
 
         // Push job to queue to reset reservation after 5 mins
-        ResetReservation::dispatch($slot)->delay(15);
+        ResetReservation::dispatch($slot)->delay(9);
 
         return response()->json([
             "status" => "Success",
