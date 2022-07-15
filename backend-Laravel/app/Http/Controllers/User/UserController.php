@@ -178,11 +178,11 @@ class UserController extends Controller
         }
     }
 
-    public function addToFavorite(Request $request){
+    public function addToFavorite($id){
         $user = Auth::user();
         $favourite = new Favourite;
         $favourite->user_id = $user->id;
-        $favourite->parking_id = $request->parking_id;
+        $favourite->parking_id = $id;
 
         $favourite->save();
 
