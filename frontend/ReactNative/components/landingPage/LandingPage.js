@@ -65,16 +65,12 @@ const LandingPage = () => {
     }
     const regionName = await getLocationHandler();
     // Should navigate to map screen
-    navigation.navigate("parking", {
+    navigation.navigate("Parking", {
       city: regionName,
     });
     setIsLoading(false);
   }
 
-  // Preparing images
-  // const images = {
-  //   sportCar: require("../../assets/images/Sportscar.gif"),
-  // };
 
   if (isLoading) {
     return <LoadingOverlay />;
