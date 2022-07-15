@@ -10,7 +10,7 @@ import NotFound from "../../util/NotFound";
 import Slots from "./Slots";
 import LoadingOverlay from "../../ui/LoadingOverlay";
 
-const ParkingView = ({ city_name }) => {
+const ParkingView = ({ city_name, setTitle, setId }) => {
   const [parking, setParking] = useState(null);
   const [parkingName, setParkingName] = useState("");
   const [slots, setSlots] = useState(null);
@@ -43,6 +43,8 @@ const ParkingView = ({ city_name }) => {
       setSlots(parking.res.slots);
       setNumberOfSlots(parking.res.total_slots);
       setParkingName(parking.res.name);
+      setTitle(parking.res.name);
+      setId(parking.res.id);
     }
   }, [parking]);
 
