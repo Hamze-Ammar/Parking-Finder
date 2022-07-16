@@ -28,8 +28,8 @@ class Parking extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function rate()
+    public function city()
     {
-        
+        return $this->belongsTo(City::class);
     }
 }
