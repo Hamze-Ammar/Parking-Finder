@@ -10,6 +10,9 @@ import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import AuthContextProvider, { AuthContext } from "./store/auth-context";
+import FavoritesContextProvider, {
+  FavoritesContext,
+} from "./store/favorites-context";
 import AppLoading from "expo-app-loading";
 import { Colors } from "./constants/styles";
 
@@ -64,7 +67,11 @@ function BottomTabNavigator() {
         component={Instrutions}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="md-bookmark" color={Colors.secondary500} size={size} />
+            <Ionicons
+              name="md-bookmark"
+              color={Colors.secondary500}
+              size={size}
+            />
           ),
         }}
       />
@@ -84,15 +91,22 @@ function BottomTabNavigator() {
 function Root() {
   const [isTryingLogin, setIsTryingLogin] = useState(true);
   const authCtx = useContext(AuthContext);
+  const favoritesCtx = useContext(FavoritesContext);
 
   useEffect(() => {
     async function fetchToken() {
       const storedToken = await AsyncStorage.getItem("token");
-      // console.log({ storedToken });
+      const storedFavorites = await AsyncStorage.getItem("favorites");
 
       if (storedToken) {
         authCtx.authenticate(storedToken);
       }
+      if (storedFavorites) {
+        // const myStoredFavorites = JSON.parse(storedFavorites);
+        console.log({ storedFavorites });
+        // favoritesCtx.storeFavorites(myStoredFavorites);
+      }
+
       setIsTryingLogin(false);
     }
     fetchToken();
@@ -110,8 +124,7 @@ function Navigation() {
   return (
     <NavigationContainer>
       {!authCtx.isAuthenticated && <AuthStack />}
-      {true && <BottomTabNavigator />}
-      {/* {authCtx.isAuthenticated && <AuthenticatedStack />} */}
+      {authCtx.isAuthenticated && <BottomTabNavigator />}
     </NavigationContainer>
   );
 }
@@ -133,43 +146,29 @@ function AuthStack() {
   );
 }
 
-function AuthenticatedStack() {
-  return (
-    <Stack.Navigator
-      initialRouteName="landing"
-      screenOptions={{
-        headerStyle: { backgroundColor: Colors.primary500 },
-        headerTintColor: "white",
-        contentStyle: { backgroundColor: Colors.primary100 },
-        // headerBackButtonMenuEnabled: true,
-      }}
-    >
-      {/* <Stack.Screen
-        name="BottomTab"
-        component={BottomTabNavigator}
-        // options={{
-        //   title: "All Categories",
-        //   headerShown: false,
-        // }}
-      /> */}
-      {/* <Stack.Screen
-        name="UserProfile"
-        component={UserProfile}
-        // options={{
-        //   title: "All Categories",
-        //   headerShown: false,
-        // }}
-      /> */}
-    </Stack.Navigator>
-  );
-}
+// function AuthenticatedStack() {
+//   return (
+//     <Stack.Navigator
+//       initialRouteName="landing"
+//       screenOptions={{
+//         headerStyle: { backgroundColor: Colors.primary500 },
+//         headerTintColor: "white",
+//         contentStyle: { backgroundColor: Colors.primary500 },
+//         // headerBackButtonMenuEnabled: true,
+//       }}
+//     >
+//     </Stack.Navigator>
+//   );
+// }
 
 export default function App() {
   return (
     <>
       <StatusBar style="light" />
       <AuthContextProvider>
-        <Root />
+        <FavoritesContextProvider>
+          <Root />
+        </FavoritesContextProvider>
       </AuthContextProvider>
     </>
   );
