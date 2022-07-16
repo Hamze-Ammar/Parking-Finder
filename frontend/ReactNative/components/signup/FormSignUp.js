@@ -5,8 +5,10 @@ import { Input } from "../../ui/Input";
 import { Button } from "../../ui/Button";
 import validateInput from "./SignUpController";
 import { RegisterNewUser } from "./SignUpController";
+import { useNavigation } from "@react-navigation/native";
 
 const FormSignUp = () => {
+  const navigation = useNavigation();
   const [enteredName, setEnteredName] = useState("");
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
@@ -43,7 +45,7 @@ const FormSignUp = () => {
     }
   }
 
-  function submitHandler() {
+  async function submitHandler() {
     let validation = validateInput({
       name: enteredName,
       email: enteredEmail,
@@ -59,7 +61,10 @@ const FormSignUp = () => {
         password: enteredPassword,
         password_confirmation: enteredConfirmPassword,
       };
-      RegisterNewUser(credentials);
+      let response = await RegisterNewUser(credentials);
+      if (response === "success") {
+        navigation.navigate("Login");
+      }
     }
   }
 
