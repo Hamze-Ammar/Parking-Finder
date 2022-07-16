@@ -2,8 +2,8 @@ import { Alert } from "react-native";
 import { URL } from "../../constants/backendSync";
 
 export const loginUser = async (credentials) => {
-
   const handleResponse = (data) => {
+    // If error returns
     if (data["email"]) {
       if (data["email"][0]) {
         Alert.alert(data["email"][0]);
@@ -55,4 +55,3 @@ export function validateInput(credentials) {
   }
   return "valid";
 }
-

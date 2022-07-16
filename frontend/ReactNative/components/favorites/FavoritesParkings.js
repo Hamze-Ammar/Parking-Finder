@@ -9,7 +9,7 @@ import { addToFavorite } from "./favoriteController";
 const FavoritesParkings = (id) => {
   const authCtx = useContext(AuthContext);
   const favoritesCtx = useContext(FavoritesContext);
-  console.log("from favoritesParkings");
+  // console.log("from favoritesParkings");
   // console.log({ id });
   // console.log(authCtx.token);
   const token = authCtx.token;

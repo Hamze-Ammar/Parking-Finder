@@ -27,13 +27,6 @@ const ParkingScreen = ({ route, navigation }) => {
   // to handle the process
   const addToFavorite = async () => {
     await favoritesCtx.addNewFavorite({ id: "3" });
-    console.log(favoritesCtx.favoriteParkings);
-    // console.log("clicked");
-    // let hardcodedid = "1";
-    // if (hardcodedid) {
-    //   // setIsAddingFavorite(true);
-    //   FavoritesParkings("1");
-    // }
   };
 
   useEffect(() => {

@@ -2,15 +2,9 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Colors } from "../../constants/styles";
 
-import { FontAwesome5 } from "@expo/vector-icons";
-
 const ParkingHeader = ({ name, total, available_slots, min_away }) => {
   return (
     <>
-      {/* <View style={styles.titleContainer}>
-        <FontAwesome5 name="parking" size={44} color={Colors.secondary500} />
-        <Text style={styles.title}>{name}</Text>
-      </View> */}
       <View style={styles.info}>
         <View style={styles.infoCol}>
           <Text style={styles.bold}>{total}</Text>
