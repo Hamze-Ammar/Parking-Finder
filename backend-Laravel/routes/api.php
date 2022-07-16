@@ -10,6 +10,7 @@ use App\Http\Controllers\General\CityController;
 use App\Http\Controllers\General\ParkingController;
 use App\Http\Controllers\General\SensorController;
 use App\Http\Controllers\General\HistoryController;
+use App\Http\Controllers\General\FavouriteController;
 use App\Http\Controllers\System\NotFoundController;
 
 Route::group(['prefix' => 'v1'], function(){
@@ -32,6 +33,7 @@ Route::group(['prefix' => 'v1'], function(){
             Route::get('/getUserProfile', [UserController::class, 'getUserProfile']);
             Route::put('/editProfile', [UserController::class, 'editProfile']);
             Route::post('/addToFavorite/{id}', [UserController::class, 'addToFavorite']);
+            Route::get('/getFavorites', [UserController::class, 'getFavorites']);
             Route::delete('/removeFromFavorite', [UserController::class, 'removeFromFavorite']);
             Route::post('/searchRequest', [UserController::class, 'searchRequest']);
             Route::post('/addReview', [UserController::class, 'addReview']);
@@ -63,6 +65,7 @@ Route::group(['prefix' => 'v1'], function(){
             Route::get('/getParkingRate/{id}', [ParkingController::class, 'getParkingRate']);
             Route::post('/addToHistory', [HistoryController::class, 'addToHistory']);
             Route::post('/updateHistory', [HistoryController::class, 'updateHistory']);
+            Route::get('/getFavouriteParkings', [FavouriteController::class, 'getFavouriteParkings']);
         });
     });
 
