@@ -192,6 +192,18 @@ class UserController extends Controller
         ], 200);
     }
 
+    public function getFavorites(){
+        $user = Auth::user();
+
+        
+        $myFavourites = $user->favourites;
+        
+        return response()->json([
+            "status" => "Success",
+            "res"   => $myFavourites
+        ], 200);
+    }
+
     public function removeFromFavorite(Request $request){
         $favourite = Favourite::find($request->favourite_id);
         $favourite->delete();
