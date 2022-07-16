@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import {
   Text,
   View,
@@ -12,11 +12,29 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { Colors } from "../../constants/styles";
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-import { addToFavorite } from "../../components/parkingPage/parkingController";
+// import { addToFavorite } from "../../components/parkingPage/parkingController";
+import FavoritesParkings from "../../components/favorites/FavoritesParkings";
+import { FavoritesContext } from "../../store/favorites-context";
 
 const ParkingScreen = ({ route, navigation }) => {
   const [title, setTitle] = useState();
   const [id, setId] = useState();
+  const [isAddingFavorite, setIsAddingFavorite] = useState(false);
+
+  const favoritesCtx = useContext(FavoritesContext);
+
+  // When adding new favorite call addToFavorite component
+  // to handle the process
+  const addToFavorite = async () => {
+    await favoritesCtx.addNewFavorite({ id: "3" });
+    console.log(favoritesCtx.favoriteParkings);
+    // console.log("clicked");
+    // let hardcodedid = "1";
+    // if (hardcodedid) {
+    //   // setIsAddingFavorite(true);
+    //   FavoritesParkings("1");
+    // }
+  };
 
   useEffect(() => {
     navigation.setOptions({
@@ -43,31 +61,31 @@ const ParkingScreen = ({ route, navigation }) => {
           name="md-bookmark-outline"
           color={Colors.background200}
           size={30}
-          onPress={() => addToFavorite(id)}
+          onPress={() => addToFavorite()}
         />
         // <AntDesign name="staro" size={24} color="black" />
       ),
     });
   }, []);
 
-  if (route?.params) {
-    const param = route.params;
-    // const city_name = param.city[0].subregion;
-    const city_name = param.city[0].subregion;
-    return (
-      <>
-        {/* <StatusBar style="dark" /> */}
-        <ParkingView
-          setId={(e) => setId(e)}
-          setTitle={(e) => setTitle(e)}
-          city_name={city_name}
-        />
-      </>
-    );
-  }
+  // if (route?.params) {
+  //   const param = route.params;
+  //   // const city_name = param.city[0].subregion;
+  //   const city_name = param.city[0].subregion;
+  //   return (
+  //     <>
+  //       {/* <StatusBar style="dark" /> */}
+  //       <ParkingView
+  //         setId={(e) => setId(e)}
+  //         setTitle={(e) => setTitle(e)}
+  //         city_name={city_name}
+  //       />
+  //     </>
+  //   );
+  // }
   return (
     <SafeAreaView>
-      {/* <StatusBar style="dark" barStyle="dark-content" /> */}
+      <StatusBar style="dark" barStyle="dark-content" />
       <ParkingView setId={(e) => setId(e)} setTitle={(e) => setTitle(e)} />
     </SafeAreaView>
   );

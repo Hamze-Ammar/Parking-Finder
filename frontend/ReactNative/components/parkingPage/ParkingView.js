@@ -39,12 +39,15 @@ const ParkingView = ({ city_name, setTitle, setId }) => {
 
   useEffect(() => {
     if (parking) {
-      setAvailableSlots(parking.availableSpots);
-      setSlots(parking.res.slots);
-      setNumberOfSlots(parking.res.total_slots);
-      setParkingName(parking.res.name);
-      setTitle(parking.res.name);
-      setId(parking.res.id);
+      async function upload() {
+        setAvailableSlots(parking.availableSpots);
+        setSlots(parking.res.slots);
+        setNumberOfSlots(parking.res.total_slots);
+        setParkingName(parking.res.name);
+        await setTitle(parking.res.name);
+        await setId(parking.res.id);
+      }
+      upload();
     }
   }, [parking]);
 
