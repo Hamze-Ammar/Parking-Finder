@@ -4,11 +4,9 @@ import { createContext, useState } from "react";
 
 export const FavoritesContext = createContext({
   favoriteParkings: [],
-  //   isAuthenticated: false,
+  storeFavorites: () => {},
   addNewFavorite: () => {},
   deleteFavorite: () => {},
-  //   logout: () => {},
-  // favouriteParkings: [],
 });
 
 function FavoritesContextProvider({ children }) {
@@ -23,14 +21,8 @@ function FavoritesContextProvider({ children }) {
 
   // On add new favorite; update both local storage and context
   async function addNewFavorite(parking) {
-    console.log(parking);
-    console.log({ savedParkings });
-
-    // const temp = [...savedParkings, parking];
-    // console.log({ temp });
-    setSavedParkings((savedParkings) => [...savedParkings, parking]);
-    AsyncStorage.setItem("favorites", JSON.stringify(savedParkings));
-    // console.log(await AsyncStorage.getItem("favorites"));
+    await setSavedParkings((savedParkings) => [...savedParkings, parking]);
+    // AsyncStorage.setItem("favorites", JSON.stringify(savedParkings));
   }
 
   // On delete favorite; update both local storage and context
