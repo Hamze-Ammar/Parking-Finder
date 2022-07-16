@@ -15,14 +15,14 @@ import FavoritesContextProvider, {
 } from "./store/favorites-context";
 import AppLoading from "expo-app-loading";
 import { Colors } from "./constants/styles";
+import IconLogout from "./ui/IconLogout";
 
 import LoginScreen from "./screens/onboardingScreens/LoginScreen";
 import SignUpScreen from "./screens/onboardingScreens/SignUpScreen";
 import LandingScreen from "./screens/authenticatedScreens/LandingScreen";
 import ParkingScreen from "./screens/authenticatedScreens/ParkingScreen";
-import IconHeaderButton from "./ui/IconHeaderButton";
-import UserProfile from "./screens/DrawerScreens/UserProfile";
-import Instrutions from "./screens/DrawerScreens/Instrutions";
+import Favourites from "./screens/TabScreens/Favourites";
+import UserProfile from "./screens/TabScreens/UserProfile";
 
 // Handling error Require cycle
 LogBox.ignoreLogs(["Require cycle:"]);
@@ -32,6 +32,7 @@ const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
 
 function BottomTabNavigator() {
+  const authCtx = useContext(AuthContext);
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
@@ -64,7 +65,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Favorites"
-        component={Instrutions}
+        component={Favourites}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons
@@ -81,6 +82,14 @@ function BottomTabNavigator() {
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person" color={Colors.secondary500} size={size} />
+          ),
+          headerRight: ({ tintColor }) => (
+            <IconLogout
+              icon="logout"
+              color={tintColor}
+              size={24}
+              onPress={authCtx.logout}
+            />
           ),
         }}
       />
