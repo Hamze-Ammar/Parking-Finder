@@ -71,7 +71,6 @@ const LandingPage = () => {
     setIsLoading(false);
   }
 
-
   if (isLoading) {
     return <LoadingOverlay />;
   }

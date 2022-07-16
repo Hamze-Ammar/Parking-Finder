@@ -67,11 +67,11 @@ const FormLogin = ({ setIsAuthenticating }) => {
         email: enteredEmail,
         password: enteredPassword,
       };
-      let response = await loginUser(input);
-      if (!response) {
+      let token = await loginUser(input);
+      if (!token) {
         return;
       } else {
-        await authCtx.authenticate(response);
+        await authCtx.authenticate(token);
       }
     }
   };
