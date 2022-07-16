@@ -1,18 +1,19 @@
 import { useContext, useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { Button } from "../../ui/Button";
 import { SpecialButton } from "../../ui/SpecialButton";
 import { Input } from "../../ui/Input";
 
 import { validateInput } from "./loginController";
 import { loginUser } from "./loginController";
-import LoadingOverlay from "../../ui/LoadingOverlay";
-
+import { getFavouriteParkings } from "../favorites/favoriteController";
+import { FavoritesContext } from "../../store/favorites-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "../../store/auth-context";
 
 const FormLogin = ({ setIsAuthenticating }) => {
   const authCtx = useContext(AuthContext);
+  const favCtx = useContext(FavoritesContext);
 
   const [sendRequest, setSendRequest] = useState(false);
   const [credentials, setCredentials] = useState({});
@@ -44,8 +45,8 @@ const FormLogin = ({ setIsAuthenticating }) => {
     if (sendRequest) {
       submitHandler();
       return () => {
-        setIsAuthenticating(false);
         setSendRequest(false);
+        setIsAuthenticating(false);
       };
     }
   }, [sendRequest]);
@@ -71,6 +72,10 @@ const FormLogin = ({ setIsAuthenticating }) => {
       if (!token) {
         return;
       } else {
+        // After successfully signedIn send request to get favourite parkings
+        let parkings = await getFavouriteParkings(token);
+        // Store favourite parkings in store
+        await favCtx.storeFavorites(parkings);
         await authCtx.authenticate(token);
       }
     }
