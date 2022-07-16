@@ -38,8 +38,20 @@ export const RegisterNewUser = async (credentials) => {
       body: JSON.stringify(credentials),
     });
     const data = await res.json();
-    console.log(data);
+    return handleResponse(data);
   } catch (err) {
-    console.log(err);
+    console.log({ err });
   }
 };
+
+function handleResponse(data) {
+  // console.log(data);
+  if (data?.email) {
+    Alert.alert("Invalid Email", "Email has already been taken");
+    return;
+  }
+  if (data?.message) {
+    Alert.alert("Success", "User successfully registered");
+    return "success";
+  }
+}
