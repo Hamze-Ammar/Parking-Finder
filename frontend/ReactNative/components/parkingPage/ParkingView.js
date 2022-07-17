@@ -21,9 +21,15 @@ const ParkingView = ({ cityName, setTitle, parkingId, setMyParking }) => {
   const [refresh, setRefresh] = useState(false);
   const [showTimer, setShowTimer] = useState(false);
 
-  // console.log("hamzeeeeeeeeeeeee", parking);
+  // console.log("mn jowwwwwwwwwwaaaaaaaaaa", parkingId);
   // Controller get parking by id
+
   useEffect(() => {
+    setRefresh(!refresh);
+  }, [parkingId]);
+
+  useEffect(() => {
+    setNotFound(false);
     if (!parkingId) {
       return;
     }
