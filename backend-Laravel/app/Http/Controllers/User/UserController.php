@@ -56,14 +56,15 @@ class UserController extends Controller
         }
     }
 
-    public function viewParking($id)
-    {
+    public function viewParking($id){
+
         $parking = Parking::find($id);
 
         if (!$parking || $parking->is_approved==0){
             return redirect(route("not-found"));
         }
         $parking->slots;
+        $parking->city->name;
         $count = $parking->availableSlots()->count();
 
         return response()->json([
