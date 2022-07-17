@@ -6,6 +6,7 @@ export const Colors = {
   error100: "#F34913",
   error200: "#F34913",
   error500: "#F34913",
+  marked400: "#ff78f1",
 };
 
 export const BorderRadius = {
