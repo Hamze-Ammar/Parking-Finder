@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useContext } from "react";
 import { AuthContext } from "../../store/auth-context";
 import { URL } from "../../constants/backendSync";
+import { Alert } from "react-native";
 
 // const authCtx = useContext(AuthContext);
 
@@ -10,7 +11,7 @@ import { URL } from "../../constants/backendSync";
 // Get Parking from server
 export const getParkingById = async (id) => {
   let token = await AsyncStorage.getItem("token");
-
+  // console.log(token);
   //Just in case
   if (!token) {
     return;
@@ -24,8 +25,12 @@ export const getParkingById = async (id) => {
     },
   });
   const data = await res.json();
+  // console.log(data);
+  if (data.status === "Failure") {
+    Alert.alert("Connection Timed Out", "Please Try again");
+  }
   if (data.status === "Success") {
-    // console.log(data.res.id);
+    // console.log("fetch      ", data.res.id);
     return data;
   } else {
     return false;
