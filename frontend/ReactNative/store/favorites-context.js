@@ -14,9 +14,9 @@ export const FavoritesContext = createContext({
 function FavoritesContextProvider({ children }) {
   //should be an array of objects
   const [savedParkings, setSavedParkings] = useState([]);
-  console.log("===========================================");
-  console.log(savedParkings);
-  console.log("===========================================");
+  // console.log("===========================================");
+  // console.log(savedParkings);
+  // console.log("===========================================");
 
   // on sign in
   function storeFavorites(favorites) {

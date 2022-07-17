@@ -22,7 +22,7 @@ import SignUpScreen from "./screens/onboardingScreens/SignUpScreen";
 import LandingScreen from "./screens/authenticatedScreens/LandingScreen";
 import ParkingScreen from "./screens/authenticatedScreens/ParkingScreen";
 import Favourites from "./screens/TabScreens/Favourites";
-import UserProfile from "./screens/TabScreens/UserProfile";
+import ProfileScreen from "./screens/TabScreens/editProfile/ProfileScreen";
 
 // Handling error Require cycle
 LogBox.ignoreLogs(["Require cycle:"]);
@@ -45,7 +45,7 @@ function BottomTabNavigator() {
         name="Home"
         component={LandingScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ size }) => (
             <Ionicons name="home" color={Colors.secondary500} size={size} />
           ),
         }}
@@ -54,7 +54,7 @@ function BottomTabNavigator() {
         name="Parking"
         component={ParkingScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ size }) => (
             <Ionicons
               name="car-sport"
               color={Colors.secondary500}
@@ -78,7 +78,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Profile"
-        component={UserProfile}
+        component={ProfileScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person" color={Colors.secondary500} size={size} />
@@ -106,7 +106,7 @@ function Root() {
     async function fetchToken() {
       const storedToken = await AsyncStorage.getItem("token");
       const storedFavorites = await AsyncStorage.getItem("favorites");
-      console.log({ storedFavorites });
+      // console.log({ storedFavorites });
 
       if (storedToken) {
         authCtx.authenticate(storedToken);
@@ -142,7 +142,6 @@ function AuthStack() {
   return (
     <>
       <StatusBar style="dark" />
-
       <Stack.Navigator
         screenOptions={{
           headerShown: false,

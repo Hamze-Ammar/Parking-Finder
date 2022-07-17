@@ -10,7 +10,7 @@ import {
   RefreshControl,
 } from "react-native";
 import Title from "../../ui/Title";
-import Row from "../../ui/Row";
+import Row from "../../components/favorites/Row";
 import MsgNotFound from "../../components/favorites/MsgNotFound";
 
 // import { getFavouriteParkings } from "../../components/favorites/favoriteController";
@@ -60,10 +60,6 @@ const Favourites = () => {
       openAt: item.opening_hr,
       closeAt: item.closing_hr,
     };
-
-    if (!parkings.length) {
-      return <MsgNotFound />;
-    }
     return <Row {...parkings} deleteFavorite={deleteFavorite} />;
   }
 
