@@ -1,6 +1,5 @@
-import { Text, View, TextInput, StyleSheet } from "react-native";
-import { Colors } from "../constants/styles";
-import { BorderRadius } from "../constants/styles";
+import { View, TextInput, StyleSheet } from "react-native";
+import { Colors, BorderRadius } from "../constants/styles";
 
 export function Input({
   placeholder,
