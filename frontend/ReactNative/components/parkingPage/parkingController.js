@@ -56,3 +56,30 @@ export const sendReservation = async (id) => {
 };
 
 // sendReservation("67");
+
+export const checkIfSaved = (list, id) => {
+  if (list.length === 0 || !id) {
+    return false;
+  }
+  for (let i = 0; i < list.length; i++) {
+    if (String(list[i].id) === String(id)) {
+      return true;
+    }
+  }
+  return false;
+};
+
+export const parseParking = (parking) => {
+  if (!parking) {
+    return;
+  }
+  let res = {
+    id: parking.res.id,
+    name: parking.res.name,
+    total_slots: parking.res.total_slots,
+    address: parking.res.city.name,
+    opening_hr: parking.res.opening_hr,
+    closing_hr: parking.res.closing_hr,
+  };
+  return res;
+};
