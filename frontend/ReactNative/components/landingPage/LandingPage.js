@@ -12,7 +12,7 @@ import Title from "../../ui/Title";
 import { Button } from "../../ui/Button";
 
 import { useNavigation } from "@react-navigation/native";
-import DashedCircle from "../../ui/DashedCircle";
+// import DashedCircle from "../../ui/DashedCircle";
 
 const LandingPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -80,6 +80,7 @@ const LandingPage = () => {
       // console.log(cityName);
       navigation.navigate("Parking", {
         city: cityName,
+        id: "1",
       });
       // navigation.navigate("Parking");
     }

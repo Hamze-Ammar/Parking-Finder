@@ -106,13 +106,13 @@ function Root() {
     async function fetchToken() {
       const storedToken = await AsyncStorage.getItem("token");
       const storedFavorites = await AsyncStorage.getItem("favorites");
+      console.log({ storedFavorites });
 
       if (storedToken) {
         authCtx.authenticate(storedToken);
       }
       if (storedFavorites) {
         const myStoredFavorites = JSON.parse(storedFavorites);
-        // console.log({ myStoredFavorites });
         favoritesCtx.storeFavorites(myStoredFavorites);
       }
 
