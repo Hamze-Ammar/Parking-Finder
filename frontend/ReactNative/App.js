@@ -111,9 +111,9 @@ function Root() {
         authCtx.authenticate(storedToken);
       }
       if (storedFavorites) {
-        // const myStoredFavorites = JSON.parse(storedFavorites);
-        console.log({ storedFavorites });
-        // favoritesCtx.storeFavorites(myStoredFavorites);
+        const myStoredFavorites = JSON.parse(storedFavorites);
+        // console.log({ myStoredFavorites });
+        favoritesCtx.storeFavorites(myStoredFavorites);
       }
 
       setIsTryingLogin(false);
