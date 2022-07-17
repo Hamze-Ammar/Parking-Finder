@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Pressable } from "react-native";
 import ParkingView from "../../components/parkingPage/ParkingView";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Colors } from "../../constants/styles";
@@ -11,14 +11,17 @@ import { parseParking } from "../../components/parkingPage/parkingController";
 const ParkingScreen = ({ route, navigation }) => {
   const favoritesCtx = useContext(FavoritesContext);
   const [title, setTitle] = useState();
-  const [id, setId] = useState();
-  const [isAddingFavorite, setIsAddingFavorite] = useState(false);
+  // const [isAddingFavorite, setIsAddingFavorite] = useState(false);
   const [cityName, setCityName] = useState();
   const [isSaved, setIsSaved] = useState();
   const [myParking, setMyParking] = useState();
   // Should get it later from params
-  const [parkingId, setParkingId] = useState("1");
-  const [toggleFavorite, setToggleFavorite] = useState(0);
+  const [parkingId, setParkingId] = useState();
+  // console.log(parkingId);
+  // const [toggleFavorite, setToggleFavorite] = useState(0);
+  // console.log({ toggleFavorite });
+  // console.log("mn baraaaaaaaaaaaaaaaaaaaaa", parkingId);
+  // console.log("144044440454555555555555", title);
 
   console.log({ isSaved });
 
@@ -27,79 +30,50 @@ const ParkingScreen = ({ route, navigation }) => {
       const param = route.params;
       if (param?.city) {
         setCityName(param.city);
+        setParkingId(param.id);
       }
     }
-  }, []);
+  });
 
   // Once we got here we need also to check if the user has marked this parking as favourite
   useEffect(() => {
-    const favorites = favoritesCtx.favoriteParkings;
-    const res = checkIfSaved(favorites, parkingId);
-    setIsSaved(res);
-    console.log("is there favourites detected?: ", res);
+    const RefreshMemory = async () => {
+      const favorites = await favoritesCtx.favoriteParkings;
+      const res = checkIfSaved(favorites, parkingId);
+      // console.log("res      ", res);
+      setIsSaved(res);
+    };
+    RefreshMemory();
   }, []);
-
-  useEffect(() => {
-    if (!!toggleFavorite) {
-      console.log({ toggleFavorite });
-      if (isSaved) {
-        removeFromFavorite();
-        setIsSaved(false);
-      } else {
-        addToFavorite();
-        setIsSaved(true);
-      }
-    }
-  }, [toggleFavorite]);
 
   // When adding new favorite call addToFavorite component
   // to handle the process
-  const addToFavorite = () => {
+  const addToFavorite = async () => {
     if (isSaved) {
       return;
     }
-    // let parking = parseParking(myParking);
-    // await favoritesCtx.addNewFavorite(parking);
-    // console.log(parking);
-    console.log("add:", isSaved);
-
-    console.log("add:", isSaved);
+    let parking = parseParking(myParking);
+    let response = await favoritesCtx.addNewFavorite(parking);
+    console.log(response);
+    setIsSaved(true);
   };
 
-  const removeFromFavorite = () => {
+  const removeFromFavorite = async () => {
     if (!isSaved) {
       return;
     }
-    // let parking = parseParking(myParking);
-    // console.log(parking);
-    // await favoritesCtx.deleteFavorite(parking);
-    console.log("remove:", isSaved);
-    // setIsSaved(false);
-    // console.log("remove:", isSaved);
+    let parking = parseParking(myParking);
+    await favoritesCtx.deleteFavorite(parking);
+    setIsSaved(false);
   };
-
-  // Define bookmark icon filled for saved, void otherwise
-  const emptyBookmark = (
-    <Ionicons
-      style={{ marginRight: 15 }}
-      name="md-bookmark-outline"
-      color={Colors.background200}
-      size={30}
-      onPress={() => {
-        setToggleFavorite(toggleFavorite + 1);
-      }}
-    />
-  );
 
   const filledBookmark = (
     <Ionicons
       style={{ marginRight: 15 }}
       name="bookmark"
-      color={Colors.marked400}
+      color={isSaved ? Colors.marked400 : Colors.background200}
       size={30}
-      onPress={() => {
-        setToggleFavorite(toggleFavorite + 1);
-      }}
+      onPress={isSaved ? removeFromFavorite : addToFavorite}
     />
   );
 
@@ -116,25 +90,26 @@ const ParkingScreen = ({ route, navigation }) => {
           </View>
         );
       },
-      title: title && title,
+      title: title,
       headerStyle: { backgroundColor: Colors.primary500 },
       headerTintColor: Colors.background200,
       headerTitleStyle: {
         fontWeight: "bold",
       },
-      headerRight: () => (isSaved ? filledBookmark : emptyBookmark),
-      // headerRight: () => emptyBookmark,
+      headerRight: () => filledBookmark,
     });
-  }, []);
+  }, [title, isSaved]);
 
   return (
     <>
-      <ParkingView
-        setMyParking={setMyParking}
-        parkingId={parkingId}
-        setTitle={setTitle}
-        cityName={cityName}
-      />
+      {parkingId && (
+        <ParkingView
+          setMyParking={setMyParking}
+          parkingId={parkingId}
+          setTitle={setTitle}
+          cityName={cityName}
+        />
+      )}
     </>
   );
 };
