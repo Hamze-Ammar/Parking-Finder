@@ -1,19 +1,53 @@
-import { StyleSheet, FlatList, Pressable, Text, View } from "react-native";
 import React from "react";
+import {
+  StyleSheet,
+  FlatList,
+  Pressable,
+  View,
+  Text,
+  SafeAreaView,
+  ActivityIndicator,
+  RefreshControl,
+} from "react-native";
 import Title from "../../ui/Title";
 import Row from "../../ui/Row";
+import MsgNotFound from "../../components/favorites/MsgNotFound";
 
-import { getFavouriteParkings } from "../../components/favorites/favoriteController";
+// import { getFavouriteParkings } from "../../components/favorites/favoriteController";
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../store/auth-context";
+// import { AuthContext } from "../../store/auth-context";
 import { FavoritesContext } from "../../store/favorites-context";
 
+const wait = (timeout) => {
+  return new Promise((resolve) => setTimeout(resolve, timeout));
+};
+
 const Favourites = () => {
+  const [refreshing, setRefreshing] = useState(false);
+  const [reset, setReset] = useState(false);
   const favCtx = useContext(FavoritesContext);
   const [parkingList, setParkingList] = useState(
     favCtx.favoriteParkings || null
   );
-  // console.log(parkingList);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
+
+  const deleteFavorite = (id) => {
+    setReset(favCtx.deleteFavorite(id));
+  };
+
+  useEffect(() => {
+    setParkingList(favCtx.favoriteParkings);
+    setReset(false);
+  }, [reset]);
+
+  useEffect(() => {
+    setParkingList(favCtx.favoriteParkings);
+    setReset(false);
+  }, [refreshing]);
 
   function renderFavourites(itemData) {
     // console.log(itemData);
@@ -26,40 +60,32 @@ const Favourites = () => {
       openAt: item.opening_hr,
       closeAt: item.closing_hr,
     };
-    return (
-      <Pressable>
-        <Row {...parkings} />
-      </Pressable>
-    );
+
+    if (!parkings.length) {
+      return <MsgNotFound />;
+    }
+    return <Row {...parkings} deleteFavorite={deleteFavorite} />;
   }
 
   return (
-    <View>
-      <Title myFontSize={30}>Favourite Parkings</Title>
-      <View style={styles.container}>
-        {parkingList && (
-          <FlatList
-            data={parkingList}
-            keyExtractor={(item) => item.id}
-            renderItem={renderFavourites}
-          />
-        )}
-        {/* {parkingList &&
-          parkingList.map((parking) => {
-            return (
-              <Row
-                key={parking.id}
-                id={parking.id}
-                name={parking.name}
-                address={parking.address}
-                totalSlots={parking.total_slots}
-                openAt={parking.opening_hr}
-                closeAt={parking.closing_hr}
-              />
-            );
-          })} */}
+    <SafeAreaView style={{ flex: 1 }}>
+      <View>
+        <Title myFontSize={30}>Favourite Parkings</Title>
+        <View style={styles.container}>
+          {/* {refreshing ? <ActivityIndicator /> : null} */}
+          {parkingList && (
+            <FlatList
+              data={parkingList}
+              keyExtractor={(item) => item.id}
+              renderItem={renderFavourites}
+              refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+              }
+            />
+          )}
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
