@@ -1,3 +1,5 @@
+import { Dimensions } from "react-native";
+
 export const Colors = {
   primary500: "#7862FF",
   secondary500: "#1B3773",
@@ -9,6 +11,15 @@ export const Colors = {
   marked400: "#ff78f1",
 };
 
+export const ProfilePicSize = {
+  diameter: 180,
+};
+
 export const BorderRadius = {
   primary: 15,
+};
+
+export const dimensions = {
+  width: Math.round(Dimensions.get("window").width),
+  height: Math.round(Dimensions.get("window").height),
 };
