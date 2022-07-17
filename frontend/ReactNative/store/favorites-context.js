@@ -14,25 +14,33 @@ export const FavoritesContext = createContext({
 function FavoritesContextProvider({ children }) {
   //should be an array of objects
   const [savedParkings, setSavedParkings] = useState([]);
+  console.log("===========================================");
+  console.log(savedParkings);
+  console.log("===========================================");
+
   // on sign in
   function storeFavorites(favorites) {
     setSavedParkings(favorites);
-    AsyncStorage.setItem("favorites", JSON.stringify(favorites));
+    AsyncStorage.setItem("favorites", JSON.stringify(savedParkings));
   }
 
   // On add new favorite; update both local storage and context
   async function addNewFavorite(parking) {
-    await setSavedParkings((savedParkings) => [...savedParkings, parking]);
-    // AsyncStorage.setItem("favorites", JSON.stringify(savedParkings));
+    setSavedParkings((savedParkings) => [...savedParkings, parking]);
+    await AsyncStorage.setItem("favorites", JSON.stringify(savedParkings));
+    return true;
   }
 
   // On delete favorite; update both local storage and context
-  function deleteFavorite(parking) {
-    console.log({ parking });
+  async function deleteFavorite(id) {
+    // console.log({ id });
+    // console.log("item is being removed");
+
     setSavedParkings(
-      savedParkings.filter((item) => String(item.id) !== String(parking.id))
+      savedParkings.filter((item) => String(item.id) !== String(id))
     );
-    AsyncStorage.setItem("favorites", JSON.stringify(savedParkings));
+    await AsyncStorage.setItem("favorites", JSON.stringify(savedParkings));
+    return true;
   }
 
   const value = {
