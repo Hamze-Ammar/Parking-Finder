@@ -1,14 +1,38 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
-import React from "react";
+// import { useContext } from "react";
 import { Colors } from "../constants/styles";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+// import { StackActions } from "@react-navigation/native";
+// import { FavoritesContext } from "../store/favorites-context";
 
-const Row = ({ id, name, address, totalSlots, openAt, closeAt }) => {
-  console.log({ id });
+const Row = ({
+  id,
+  name,
+  address,
+  totalSlots,
+  openAt,
+  closeAt,
+  deleteFavorite,
+}) => {
+  const navigation = useNavigation();
+
+  const navigateToParking = () => {
+    console.log("navigation");
+    console.log("from row: id=", id, " city=", address);
+    navigation.navigate("Parking", {
+      city: address,
+      id: id,
+    });
+  };
+
   return (
     <View style={styles.container}>
-      <Pressable android_ripple={{ color: "#ccc" }}>
+      <Pressable
+        onLongPress={navigateToParking}
+        android_ripple={{ color: "#ddf" }}
+      >
         <View style={styles.left}>
           <Text style={styles.title}>{name}</Text>
 
@@ -28,13 +52,17 @@ const Row = ({ id, name, address, totalSlots, openAt, closeAt }) => {
           </View>
         </View>
       </Pressable>
-
       <View style={styles.right}>
-        <Ionicons
-          name="md-remove-circle-outline"
-          size={30}
-          color={Colors.marked400}
-        />
+        <Pressable style={({ pressed }) => pressed && styles.pressed}>
+          <Ionicons
+            name="md-remove-circle-outline"
+            size={30}
+            color={Colors.marked400}
+            onPress={() => {
+              deleteFavorite(id);
+            }}
+          />
+        </Pressable>
       </View>
     </View>
   );
@@ -61,6 +89,7 @@ const styles = StyleSheet.create({
   right: {
     flex: 1,
     alignItems: "flex-end",
+    alignContent: "flex-end",
     padding: 5,
   },
   title: {
@@ -74,5 +103,8 @@ const styles = StyleSheet.create({
   },
   txtRow: {
     flexDirection: "row",
+  },
+  pressed: {
+    opacity: 0.5,
   },
 });
