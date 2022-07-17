@@ -21,6 +21,7 @@ const LandingPage = () => {
     useForegroundPermissions();
 
   async function verifyPermissions() {
+    // console.log(PermissionStatus);
     if (
       locationPermissionInformation.status === PermissionStatus.UNDETERMINED
     ) {
@@ -45,18 +46,20 @@ const LandingPage = () => {
       return;
     }
     const location = await getCurrentPositionAsync();
-    // console.log(location);
+
     let latitude = location.coords.latitude;
     let longitude = location.coords.longitude;
+
     let regionName = await reverseGeocodeAsync({
       latitude: latitude,
       longitude: longitude,
     });
     if (regionName) {
       return regionName;
+    } else {
+      return null;
     }
   }
-
   async function handleClick() {
     setIsLoading(true);
     if (locationPermissionInformation.status === "denied") {
@@ -65,9 +68,22 @@ const LandingPage = () => {
     }
     const regionName = await getLocationHandler();
     // Should navigate to map screen
-    navigation.navigate("Parking", {
-      city: regionName,
-    });
+
+    if (regionName) {
+      let cityName = regionName[0].city;
+      // console.log(cityName);
+      // CityName here could differ from request to another
+      // Should check all possibilities or find another way to getParkings than by cityName
+      if (["Beirut", "Bayrut", "بيروت"].includes(cityName)) {
+        cityName = "Beirut";
+      }
+      // console.log(cityName);
+      navigation.navigate("Parking", {
+        city: cityName,
+      });
+      // navigation.navigate("Parking");
+    }
+
     setIsLoading(false);
   }
 
