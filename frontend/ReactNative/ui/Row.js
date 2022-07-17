@@ -3,7 +3,6 @@ import React from "react";
 import { Colors } from "../constants/styles";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
 
 const Row = ({ id, name, address, totalSlots, openAt, closeAt }) => {
   console.log({ id });
@@ -31,7 +30,11 @@ const Row = ({ id, name, address, totalSlots, openAt, closeAt }) => {
       </Pressable>
 
       <View style={styles.right}>
-        <MaterialIcons name="delete" size={30} color="#ff7070" />
+        <Ionicons
+          name="md-remove-circle-outline"
+          size={30}
+          color={Colors.marked400}
+        />
       </View>
     </View>
   );

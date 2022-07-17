@@ -40,7 +40,7 @@ export const getFavouriteParkings = async (token) => {
   const data = await res.json();
   if (data.status === "Success") {
     let response = await handleResGetAllFav(data);
-    console.log("favoriteController, response", response);
+    // console.log("favoriteController, response", response);
     return response;
   } else {
     return false;
@@ -52,8 +52,9 @@ function handleResGetAllFav(data) {
   if (data?.res) {
     let parkings = [];
     data.res.map((item) => {
+      // console.log("idparkingcheck: ", item.parking_info.id);
       let parking = {
-        id: item.id,
+        id: item.parking_info.id,
         name: item.parking_info.name,
         total_slots: item.parking_info.total_slots,
         address: item.parking_address,

@@ -11,8 +11,6 @@ import { Colors } from "../../constants/styles";
 import DashedCircle from "../../ui/DashedCircle";
 
 const Slots = ({ slots, setRefresh, setShowTimer, showTimer }) => {
-
-
   function displayTimer() {
     setShowTimer(true);
   }
@@ -24,7 +22,7 @@ const Slots = ({ slots, setRefresh, setShowTimer, showTimer }) => {
     <>
       {showTimer && (
         <View style={styles.DashedCircle}>
-          <DashedCircle  setShowTimer={hideTimer}  setRefresh={setRefresh} />
+          <DashedCircle setShowTimer={hideTimer} setRefresh={setRefresh} />
         </View>
       )}
       <ScrollView>
@@ -95,7 +93,7 @@ export default Slots;
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    backgroundColor: "#eee",
+    backgroundColor: Colors.background500,
   },
   gate: {
     height: 15,

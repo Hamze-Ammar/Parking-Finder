@@ -10,7 +10,7 @@ import NotFound from "../../util/NotFound";
 import Slots from "./Slots";
 import LoadingOverlay from "../../ui/LoadingOverlay";
 
-const ParkingView = ({ city_name, setTitle, setId }) => {
+const ParkingView = ({ cityName, setTitle, parkingId, setMyParking }) => {
   const [parking, setParking] = useState(null);
   const [parkingName, setParkingName] = useState("");
   const [slots, setSlots] = useState(null);
@@ -21,14 +21,18 @@ const ParkingView = ({ city_name, setTitle, setId }) => {
   const [refresh, setRefresh] = useState(false);
   const [showTimer, setShowTimer] = useState(false);
 
+  // console.log("hamzeeeeeeeeeeeee", parking);
   // Controller get parking by id
   useEffect(() => {
+    if (!parkingId) {
+      return;
+    }
     setLoading(true);
     const fetchData = async () => {
-      let id = "1";
-      const res = await getParkingById(id);
+      const res = await getParkingById(parkingId);
       if (res) {
         setParking(res);
+        setMyParking(res);
       } else if (!res) {
         setNotFound(true);
       }
@@ -39,13 +43,12 @@ const ParkingView = ({ city_name, setTitle, setId }) => {
 
   useEffect(() => {
     if (parking) {
-      async function upload() {
+      function upload() {
         setAvailableSlots(parking.availableSpots);
         setSlots(parking.res.slots);
         setNumberOfSlots(parking.res.total_slots);
         setParkingName(parking.res.name);
-        await setTitle(parking.res.name);
-        await setId(parking.res.id);
+        setTitle(parking.res.name);
       }
       upload();
     }

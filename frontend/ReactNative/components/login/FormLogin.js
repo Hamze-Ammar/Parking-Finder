@@ -75,6 +75,7 @@ const FormLogin = ({ setIsAuthenticating }) => {
         // After successfully signedIn send request to get favourite parkings
         let parkings = await getFavouriteParkings(token);
         // Store favourite parkings in store
+        // console.log(parkings);
         await favCtx.storeFavorites(parkings);
         await authCtx.authenticate(token);
       }

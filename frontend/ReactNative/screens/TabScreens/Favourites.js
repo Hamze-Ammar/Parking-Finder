@@ -13,10 +13,10 @@ const Favourites = () => {
   const [parkingList, setParkingList] = useState(
     favCtx.favoriteParkings || null
   );
-  console.log(parkingList);
+  // console.log(parkingList);
 
   function renderFavourites(itemData) {
-    console.log(itemData);
+    // console.log(itemData);
     const item = itemData.item;
     const parkings = {
       id: item.id,
