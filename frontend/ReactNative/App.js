@@ -8,7 +8,8 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 import AuthContextProvider, { AuthContext } from "./store/auth-context";
 import FavoritesContextProvider, {
   FavoritesContext,
@@ -39,14 +40,17 @@ function BottomTabNavigator() {
       screenOptions={{
         headerStyle: { backgroundColor: Colors.primary500 },
         headerTintColor: "white",
+        tabBarHideOnKeyboard: true,
+        tabBarActiveTintColor: Colors.primary500,
+        tabBarInactiveTintColor: "gray",
       }}
     >
       <BottomTab.Screen
-        name="Home"
+        name="Parking Finder"
         component={LandingScreen}
         options={{
-          tabBarIcon: ({ size }) => (
-            <Ionicons name="home" color={Colors.secondary500} size={size} />
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home" color={color} size={size} />
           ),
         }}
       />
@@ -54,26 +58,31 @@ function BottomTabNavigator() {
         name="Parking"
         component={ParkingScreen}
         options={{
-          tabBarIcon: ({ size }) => (
-            <Ionicons
-              name="car-sport"
-              color={Colors.secondary500}
-              size={size}
-            />
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="car-sport" color={color} size={size} />
           ),
         }}
       />
       <BottomTab.Screen
-        name="Favorites"
+        name="Favourite Parkings"
         component={Favourites}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Ionicons
-              name="md-bookmark"
-              color={Colors.secondary500}
-              size={size}
-            />
+            <Ionicons name="md-bookmark" color={color} size={size} />
           ),
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+          headerLeft: () => {
+            return (
+              <FontAwesome
+                name="car"
+                style={{ marginLeft: 15 }}
+                size={30}
+                color={Colors.background200}
+              />
+            );
+          },
         }}
       />
       <BottomTab.Screen
@@ -81,8 +90,21 @@ function BottomTabNavigator() {
         component={ProfileScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person" color={Colors.secondary500} size={size} />
+            <Ionicons name="person" color={color} size={size} />
           ),
+          headerLeft: () => {
+            return (
+              <FontAwesome
+                name="drivers-license"
+                size={30}
+                style={{ marginLeft: 15 }}
+                color={Colors.background200}
+              />
+            );
+          },
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
           headerRight: ({ tintColor }) => (
             <IconLogout
               icon="logout"
