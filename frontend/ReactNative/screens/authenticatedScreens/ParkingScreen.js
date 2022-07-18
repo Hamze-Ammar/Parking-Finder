@@ -17,13 +17,14 @@ const ParkingScreen = ({ route, navigation }) => {
   const [myParking, setMyParking] = useState();
   // Should get it later from params
   const [parkingId, setParkingId] = useState();
-  // console.log(parkingId);
+  console.log(parkingId);
   // const [toggleFavorite, setToggleFavorite] = useState(0);
   // console.log({ toggleFavorite });
   // console.log("mn baraaaaaaaaaaaaaaaaaaaaa", parkingId);
   // console.log("144044440454555555555555", title);
 
-  console.log({ isSaved });
+  // console.log({ isSaved });
+  // const paramId = route?.param?.id;
 
   useEffect(() => {
     if (route?.params) {
@@ -44,7 +45,7 @@ const ParkingScreen = ({ route, navigation }) => {
       setIsSaved(res);
     };
     RefreshMemory();
-  }, []);
+  }, [parkingId, favoritesCtx.favoriteParkings]);
 
   // When adding new favorite call addToFavorite component
   // to handle the process
@@ -54,8 +55,9 @@ const ParkingScreen = ({ route, navigation }) => {
     }
     let parking = parseParking(myParking);
     let response = await favoritesCtx.addNewFavorite(parking);
-    console.log(response);
-    setIsSaved(true);
+    // console.log({ response });
+    setIsSaved(response);
+    // console.log("adding......");
   };
 
   const removeFromFavorite = async () => {
@@ -63,17 +65,27 @@ const ParkingScreen = ({ route, navigation }) => {
       return;
     }
     let parking = parseParking(myParking);
-    await favoritesCtx.deleteFavorite(parking);
+    await favoritesCtx.deleteFavorite(parking.id);
     setIsSaved(false);
+    // console.log("removing......");
   };
 
   const filledBookmark = (
     <Ionicons
       style={{ marginRight: 15 }}
       name="bookmark"
-      color={isSaved ? Colors.marked400 : Colors.background200}
+      color={Colors.marked400}
       size={30}
-      onPress={isSaved ? removeFromFavorite : addToFavorite}
+      onPress={removeFromFavorite}
+    />
+  );
+  const emptyBookmark = (
+    <Ionicons
+      style={{ marginRight: 15 }}
+      name="bookmark-outline"
+      color="white"
+      size={30}
+      onPress={addToFavorite}
     />
   );
 
@@ -96,7 +108,9 @@ const ParkingScreen = ({ route, navigation }) => {
       headerTitleStyle: {
         fontWeight: "bold",
       },
-      headerRight: () => filledBookmark,
+      headerRight: () => {
+        return isSaved ? filledBookmark : emptyBookmark;
+      },
     });
   }, [title, isSaved]);
 
