@@ -1,4 +1,10 @@
-import { StyleSheet, Text, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  KeyboardAvoidingView,
+  ScrollView,
+} from "react-native";
 import React from "react";
 import { Colors, dimensions, ProfilePicSize } from "../../../constants/styles";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -9,25 +15,29 @@ import ButtonUpdate from "../../../ui/ButtonUpdate";
 
 const UserProfile = () => {
   return (
-    <View>
-      <View style={styles.header}>
-        <View style={styles.profilePic}>
-          <FontAwesome5
-            style={styles.img}
-            name="user-alt"
-            size={ProfilePicSize.diameter / 1.5}
-            color="gray"
-          />
+    <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+      <ScrollView>
+        <View>
+          <View style={styles.header}>
+            <View style={styles.profilePic}>
+              <FontAwesome5
+                style={styles.img}
+                name="user-alt"
+                size={ProfilePicSize.diameter / 1.5}
+                color="gray"
+              />
+            </View>
+          </View>
+          <View>
+            <InputEdit label="Name" />
+            <InputEdit label="Email" />
+            <InputEdit label="Password" />
+            <InputEdit label="Address" />
+          </View>
+          <ButtonUpdate>Update</ButtonUpdate>
         </View>
-      </View>
-      <View>
-        <InputEdit label="Name" />
-        <InputEdit label="Email" />
-        <InputEdit label="Password" />
-        <InputEdit label="Address" />
-      </View>
-      <ButtonUpdate>Update</ButtonUpdate>
-    </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
