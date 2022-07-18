@@ -16,6 +16,7 @@ export const getParkingById = async (id) => {
   if (!token) {
     return;
   }
+  // console.log(token, id);
 
   const res = await fetch(`${URL}/user/viewParking/${id}`, {
     method: "GET",
@@ -39,7 +40,7 @@ export const getParkingById = async (id) => {
 
 // Send Request make Reservation
 export const sendReservation = async (id) => {
-  console.log("reservation sent on slot:  ", id);
+  // console.log("reservation sent on slot:  ", id);
   let token = await AsyncStorage.getItem("token");
   if (!token) {
     return;

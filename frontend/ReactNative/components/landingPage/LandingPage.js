@@ -94,7 +94,7 @@ const LandingPage = () => {
 
   return (
     <View style={styles.mainContainer}>
-      <Title myFontSize={48}>Reinventing The Wheels</Title>
+      <Title myFontSize={37}>Reinventing The Wheels</Title>
       <View style={styles.imageContainer}>
         <Image
           style={{ width: 340, height: 170 }}
@@ -105,7 +105,7 @@ const LandingPage = () => {
       </View>
 
       <View style={styles.btnContainer}>
-        <Title style={styles.subtitleContainer} myFontSize={18}>
+        <Title style={styles.subtitleContainer} myFontSize={15}>
           Life is too short to be spent on PARKING!
         </Title>
         <Button onPress={handleClick}>GO</Button>

@@ -19,8 +19,8 @@ const Row = ({
   const navigation = useNavigation();
 
   const navigateToParking = () => {
-    console.log("navigation");
-    console.log("from row: id=", id, " city=", address);
+    // console.log("navigation");
+    // console.log("from row: id=", id, " city=", address);
     navigation.navigate("Parking", {
       city: address,
       id: id,

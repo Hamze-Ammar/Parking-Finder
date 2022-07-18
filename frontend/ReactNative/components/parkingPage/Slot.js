@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Image, Pressable, Alert } from "react-native";
 import React, { useState } from "react";
 import { Colors } from "../../constants/styles";
 import { sendReservation } from "./parkingController";
+import { useFonts } from "expo-font";
 
 const Slot = ({ id, state, side, number, setRefresh, setShowTimer }) => {
   // Preparing images
@@ -21,21 +22,18 @@ const Slot = ({ id, state, side, number, setRefresh, setShowTimer }) => {
     }
   }
 
-  // Localy reset the state of the slot after reservation time ends
-  function resetSlotState() {
-    console.log(localState);
-    // setTimeout(() => {
-    console.log("timeout?");
-    console.log({ localState });
-    setLocalState("empty");
-    console.log({ localState });
-    // }, 10000);
-  }
-
   // Change Color of slot number in front of each slot based on status
   let color = false;
   if (localState === "empty") {
     color = true;
+  }
+
+  const [loaded] = useFonts({
+    montserratBold: require("../../assets/fonts/Montserrat-ExtraBold.ttf"),
+  });
+
+  if (!loaded) {
+    return null;
   }
 
   // Handling display for the right column of cars in parking => Rotation
@@ -81,15 +79,16 @@ const styles = StyleSheet.create({
   text: {
     marginHorizontal: 8,
     color: Colors.secondary500,
-    fontSize: 28,
+    fontSize: 24,
     transform: [{ rotate: "90deg" }],
-    fontWeight: "bold",
+    fontFamily: "montserratBold",
   },
   slotContainerReverse: {
     flexDirection: "row-reverse",
   },
   textReverse: {
     transform: [{ rotate: "-90deg" }],
+    fontFamily: "montserratBold",
   },
   colored: {
     color: Colors.primary500,
