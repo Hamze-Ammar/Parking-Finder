@@ -8,7 +8,7 @@ export const FavoritesContext = createContext({
   favoriteParkings: [],
   storeFavorites: (parkings) => {},
   addNewFavorite: (parking) => {},
-  deleteFavorite: (parking) => {},
+  deleteFavorite: (id) => {},
 });
 
 function FavoritesContextProvider({ children }) {
@@ -21,26 +21,26 @@ function FavoritesContextProvider({ children }) {
   // on sign in
   function storeFavorites(favorites) {
     setSavedParkings(favorites);
-    AsyncStorage.setItem("favorites", JSON.stringify(savedParkings));
+    // AsyncStorage.setItem("favorites", JSON.stringify(savedParkings));
   }
 
   // On add new favorite; update both local storage and context
   async function addNewFavorite(parking) {
     setSavedParkings((savedParkings) => [...savedParkings, parking]);
-    await AsyncStorage.setItem("favorites", JSON.stringify(savedParkings));
+    // await AsyncStorage.setItem("favorites", JSON.stringify(savedParkings));
     return true;
   }
 
   // On delete favorite; update both local storage and context
   async function deleteFavorite(id) {
-    // console.log({ id });
     // console.log("item is being removed");
 
     setSavedParkings(
       savedParkings.filter((item) => String(item.id) !== String(id))
     );
-    await AsyncStorage.setItem("favorites", JSON.stringify(savedParkings));
-    return true;
+    // await AsyncStorage.setItem("favorites", JSON.stringify(savedParkings));
+    // console.log("line 43", savedParkings);
+    return id;
   }
 
   const value = {
