@@ -24,9 +24,9 @@ const ParkingView = ({ cityName, setTitle, parkingId, setMyParking }) => {
   // console.log("mn jowwwwwwwwwwaaaaaaaaaa", parkingId);
   // Controller get parking by id
 
-  useEffect(() => {
-    setRefresh(!refresh);
-  }, [parkingId]);
+  // useEffect(() => {
+  //   setRefresh(!refresh);
+  // }, [parkingId]);
 
   useEffect(() => {
     setNotFound(false);
@@ -35,7 +35,9 @@ const ParkingView = ({ cityName, setTitle, parkingId, setMyParking }) => {
     }
     setLoading(true);
     const fetchData = async () => {
+      console.log({ parkingId });
       const res = await getParkingById(parkingId);
+      console.log("res                  .....       ", res);
       if (res) {
         setParking(res);
         setMyParking(res);
@@ -45,7 +47,7 @@ const ParkingView = ({ cityName, setTitle, parkingId, setMyParking }) => {
       setLoading(false);
     };
     fetchData();
-  }, [refresh]);
+  }, [parkingId]);
 
   useEffect(() => {
     if (parking) {
