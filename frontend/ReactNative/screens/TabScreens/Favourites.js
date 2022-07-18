@@ -11,13 +11,10 @@ import {
 } from "react-native";
 import Title from "../../ui/Title";
 import Row from "../../components/favorites/Row";
-import MsgNotFound from "../../components/favorites/MsgNotFound";
-
-// import { getFavouriteParkings } from "../../components/favorites/favoriteController";
 import { useContext, useEffect, useState } from "react";
-// import { AuthContext } from "../../store/auth-context";
 import { FavoritesContext } from "../../store/favorites-context";
 
+// Pull to refresh timeout
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 };
@@ -29,6 +26,8 @@ const Favourites = () => {
   const [parkingList, setParkingList] = useState(
     favCtx.favoriteParkings || null
   );
+  // console.log("context: ", favCtx.favoriteParkings);
+  // console.log("mylist: ", parkingList);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -42,7 +41,7 @@ const Favourites = () => {
   useEffect(() => {
     setParkingList(favCtx.favoriteParkings);
     setReset(false);
-  }, [reset]);
+  }, [reset, favCtx.favoriteParkings]);
 
   useEffect(() => {
     setParkingList(favCtx.favoriteParkings);
@@ -66,7 +65,9 @@ const Favourites = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View>
-        <Title myFontSize={30}>Favourite Parkings</Title>
+        {!parkingList.length && (
+          <Title myFontSize={15}>No Saved Parkings were Found</Title>
+        )}
         <View style={styles.container}>
           {/* {refreshing ? <ActivityIndicator /> : null} */}
           {parkingList && (
