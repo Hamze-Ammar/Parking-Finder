@@ -7,31 +7,37 @@ import {
   StyleSheet,
   StatusBar,
 } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import MapView, { Marker } from "react-native-maps";
 import { getParkingByCityName } from "../../components/mapFolder/mapController";
 import { FavoritesContext } from "../../store/favorites-context";
 import { AuthContext } from "../../store/auth-context";
-
+import { mapStyleLight, mapStyleDark } from "../../constants/mapStyle";
 const MapScreen = ({ route, navigation }) => {
   const favoritesCtx = useContext(FavoritesContext);
   const authCtx = useContext(AuthContext);
   const [token, setToken] = useState(authCtx.token || null);
-  const [city, setCity] = useState(route?.params?.city || null);
-
+  const [city, setCity] = useState(route.params?.city || null);
+  const [parkings, setParkings] = useState();
+  const [isDark, setIsDark] = useState(false);
+  //   console.log(city, token);
+  //   console.log({ parkings });
   useEffect(() => {
-    if (city && token) {
-      getParkingByCityName(city, token);
+    async function reloadData() {
+      if (city && token) {
+        let response = await getParkingByCityName({ city: city, token: token });
+        // console.log(response);
+        setParkings(response);
+      }
     }
+    reloadData();
   }, [city, token]);
 
-  const [x, setX] = useState({
-    latitude: parseFloat(33.88),
-    longitude: parseFloat(35.5),
-  });
   return (
     <>
       <MapView
         style={styles.container}
+        customMapStyle={isDark ? mapStyleDark : mapStyleLight}
         initialRegion={{
           latitude: parseFloat(33.8911743),
           longitude: parseFloat(35.5059504),
@@ -39,33 +45,49 @@ const MapScreen = ({ route, navigation }) => {
           longitudeDelta: 0.0421,
         }}
       >
+        {parkings &&
+          parkings.map((parking) => {
+            let location = JSON.parse(parking.location);
+            let latitude = location.latitude;
+            let longitude = location.longitude;
+            let description = parking.freeSlots + " Available Slots";
+            let id = parking.id;
+            return (
+              <Marker
+                coordinate={{
+                  latitude: parseFloat(latitude),
+                  longitude: parseFloat(longitude),
+                }}
+                icon={require("../../assets/images/iconMarker2.png")}
+                key={id}
+                title={parking.name}
+                description={description}
+                onCalloutPress={() => {
+                  navigation.navigate("Parking", {
+                    city: { city },
+                    id: id,
+                  });
+                }}
+              />
+            );
+          })}
         <Marker
           coordinate={{
             latitude: parseFloat(33.8911743),
             longitude: parseFloat(35.5059504),
           }}
+          icon={require("../../assets/images/iconHere3.png")}
           title="PIN"
           description="You are here!"
-          //   image={{
-          //     uri: "https://cdn4.vectorstock.com/i/1000x1000/77/43/car-parking-icon-on-map-pointer-location-mark-vector-23097743.jpg",
-          //   }}
-        />
-        <Marker
-          coordinate={{
-            latitude: parseFloat(33.9),
-            longitude: parseFloat(35.51),
-          }}
-          title="PIN2"
-          description="You are here!"
           onCalloutPress={() => {
-            navigation.navigate("Parking", {
-              city: "beirut",
-              id: "1",
+            getParkingByCityName({
+              city: city,
+              token: token,
             });
           }}
-        ></Marker>
-        {/* Draggable
-        <Marker
+        />
+
+        {/* <Marker
           draggable
           coordinate={x}
           onDragEnd={(e) => {
@@ -73,6 +95,16 @@ const MapScreen = ({ route, navigation }) => {
           }}
         /> */}
       </MapView>
+      <View style={styles.themIcon}>
+        <MaterialCommunityIcons
+          name="theme-light-dark"
+          size={28}
+          color={isDark ? "#fff" : "#333"}
+          onPress={() => {
+            setIsDark(!isDark);
+          }}
+        />
+      </View>
     </>
   );
 };
@@ -82,6 +114,12 @@ export default MapScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  themIcon: {
+    position: "absolute",
+    top: 50,
+    right: 40,
+    color: "gray",
   },
 });
 
