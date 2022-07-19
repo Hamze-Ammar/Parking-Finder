@@ -13,4 +13,10 @@ class City extends Model
     {
         return $this->belongsTo(Country::class);
     }
+
+    public function parkings()
+    {
+        return $this->hasMany(Parking::class)
+                        ->where('is_approved', '1');
+    }
 }
