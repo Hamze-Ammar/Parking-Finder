@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import ButtonUpdate from "../../../ui/ButtonUpdate";
+import CircularUserRequests from "./CircularUserRequests";
 
 const OverviewProfile = ({ setShowInputField }) => {
   const handleClick = () => {
@@ -11,6 +12,9 @@ const OverviewProfile = ({ setShowInputField }) => {
       <ButtonUpdate mini={true} onPress={handleClick}>
         Edit
       </ButtonUpdate>
+      <View>
+        <CircularUserRequests />
+      </View>
     </View>
   );
 };
