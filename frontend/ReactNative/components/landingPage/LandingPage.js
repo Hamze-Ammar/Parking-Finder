@@ -78,7 +78,7 @@ const LandingPage = () => {
         cityName = "Beirut";
       }
       // console.log(cityName);
-      navigation.navigate("Parking", {
+      navigation.navigate("map", {
         city: cityName,
         id: "1",
       });
