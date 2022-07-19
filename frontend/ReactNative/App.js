@@ -4,7 +4,6 @@ import { LogBox } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -24,6 +23,7 @@ import LandingScreen from "./screens/authenticatedScreens/LandingScreen";
 import ParkingScreen from "./screens/authenticatedScreens/ParkingScreen";
 import Favourites from "./screens/TabScreens/Favourites";
 import ProfileScreen from "./screens/TabScreens/editProfile/ProfileScreen";
+import MapScreen from "./screens/authenticatedScreens/MapScreen";
 
 // Handling error Require cycle
 LogBox.ignoreLogs(["Require cycle:"]);
@@ -61,6 +61,16 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="car-sport" color={color} size={size} />
           ),
+        }}
+      />
+      <BottomTab.Screen
+        name="map"
+        component={MapScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="map-outline" color={color} size={size} />
+          ),
+          headerShown: false,
         }}
       />
       <BottomTab.Screen
