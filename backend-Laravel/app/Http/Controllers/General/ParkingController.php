@@ -4,6 +4,7 @@ namespace App\Http\Controllers\General;
 
 use App\Models\Parking;
 use App\Models\Review;
+use App\Models\City;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -59,6 +60,28 @@ class ParkingController extends Controller
         return response()->json([
             "status" => "Success",
             "res"   => $res
+        ], 200);
+    }
+
+    public function getParkingsByCityName($name){
+        $name = strtolower($name);
+        $city = City::where('name', $name)->first();
+
+        if (is_null($city)){
+            $parkings = 'Not Found!';
+        }
+        else {
+            $city_id = $city->id;
+            $parkings = $city->parkings;
+            foreach ($parkings as $parking) {
+            $availableSlots = $parking->availableSlots()->count();
+            $parking->freeSlots = $availableSlots;
+            }
+        }
+
+        return response()->json([
+            "status" => "Success",
+            "res"   => $parkings
         ], 200);
     }
 

@@ -62,6 +62,7 @@ Route::group(['prefix' => 'v1'], function(){
         Route::group(['middleware' => 'role.user'], function(){
             Route::get('/getCitiesByCountryId/{id?}', [CityController::class, 'getCitiesByCountryId']);
             Route::get('/getParkingsByCityId/{id?}', [ParkingController::class, 'getParkingsByCityId']);
+            Route::get('/getParkingsByCityName/{name}', [ParkingController::class, 'getParkingsByCityName']);
             Route::get('/getParkingRate/{id}', [ParkingController::class, 'getParkingRate']);
             Route::post('/addToHistory', [HistoryController::class, 'addToHistory']);
             Route::post('/updateHistory', [HistoryController::class, 'updateHistory']);
