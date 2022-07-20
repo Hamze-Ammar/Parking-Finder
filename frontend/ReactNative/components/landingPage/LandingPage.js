@@ -55,7 +55,12 @@ const LandingPage = () => {
       longitude: longitude,
     });
     if (regionName) {
-      return regionName;
+      let response = {
+        address: regionName,
+        latitude: latitude,
+        longitude: longitude,
+      };
+      return response;
     } else {
       return null;
     }
@@ -66,11 +71,12 @@ const LandingPage = () => {
       const permissionResponse = await requestPermission();
       return permissionResponse.granted;
     }
-    const regionName = await getLocationHandler();
+    const response = await getLocationHandler();
     // Should navigate to map screen
 
-    if (regionName) {
-      let cityName = regionName[0].city;
+    if (response) {
+      // console.log(response.latitude);
+      let cityName = response.address[0].city;
       // console.log(cityName);
       // CityName here could differ from request to another
       // Should check all possibilities or find another way to getParkings than by cityName
@@ -80,9 +86,10 @@ const LandingPage = () => {
       // console.log(cityName);
       navigation.navigate("map", {
         city: cityName,
-        id: "1",
+        // city: "xyz",
+        latitude: response.latitude,
+        longitude: response.longitude,
       });
-      // navigation.navigate("Parking");
     }
 
     setIsLoading(false);
