@@ -17,14 +17,8 @@ const ParkingScreen = ({ route, navigation }) => {
   const [myParking, setMyParking] = useState();
   // Should get it later from params
   const [parkingId, setParkingId] = useState();
-  console.log(parkingId);
-  // const [toggleFavorite, setToggleFavorite] = useState(0);
-  // console.log({ toggleFavorite });
-  // console.log("mn baraaaaaaaaaaaaaaaaaaaaa", parkingId);
-  // console.log("144044440454555555555555", title);
+  // console.log(parkingId);
 
-  // console.log({ isSaved });
-  // const paramId = route?.param?.id;
 
   useEffect(() => {
     if (route?.params) {
