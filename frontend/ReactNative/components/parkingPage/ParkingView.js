@@ -35,9 +35,9 @@ const ParkingView = ({ cityName, setTitle, parkingId, setMyParking }) => {
     }
     setLoading(true);
     const fetchData = async () => {
-      console.log({ parkingId });
+      // console.log({ parkingId });
       const res = await getParkingById(parkingId);
-      console.log("res                  .....       ", res);
+      // console.log("res                  .....       ", res);
       if (res) {
         setParking(res);
         setMyParking(res);
