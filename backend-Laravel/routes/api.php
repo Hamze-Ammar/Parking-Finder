@@ -34,7 +34,7 @@ Route::group(['prefix' => 'v1'], function(){
             Route::put('/editProfile', [UserController::class, 'editProfile']);
             Route::post('/addToFavorite/{id}', [UserController::class, 'addToFavorite']);
             Route::get('/getFavorites', [UserController::class, 'getFavorites']);
-            Route::delete('/removeFromFavorite', [UserController::class, 'removeFromFavorite']);
+            Route::delete('/removeFromFavorite/{id}', [UserController::class, 'removeFromFavorite']);
             Route::post('/searchRequest', [UserController::class, 'searchRequest']);
             Route::post('/addReview', [UserController::class, 'addReview']);
         });
