@@ -10,12 +10,14 @@ const Slot = ({ id, state, side, number, setRefresh, setShowTimer }) => {
     empty: require("../../assets/images/emptySlot.png"),
     left: require("../../assets/images/busySlotLeft.png"),
     right: require("../../assets/images/busySlotRight.png"),
+    reserved: require("../../assets/images/ReservedSlot.png"),
   };
 
   const [localState, setLocalState] = useState(state);
   // console.log(localState, number);
   function onPress() {
     if (localState === "empty") {
+      setLocalState("reserved"); // Changed here
       sendReservation(id);
       setRefresh();
       setShowTimer(true);
@@ -77,21 +79,25 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
+    // position: "absolute",
+    // left: 23,
     marginHorizontal: 8,
     color: Colors.secondary500,
+    // color: 'Colors.secondary500',
     fontSize: 24,
-    transform: [{ rotate: "90deg" }],
+    // transform: [{ rotate: "90deg" }],
     fontFamily: "montserratBold",
   },
   slotContainerReverse: {
     flexDirection: "row-reverse",
   },
   textReverse: {
-    transform: [{ rotate: "-90deg" }],
+    // transform: [{ rotate: "-90deg" }],
     fontFamily: "montserratBold",
   },
   colored: {
     color: Colors.primary500,
+    // display: 'none',
   },
   pressed: {
     opacity: 0.7,
