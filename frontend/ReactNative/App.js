@@ -15,7 +15,7 @@ import FavoritesContextProvider, {
 import AppLoading from "expo-app-loading";
 import { Colors } from "./constants/styles";
 import IconLogout from "./ui/IconLogout";
-
+import { getFavouriteParkings } from "./components/favorites/favoriteController";
 import LoginScreen from "./screens/onboardingScreens/LoginScreen";
 import SignUpScreen from "./screens/onboardingScreens/SignUpScreen";
 import LandingScreen from "./screens/authenticatedScreens/LandingScreen";
@@ -165,15 +165,16 @@ function Root() {
   useEffect(() => {
     async function fetchToken() {
       const storedToken = await AsyncStorage.getItem("token");
-      const storedFavorites = await AsyncStorage.getItem("favorites");
+      // const storedFavorites = await AsyncStorage.getItem("favorites");
       // console.log({ storedFavorites });
 
       if (storedToken) {
+        let parkings = await getFavouriteParkings(storedToken);
+        if (parkings) {
+          // const myStoredFavorites = JSON.parse(storedFavorites);
+          favoritesCtx.storeFavorites(parkings);
+        }
         authCtx.authenticate(storedToken);
-      }
-      if (storedFavorites) {
-        const myStoredFavorites = JSON.parse(storedFavorites);
-        favoritesCtx.storeFavorites(myStoredFavorites);
       }
 
       setIsTryingLogin(false);
