@@ -1,8 +1,11 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 // import { registerRootComponent } from "expo";
 
-import { createContext, useState } from "react";
+import { createContext, useState, useContext } from "react";
 // import { flingGestureHandlerProps } from "react-native-gesture-handler/lib/typescript/handlers/FlingGestureHandler";
+import { addToFavorite } from "../components/favorites/favoriteController";
+
+import { AuthContext } from "./auth-context";
 
 export const FavoritesContext = createContext({
   favoriteParkings: [],
@@ -12,6 +15,8 @@ export const FavoritesContext = createContext({
 });
 
 function FavoritesContextProvider({ children }) {
+  const authCtx = useContext(AuthContext);
+
   //should be an array of objects
   const [savedParkings, setSavedParkings] = useState([]);
   // console.log("===========================================");
@@ -20,14 +25,20 @@ function FavoritesContextProvider({ children }) {
 
   // on sign in
   function storeFavorites(favorites) {
+    // console.log({ favorites });
     setSavedParkings(favorites);
-    // AsyncStorage.setItem("favorites", JSON.stringify(savedParkings));
+    AsyncStorage.setItem("favorites", JSON.stringify(favorites));
   }
 
   // On add new favorite; update both local storage and context
   async function addNewFavorite(parking) {
     setSavedParkings((savedParkings) => [...savedParkings, parking]);
     // await AsyncStorage.setItem("favorites", JSON.stringify(savedParkings));
+    // Store in server:
+    // console.log(authCtx.token);
+    // console.log(parking.id);
+    await addToFavorite(parking.id, authCtx.token);
+
     return true;
   }
 
