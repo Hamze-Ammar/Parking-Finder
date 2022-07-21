@@ -1,6 +1,6 @@
 import { URL } from "../../constants/backendSync";
 
-export const addToFavorite = async (token, id) => {
+export const addToFavorite = async (id, token) => {
   if (!id) {
     console.log("id not found");
     return;

@@ -103,7 +103,10 @@ const MapScreen = ({ route, navigation }) => {
 
         {/* <Marker
           draggable
-          coordinate={x}
+          coordinate={{
+            latitude: parseFloat(33.8811743),
+            longitude: parseFloat(35.5059504),
+          }}
           onDragEnd={(e) => {
             console.log(e.nativeEvent.coordinate);
           }}
@@ -145,44 +148,3 @@ const styles = StyleSheet.create({
     right: Math.round(dimensions.width / 20),
   },
 });
-
-{
-  /*
-    <SafeAreaView style={styles.container}>
-    <MapView
-      style={styles.container}
-      initialRegion={{
-        latitude: parseFloat(33.888630),
-        longitude: parseFloat(35.495480),
-        latitudeDelta: 0.09,
-        longitudeDelta: 0.04
-      }}
-    >
-   <Marker 
-coordinate={{latitude: 33.888630, longitude: 35.496}}
-title="Grocery 1"
-description="This is the first grocery" 
->
- <Callout tooltip onPress={()=> console.log("GROCERIES")}> 
-{<Callout tooltip onPress={()=>navigation.navigate('Order')}>
-  <View>
-    <View style={styles.marker_tooltip}>
-      <Text style={styles.marker_title}>GROCERY ONE</Text>
-      <Text>A SHORT DESCRIPTION</Text> 
-       <Image 
-        style={{width:120, height:80}} 
-        source={require("../assets/icons/icons8-home-100.png")}
-      /> 
-    </View>
-    <View style={styles.arrow_border}/>
-    <View style={styles.arrow}/>
-  </View>
-</Callout>
-</Marker>
-
-<Marker 
-coordinate={{latitude: 33.9, longitude: 35.496}}
-title="Grocery 2"
-description="This is the second grocery" 
-/> */
-}

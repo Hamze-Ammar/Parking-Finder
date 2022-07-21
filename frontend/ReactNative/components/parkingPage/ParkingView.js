@@ -47,7 +47,7 @@ const ParkingView = ({ cityName, setTitle, parkingId, setMyParking }) => {
       setLoading(false);
     };
     fetchData();
-  }, [parkingId]);
+  }, [parkingId, refresh]);
 
   useEffect(() => {
     if (parking) {

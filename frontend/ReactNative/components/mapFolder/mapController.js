@@ -4,7 +4,6 @@ export const getParkingByCityName = async ({ city, token }) => {
   if (!city || !token) {
     return;
   }
-  console.log("wer here");
   const res = await fetch(`${URL}/info/getParkingsByCityName/${city}`, {
     method: "GET",
     headers: {
@@ -13,7 +12,6 @@ export const getParkingByCityName = async ({ city, token }) => {
     },
   });
   const data = await res.json();
-  console.log(data);
   if (data.status === "Success") {
     let response = await handleResponse(data);
     return response;
