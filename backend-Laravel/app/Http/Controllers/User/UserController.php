@@ -13,6 +13,7 @@ use App\Models\Photo;
 use App\Models\Favourite;
 use App\Models\SearchRequest;
 use App\Models\Review;
+use App\Models\City;
 use Auth;
 
 
@@ -205,9 +206,18 @@ class UserController extends Controller
         ], 200);
     }
 
-    public function removeFromFavorite(Request $request){
-        $favourite = Favourite::find($request->favourite_id);
-        $favourite->delete();
+    public function removeFromFavorite($id){
+        // The id that was received here is the id of the parking
+        $user = Auth::user();
+        $user_id = $user->id;
+
+        $favourite = Favourite::where('parking_id',$id)->where('user_id', $user_id);
+
+        if ($favourite==true){
+            $favourite->delete();
+        }else{
+            $favourite = 'Favourite not found!';
+        }
 
         return response()->json([
             "status" => "Success",
@@ -217,10 +227,16 @@ class UserController extends Controller
 
     // Everytime the user presses the search button to look for parkings; collecting data
     public function searchRequest(Request $request){
+        $city = $request->city;
+        $city = strtolower($city);
+        $myCity = City::where('name', $city)->first();
+
+        $city_id = $myCity->id;
         $user = Auth::user();
+
         $search_request = new SearchRequest;
         $search_request->user_id = $user->id;
-        $search_request->city_id = $request->city_id;
+        $search_request->city_id = $city_id;
 
         $search_request->save();
 
