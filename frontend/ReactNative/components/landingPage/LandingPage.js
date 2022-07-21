@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, Text, StyleSheet, Alert, Image } from "react-native";
 import {
   getCurrentPositionAsync,
@@ -6,15 +6,17 @@ import {
   useForegroundPermissions,
   reverseGeocodeAsync,
 } from "expo-location";
-
+import { AuthContext } from "../../store/auth-context";
 import LoadingOverlay from "../../ui/LoadingOverlay";
 import Title from "../../ui/Title";
 import { Button } from "../../ui/Button";
+import { saveRequestToServer } from "./landingController";
 
 import { useNavigation } from "@react-navigation/native";
 // import DashedCircle from "../../ui/DashedCircle";
 
 const LandingPage = () => {
+  const authCtx = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation();
   const [locationPermissionInformation, requestPermission] =
@@ -66,6 +68,10 @@ const LandingPage = () => {
     }
   }
   async function handleClick() {
+    if (!locationPermissionInformation?.status) {
+      return;
+    }
+    // console.log(locationPermissionInformation.status);
     setIsLoading(true);
     if (locationPermissionInformation.status === "denied") {
       const permissionResponse = await requestPermission();
@@ -74,7 +80,7 @@ const LandingPage = () => {
     const response = await getLocationHandler();
     // Should navigate to map screen
 
-    if (response) {
+    if (response?.address) {
       // console.log(response.latitude);
       let cityName = response.address[0].city;
       // console.log(cityName);
@@ -83,6 +89,7 @@ const LandingPage = () => {
       if (["Beirut", "Bayrut", "بيروت"].includes(cityName)) {
         cityName = "Beirut";
       }
+      saveRequestToServer(cityName, authCtx.token);
       // console.log(cityName);
       navigation.navigate("map", {
         city: cityName,
