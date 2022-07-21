@@ -3,7 +3,10 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { createContext, useState, useContext } from "react";
 // import { flingGestureHandlerProps } from "react-native-gesture-handler/lib/typescript/handlers/FlingGestureHandler";
-import { addToFavorite } from "../components/favorites/favoriteController";
+import {
+  addToFavorite,
+  delFavFromServer,
+} from "../components/favorites/favoriteController";
 
 import { AuthContext } from "./auth-context";
 
@@ -33,10 +36,6 @@ function FavoritesContextProvider({ children }) {
   // On add new favorite; update both local storage and context
   async function addNewFavorite(parking) {
     setSavedParkings((savedParkings) => [...savedParkings, parking]);
-    // await AsyncStorage.setItem("favorites", JSON.stringify(savedParkings));
-    // Store in server:
-    // console.log(authCtx.token);
-    // console.log(parking.id);
     await addToFavorite(parking.id, authCtx.token);
 
     return true;
@@ -44,11 +43,11 @@ function FavoritesContextProvider({ children }) {
 
   // On delete favorite; update both local storage and context
   async function deleteFavorite(id) {
-    // console.log("item is being removed");
 
     setSavedParkings(
       savedParkings.filter((item) => String(item.id) !== String(id))
     );
+    await delFavFromServer(id, authCtx.token);
     // await AsyncStorage.setItem("favorites", JSON.stringify(savedParkings));
     // console.log("line 43", savedParkings);
     return id;

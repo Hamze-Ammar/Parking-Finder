@@ -66,3 +66,26 @@ function handleResGetAllFav(data) {
     return parkings;
   }
 }
+
+export const delFavFromServer = async (id, token) => {
+  // http://192.168.101.16:8000/api/v1/user/removeFromFavorite/3
+
+  if (!id || !token) {
+    return;
+  }
+
+  const res = await fetch(`${URL}/user/removeFromFavorite/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + token,
+      "Content-type": "application/json",
+    },
+  });
+  const data = await res.json();
+  // console.log(data);
+  if (data.status === "Success") {
+    return data;
+  } else {
+    return false;
+  }
+};
