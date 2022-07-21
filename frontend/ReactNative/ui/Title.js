@@ -4,11 +4,12 @@ import { useFonts } from "expo-font";
 import { Colors } from "../constants/styles";
 
 const Title = ({ children, myFontSize }) => {
-  
   const [loaded] = useFonts({
     montserratBold: require("../assets/fonts/Montserrat-ExtraBold.ttf"),
   });
-  if (!loaded) {return null;}
+  if (!loaded) {
+    return null;
+  }
 
   return (
     <View style={styles.textContainer}>

@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { View, StyleSheet, Pressable } from "react-native";
+import { View, StyleSheet, Pressable, Text } from "react-native";
 import ParkingView from "../../components/parkingPage/ParkingView";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Colors } from "../../constants/styles";
@@ -7,6 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { checkIfSaved } from "../../components/parkingPage/parkingController";
 import { FavoritesContext } from "../../store/favorites-context";
 import { parseParking } from "../../components/parkingPage/parkingController";
+import Title from "../../ui/Title";
 
 const ParkingScreen = ({ route, navigation }) => {
   const favoritesCtx = useContext(FavoritesContext);
@@ -18,7 +19,6 @@ const ParkingScreen = ({ route, navigation }) => {
   // Should get it later from params
   const [parkingId, setParkingId] = useState();
   // console.log(parkingId);
-
 
   useEffect(() => {
     if (route?.params) {
@@ -110,13 +110,17 @@ const ParkingScreen = ({ route, navigation }) => {
 
   return (
     <>
-      {parkingId && (
+      {parkingId ? (
         <ParkingView
           setMyParking={setMyParking}
           parkingId={parkingId}
           setTitle={setTitle}
           cityName={cityName}
         />
+      ) : (
+        <View style={styles.notFoundTxt}>
+          <Title>No Parking Selected</Title>
+        </View>
       )}
     </>
   );
@@ -128,5 +132,10 @@ const styles = StyleSheet.create({
   title: {
     marginLeft: 15,
     color: Colors.secondary500,
+  },
+  notFoundTxt: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
