@@ -48,7 +48,7 @@ const LandingPage = () => {
       return;
     }
     const location = await getCurrentPositionAsync();
-    console.log(location);
+    // console.log(location);
     let latitude = location.coords.latitude;
     let longitude = location.coords.longitude;
 
