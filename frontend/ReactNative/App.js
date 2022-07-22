@@ -20,7 +20,7 @@ import LoginScreen from "./screens/onboardingScreens/LoginScreen";
 import SignUpScreen from "./screens/onboardingScreens/SignUpScreen";
 import LandingScreen from "./screens/authenticatedScreens/LandingScreen";
 import ParkingScreen from "./screens/authenticatedScreens/ParkingScreen";
-import Favourites from "./screens/TabScreens/Favourites";
+import Favorites from "./screens/TabScreens/Favorites";
 import ProfileScreen from "./screens/TabScreens/editProfile/ProfileScreen";
 import MapScreen from "./screens/authenticatedScreens/MapScreen";
 // import HomeStackNavigator from "./stacks/HomeStackNavigator";
@@ -54,6 +54,20 @@ function HomeStackNavigator() {
       <Stack.Screen
         name="map"
         component={MapScreen}
+        // options={{
+        //   headerStyle: {
+        //     backgroundColor: Colors.primary500,
+        //   },
+        //   headerTitleStyle: {
+        //     fontWeight: "bold",
+        //     display: "none",
+        //   },
+
+        //   headerTintColor: "white",
+        //   tabBarHideOnKeyboard: true,
+        //   tabBarActiveTintColor: Colors.primary500,
+        //   tabBarInactiveTintColor: "gray",
+        // }}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
@@ -102,8 +116,8 @@ function BottomTabNavigator() {
         }}
       /> */}
       <BottomTab.Screen
-        name="Favourite Parkings"
-        component={Favourites}
+        name="Favorite Parkings"
+        component={Favorites}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="md-bookmark" color={color} size={size} />

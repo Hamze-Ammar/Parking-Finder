@@ -20,13 +20,13 @@ export const getParkingByCityName = async ({ city, token }) => {
   }
 };
 
-export const findNearestParkings = async (latitude, longitude, token) => {
+export const findNearestParkings = async (latitude, longitude, radius, token) => {
   if (!latitude || !longitude || !token) {
     return;
   }
   // console.log(info);
   const res = await fetch(
-    `${URL}/info/nearestParkings?lat=${latitude}&long=${longitude}`,
+    `${URL}/info/nearestParkings?lat=${latitude}&long=${longitude}&radius=${radius}`,
     {
       method: "GET",
       headers: {
@@ -39,7 +39,7 @@ export const findNearestParkings = async (latitude, longitude, token) => {
   const data = await res.json();
   if (data.status === "Success") {
     let response = await handleResponse(data);
-    console.log(response);
+    // console.log(response);
     return response;
   } else {
     return false;

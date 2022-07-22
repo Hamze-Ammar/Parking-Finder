@@ -17,6 +17,7 @@ import PopupParking from "../../components/mapFolder/PopupParking";
 import { dimensions } from "../../constants/styles";
 import { displayPopup } from "../../components/mapFolder/mapController";
 import { findNearestParkings } from "../../components/mapFolder/mapController";
+// import RNGestureHandlerButton from "react-native-gesture-handler/lib/typescript/components/GestureHandlerButton";
 
 const MapScreen = ({ route, navigation }) => {
   const favoritesCtx = useContext(FavoritesContext);
@@ -24,30 +25,46 @@ const MapScreen = ({ route, navigation }) => {
   const [token, setToken] = useState(authCtx.token || null);
   const [city, setCity] = useState(route.params?.city || null);
   const [latitude, setLatitude] = useState(route.params?.latitude || null);
+  const [newLatitude, setNewLatitude] = useState(
+    route.params?.latitude || null
+  );
   const [longitude, setLongitude] = useState(route.params?.longitude || null);
+  const [newLongitude, setNewLongitude] = useState(
+    route.params?.longitude || null
+  );
   const [parkings, setParkings] = useState([]);
   const [isDark, setIsDark] = useState(false);
   const [parkingPop, setParkingPop] = useState();
+  const [radius, setRadius] = useState(1000); // Initial value for the radius
   // console.log(city, token, latitude, longitude);
-  //   console.log({ parkingPop });
+  // console.log({ radius });
   useEffect(() => {
     async function reloadData() {
       if (city && token) {
+        // let radius = 2160; // initial screen radius
         // let response = await getParkingByCityName({ city: city, token: token });
-        let response = await findNearestParkings(latitude, longitude, token);
-        // console.log(response);
+        let response = await findNearestParkings(
+          newLatitude,
+          newLongitude,
+          radius,
+          token
+        );
+        // console.log(response.length);
+        
         setParkings(response);
       }
     }
     reloadData();
-  }, [city, token]);
+  }, [newLatitude, radius]);
 
   // Testing
-  const handleClick = () => {
-    // findNearestParkings(latitude, longitude, token);
-    console.log("hehehhahh");
+  const updateRadiusAndFetch = (region) => {
+    setNewLatitude(region.latitude);
+    setNewLongitude(region.longitude);
+    // console.log(region.latitudeDelta);
+    let newRadius = region.longitudeDelta * 69 * 1609; // to miles to meters; it covers a square where square_side = height of the screen
+    setRadius(newRadius);
   };
-  //=============================
   return (
     <>
       <MapView
@@ -56,10 +73,22 @@ const MapScreen = ({ route, navigation }) => {
         initialRegion={{
           latitude: parseFloat(latitude),
           longitude: parseFloat(longitude),
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
+          latitudeDelta: 0.0122,
+          longitudeDelta: 0.0121,
         }}
+        EdgePadding={{
+          top: 100,
+        }}
+        mapPadding={{
+          top: 20,
+          left: 20,
+          right: 20,
+        }}
+        minZoomLevel={7} // default => 0
+        maxZoomLevel={18} // default => 20
+        showsUserLocation={true}
         onPress={() => setParkingPop(null)}
+        onRegionChangeComplete={(region) => updateRadiusAndFetch(region)}
       >
         {parkings &&
           parkings.map((parking) => {
@@ -102,7 +131,7 @@ const MapScreen = ({ route, navigation }) => {
             latitude: parseFloat(latitude),
             longitude: parseFloat(longitude),
           }}
-          icon={require("../../assets/images/iconHere3.png")}
+          icon={require("../../assets/images/iconHere.png")}
           title="PIN"
           description="You are here!"
           onCalloutPress={() => handleClick()}
@@ -127,7 +156,7 @@ const MapScreen = ({ route, navigation }) => {
         <MaterialCommunityIcons
           name="theme-light-dark"
           size={28}
-          color={isDark ? "#fff" : "#333"}
+          color={isDark ? "#a213ff" : "#333"}
           onPress={() => {
             setIsDark(!isDark);
           }}
@@ -145,9 +174,12 @@ const styles = StyleSheet.create({
   },
   themIcon: {
     position: "absolute",
-    top: 50,
-    right: 40,
+    margin: 10,
+    padding: 5,
+    top: 70,
+    right: 23,
     color: "gray",
+    backgroundColor: "rgba(255, 255, 255, 0.6)",
   },
   popupInfo: {
     position: "absolute",
