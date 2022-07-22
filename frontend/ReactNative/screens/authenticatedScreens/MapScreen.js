@@ -16,6 +16,7 @@ import { mapStyleLight, mapStyleDark } from "../../constants/mapStyle";
 import PopupParking from "../../components/mapFolder/PopupParking";
 import { dimensions } from "../../constants/styles";
 import { displayPopup } from "../../components/mapFolder/mapController";
+import { findNearestParkings } from "../../components/mapFolder/mapController";
 
 const MapScreen = ({ route, navigation }) => {
   const favoritesCtx = useContext(FavoritesContext);
@@ -27,12 +28,13 @@ const MapScreen = ({ route, navigation }) => {
   const [parkings, setParkings] = useState([]);
   const [isDark, setIsDark] = useState(false);
   const [parkingPop, setParkingPop] = useState();
-  console.log(city, token, latitude, longitude);
+  // console.log(city, token, latitude, longitude);
   //   console.log({ parkingPop });
   useEffect(() => {
     async function reloadData() {
       if (city && token) {
-        let response = await getParkingByCityName({ city: city, token: token });
+        // let response = await getParkingByCityName({ city: city, token: token });
+        let response = await findNearestParkings(latitude, longitude, token);
         // console.log(response);
         setParkings(response);
       }
@@ -40,6 +42,11 @@ const MapScreen = ({ route, navigation }) => {
     reloadData();
   }, [city, token]);
 
+  // Testing
+  const handleClick = () => {
+    // findNearestParkings(latitude, longitude, token);
+    console.log("hehehhahh");
+  };
   //=============================
   return (
     <>
@@ -98,10 +105,11 @@ const MapScreen = ({ route, navigation }) => {
           icon={require("../../assets/images/iconHere3.png")}
           title="PIN"
           description="You are here!"
-          //   onCalloutPress={calculateDistance}
+          onCalloutPress={() => handleClick()}
+          // onPress={handleClick}
         />
 
-        <Marker
+        {/* <Marker
           draggable
           coordinate={{
             latitude: parseFloat(33.8811743),
@@ -110,7 +118,7 @@ const MapScreen = ({ route, navigation }) => {
           onDragEnd={(e) => {
             console.log(e.nativeEvent.coordinate);
           }}
-        />
+        /> */}
       </MapView>
       <View style={styles.popupInfo}>
         {parkingPop && <PopupParking parking={parkingPop} city={city} />}
