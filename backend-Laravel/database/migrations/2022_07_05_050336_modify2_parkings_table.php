@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ModifyUsersTable extends Migration
+class Modify2ParkingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class ModifyUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('type');
-            $table->foreignId('user_type_id')->default(1)->after('phone_number');
+        Schema::table('parkings', function (Blueprint $table) {
+            
+            $table->double('longitude', 11, 8)->nullable()->after('name');
+            $table->double('latitude', 10, 8)->nullable()->after('name');
+
         });
     }
 
@@ -26,6 +28,6 @@ class ModifyUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('parkings');
     }
 }
