@@ -20,6 +20,32 @@ export const getParkingByCityName = async ({ city, token }) => {
   }
 };
 
+export const findNearestParkings = async (latitude, longitude, token) => {
+  if (!latitude || !longitude || !token) {
+    return;
+  }
+  // console.log(info);
+  const res = await fetch(
+    `${URL}/info/nearestParkings?lat=${latitude}&long=${longitude}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-type": "application/json",
+      },
+      // body: JSON.stringify(info),
+    }
+  );
+  const data = await res.json();
+  if (data.status === "Success") {
+    let response = await handleResponse(data);
+    console.log(response);
+    return response;
+  } else {
+    return false;
+  }
+};
+
 function handleResponse(data) {
   if (!!data.res) {
     let parkings = [];
