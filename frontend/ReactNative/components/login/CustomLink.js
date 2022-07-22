@@ -7,13 +7,17 @@ import { Colors } from "../../constants/styles";
 const CustomLink = ({ text, navigateTo }) => {
   const navigation = useNavigation();
 
+  const handleNavigation = () => {
+    if (navigateTo) {
+      navigation.replace(navigateTo);
+    }
+  };
+
   return (
     <Pressable
       // style={({ pressed }) => [styles.button, pressed && styles.pressed]}
       style={styles.button}
-      onPress={() => {
-        navigation.replace(navigateTo);
-      }}
+      onPress={handleNavigation}
       android_ripple={{ color: "#64eee3" }}
     >
       <View>
