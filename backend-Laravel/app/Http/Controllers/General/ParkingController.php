@@ -85,6 +85,39 @@ class ParkingController extends Controller
         ], 200);
     }
 
+    public function findNearestParkings(Request $request)
+    {
+        $latitude = $request->lat;
+        $longitude = $request->long;
+        $radius = 4000;
+        /*
+         * replace 6371000 with 6371 for kilometer and 3956 for miles
+         */
+        $parkings = Parking::selectRaw("id, name, opening_hr, closing_hr, latitude, longitude,
+                         ( 6371000 * acos( cos( radians(?) ) *
+                           cos( radians( latitude ) )
+                           * cos( radians( longitude ) - radians(?)
+                           ) + sin( radians(?) ) *
+                           sin( radians( latitude ) ) )
+                         ) AS distance", [$latitude, $longitude, $latitude])
+            ->where('is_approved', '=', 1)
+            ->having("distance", "<", $radius)
+            // ->orderBy("distance",'asc')
+            // ->offset(0)
+            // ->limit(20)
+            ->get();
+        
+        foreach ($parkings as $parking) {
+            $availableSlots = $parking->availableSlots()->count();
+            $parking->freeSlots = $availableSlots;
+            }
+            
+        return response()->json([
+            "status" => "Success",
+            "res"   => $parkings
+        ], 200);
+    }
+
 }
 
 
