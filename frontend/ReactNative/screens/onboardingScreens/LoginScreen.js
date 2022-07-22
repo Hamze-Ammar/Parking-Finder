@@ -18,7 +18,7 @@ const LoginScreen = () => {
           <FormLogin setIsAuthenticating={(e) => setIsAuthenticating(e)} />
         </View>
         <View style={styles.footer}>
-          <CustomLink text="forget password" />
+          <CustomLink text="forget password" navigateTo="" />
           <CustomLink text="create an account" navigateTo="Signup" />
         </View>
       </View>
