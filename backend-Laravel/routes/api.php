@@ -12,6 +12,7 @@ use App\Http\Controllers\General\SensorController;
 use App\Http\Controllers\General\HistoryController;
 use App\Http\Controllers\General\FavouriteController;
 use App\Http\Controllers\System\NotFoundController;
+use App\Http\Controllers\LocationController;
 
 Route::group(['prefix' => 'v1'], function(){
     Route::group(['prefix' => 'user'], function(){
@@ -75,3 +76,8 @@ Route::group(['prefix' => 'v1'], function(){
         Route::get('/not_found', [NotFoundController::class, 'notFound'])->name("not-found");
     });
 });
+
+
+Route::get('/not_found', [NotFoundController::class, 'notFound'])->name("not-found");
+
+Route::post('nearplaces', [LocationController::class, 'findNearestParkings']);
