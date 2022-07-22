@@ -19,7 +19,7 @@ const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 };
 
-const Favourites = () => {
+const Favorites = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [reset, setReset] = useState(false);
   const favCtx = useContext(FavoritesContext);
@@ -48,7 +48,7 @@ const Favourites = () => {
     setReset(false);
   }, [refreshing]);
 
-  function renderFavourites(itemData) {
+  function renderFavorites(itemData) {
     // console.log(itemData);
     const item = itemData.item;
     const parkings = {
@@ -66,15 +66,18 @@ const Favourites = () => {
     <SafeAreaView style={{ flex: 1 }}>
       <View>
         {!parkingList.length && (
-          <Title myFontSize={15}>No Saved Parkings were Found</Title>
+          <View style={styles.titleContainer}>
+            <Title myFontSize={15}>No Saved Parkings were Found</Title>
+          </View>
         )}
+
         <View style={styles.container}>
           {/* {refreshing ? <ActivityIndicator /> : null} */}
           {parkingList && (
             <FlatList
               data={parkingList}
               keyExtractor={(item) => item.id}
-              renderItem={renderFavourites}
+              renderItem={renderFavorites}
               refreshControl={
                 <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
               }
@@ -86,11 +89,15 @@ const Favourites = () => {
   );
 };
 
-export default Favourites;
+export default Favorites;
 
 const styles = StyleSheet.create({
   container: {
     margin: 10,
     padding: 10,
+  },
+  titleContainer: {
+    height: "100%",
+    justifyContent: "center",
   },
 });
