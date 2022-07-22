@@ -27,7 +27,8 @@ class UserController extends Controller
         try {
             $parking = new Parking;
             $parking->name = $request->name;
-            $parking->location = $request->location;
+            $parking->latitude = $request->latitude;
+            $parking->longitude = $request->longitude;
             $parking->opening_hr = $request->opening_hr;
             $parking->closing_hr = $request->closing_hr;
             $parking->description = $request->description;
