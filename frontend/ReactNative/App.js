@@ -25,7 +25,7 @@ import ProfileScreen from "./screens/TabScreens/editProfile/ProfileScreen";
 import MapScreen from "./screens/authenticatedScreens/MapScreen";
 // import HomeStackNavigator from "./stacks/HomeStackNavigator";
 
-// Handling error Require cycle
+// Handling error/warning Require cycle && reanimatedWorklet
 LogBox.ignoreLogs(["Require cycle:"]);
 global.__reanimatedWorkletInit = () => {};
 

@@ -18,7 +18,8 @@ const ParkingScreen = ({ route, navigation }) => {
   const [myParking, setMyParking] = useState();
   // Should get it later from params
   const [parkingId, setParkingId] = useState();
-  // console.log(parkingId);
+  // console.log(cityName);
+  // console.log("cityName");
 
   useEffect(() => {
     if (route?.params) {

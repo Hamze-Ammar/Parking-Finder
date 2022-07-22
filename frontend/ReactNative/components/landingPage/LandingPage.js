@@ -48,7 +48,7 @@ const LandingPage = () => {
       return;
     }
     const location = await getCurrentPositionAsync();
-
+    console.log(location);
     let latitude = location.coords.latitude;
     let longitude = location.coords.longitude;
 
@@ -58,6 +58,7 @@ const LandingPage = () => {
     });
     if (regionName) {
       let response = {
+        // address: regionName,
         address: regionName,
         latitude: latitude,
         longitude: longitude,
@@ -92,8 +93,8 @@ const LandingPage = () => {
       saveRequestToServer(cityName, authCtx.token);
       // console.log(cityName);
       navigation.navigate("map", {
-        city: cityName,
-        // city: "xyz",
+        // city: cityName,
+        city: "beirut",
         latitude: response.latitude,
         longitude: response.longitude,
       });

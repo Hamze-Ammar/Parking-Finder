@@ -21,13 +21,6 @@ const ParkingView = ({ cityName, setTitle, parkingId, setMyParking }) => {
   const [refresh, setRefresh] = useState(false);
   const [showTimer, setShowTimer] = useState(false);
 
-  // console.log("mn jowwwwwwwwwwaaaaaaaaaa", parkingId);
-  // Controller get parking by id
-
-  // useEffect(() => {
-  //   setRefresh(!refresh);
-  // }, [parkingId]);
-
   useEffect(() => {
     setNotFound(false);
     if (!parkingId) {
@@ -39,8 +32,8 @@ const ParkingView = ({ cityName, setTitle, parkingId, setMyParking }) => {
       const res = await getParkingById(parkingId);
       // console.log("res                  .....       ", res);
       if (res) {
-        setParking(res);
-        setMyParking(res);
+        setParking(res); // To be passed to the child
+        setMyParking(res); // To be returned to the parent 
       } else if (!res) {
         setNotFound(true);
       }
