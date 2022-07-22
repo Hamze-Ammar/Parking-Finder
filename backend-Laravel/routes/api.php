@@ -79,6 +79,6 @@ Route::group(['prefix' => 'v1'], function(){
 });
 
 
-Route::get('/not_found', [NotFoundController::class, 'notFound'])->name("not-found");
+// Route::get('/not_found', [NotFoundController::class, 'notFound'])->name("not-found");
 
 // Route::get('nearplaces', [LocationController::class, 'findNearestParkings']);

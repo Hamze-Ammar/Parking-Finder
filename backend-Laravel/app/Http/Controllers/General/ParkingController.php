@@ -89,7 +89,8 @@ class ParkingController extends Controller
     {
         $latitude = $request->lat;
         $longitude = $request->long;
-        $radius = 4000;
+        $radius = $request->radius;
+        // $radius = 2160;
         /*
          * replace 6371000 with 6371 for kilometer and 3956 for miles
          */
