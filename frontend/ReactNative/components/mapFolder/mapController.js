@@ -29,7 +29,9 @@ function handleResponse(data) {
         id: item.id,
         name: item.name,
         freeSlots: item.freeSlots,
-        location: item.location,
+        // location: item.location,
+        latitude: item.latitude,
+        longitude: item.longitude,
         opening_hr: item.opening_hr,
         closing_hr: item.closing_hr,
       };
@@ -47,9 +49,9 @@ export const displayPopup = async ({ parking, latitude, longitude }) => {
   if (!parking) {
     return;
   }
-  let location = JSON.parse(parking.location);
-  let latitudeDes = location.latitude;
-  let longitudeDes = location.longitude;
+  // let location = JSON.parse(parking.location);
+  let latitudeDes = parking.latitude;
+  let longitudeDes = parking.longitude;
   //   console.log(parking);
   //   console.log(parking.id);
   let response = await calculateDistance(

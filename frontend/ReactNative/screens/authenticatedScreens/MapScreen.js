@@ -27,7 +27,7 @@ const MapScreen = ({ route, navigation }) => {
   const [parkings, setParkings] = useState([]);
   const [isDark, setIsDark] = useState(false);
   const [parkingPop, setParkingPop] = useState();
-  //   console.log(city, token, latitude, longitude);
+  console.log(city, token, latitude, longitude);
   //   console.log({ parkingPop });
   useEffect(() => {
     async function reloadData() {
@@ -57,9 +57,9 @@ const MapScreen = ({ route, navigation }) => {
         {parkings &&
           parkings.map((parking) => {
             // console.log(parking);
-            let location = JSON.parse(parking.location);
-            let latitudeDes = location.latitude;
-            let longitudeDes = location.longitude;
+            // let location = JSON.parse(parking.location);
+            let latitudeDes = parking.latitude;
+            let longitudeDes = parking.longitude;
             let description = parking.freeSlots + " Available Slots";
             let id = parking.id;
             return (
@@ -92,8 +92,8 @@ const MapScreen = ({ route, navigation }) => {
           })}
         <Marker
           coordinate={{
-            latitude: parseFloat(33.8911743),
-            longitude: parseFloat(35.5059504),
+            latitude: parseFloat(latitude),
+            longitude: parseFloat(longitude),
           }}
           icon={require("../../assets/images/iconHere3.png")}
           title="PIN"
@@ -101,7 +101,7 @@ const MapScreen = ({ route, navigation }) => {
           //   onCalloutPress={calculateDistance}
         />
 
-        {/* <Marker
+        <Marker
           draggable
           coordinate={{
             latitude: parseFloat(33.8811743),
@@ -110,7 +110,7 @@ const MapScreen = ({ route, navigation }) => {
           onDragEnd={(e) => {
             console.log(e.nativeEvent.coordinate);
           }}
-        /> */}
+        />
       </MapView>
       <View style={styles.popupInfo}>
         {parkingPop && <PopupParking parking={parkingPop} city={city} />}
