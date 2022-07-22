@@ -64,6 +64,7 @@ Route::group(['prefix' => 'v1'], function(){
             Route::get('/getCitiesByCountryId/{id?}', [CityController::class, 'getCitiesByCountryId']);
             Route::get('/getParkingsByCityId/{id?}', [ParkingController::class, 'getParkingsByCityId']);
             Route::get('/getParkingsByCityName/{name}', [ParkingController::class, 'getParkingsByCityName']);
+            Route::get('/nearestParkings', [ParkingController::class, 'findNearestParkings']);
             Route::get('/getParkingRate/{id}', [ParkingController::class, 'getParkingRate']);
             Route::post('/addToHistory', [HistoryController::class, 'addToHistory']);
             Route::post('/updateHistory', [HistoryController::class, 'updateHistory']);
@@ -80,4 +81,4 @@ Route::group(['prefix' => 'v1'], function(){
 
 Route::get('/not_found', [NotFoundController::class, 'notFound'])->name("not-found");
 
-Route::post('nearplaces', [LocationController::class, 'findNearestParkings']);
+// Route::get('nearplaces', [LocationController::class, 'findNearestParkings']);

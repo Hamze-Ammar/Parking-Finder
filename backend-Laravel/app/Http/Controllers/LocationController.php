@@ -33,10 +33,9 @@ class LocationController extends Controller
     {
         $latitude = $request->lat;
         $longitude = $request->long;
-        $radius = 400;
+        $radius = 4000;
         // die($latitude);
         /*
-         * using eloquent approach, make sure to replace the "Restaurant" with your actual model name
          * replace 6371000 with 6371 for kilometer and 3956 for miles
          */
         $parkings = Parking::selectRaw("id, name, latitude, longitude,
@@ -53,6 +52,10 @@ class LocationController extends Controller
             ->limit(20)
             ->get();
 
-        return $parkings;
+            
+        return response()->json([
+            "status" => "Success",
+            "res"   => $parkings
+        ], 200);
     }
 }
