@@ -10,7 +10,13 @@ import NotFound from "../../util/NotFound";
 import Slots from "./Slots";
 import LoadingOverlay from "../../ui/LoadingOverlay";
 
-const ParkingView = ({ cityName, setTitle, parkingId, setMyParking }) => {
+const ParkingView = ({
+  cityName,
+  setTitle,
+  parkingId,
+  setMyParking,
+  duration,
+}) => {
   const [parking, setParking] = useState(null);
   const [parkingName, setParkingName] = useState("");
   const [slots, setSlots] = useState(null);
@@ -20,7 +26,7 @@ const ParkingView = ({ cityName, setTitle, parkingId, setMyParking }) => {
   const [loading, setLoading] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const [showTimer, setShowTimer] = useState(false);
-
+  console.log({ parking });
   useEffect(() => {
     setNotFound(false);
     if (!parkingId) {
@@ -33,7 +39,7 @@ const ParkingView = ({ cityName, setTitle, parkingId, setMyParking }) => {
       // console.log("res                  .....       ", res);
       if (res) {
         setParking(res); // To be passed to the child
-        setMyParking(res); // To be returned to the parent 
+        setMyParking(res); // To be returned to the parent
       } else if (!res) {
         setNotFound(true);
       }
@@ -70,7 +76,7 @@ const ParkingView = ({ cityName, setTitle, parkingId, setMyParking }) => {
           name={parkingName}
           total={numberOfSlots}
           available_slots={availableSlots}
-          min_away={"7"}
+          min_away={duration}
         />
       )}
       {slots && (

@@ -1,8 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Colors } from "../../constants/styles";
+import { capitalizeFirstLetter } from "./parkingController";
 
 const ParkingHeader = ({ name, total, available_slots, min_away }) => {
+  const [duration, suffix] = min_away.split(" ");
+  let time = capitalizeFirstLetter(suffix); // Capitalize the word 'minute'
+  // console.log(suffix)
   return (
     <>
       <View style={styles.info}>
@@ -17,8 +21,8 @@ const ParkingHeader = ({ name, total, available_slots, min_away }) => {
           <Text style={styles.text}>Available</Text>
         </View>
         <View style={styles.infoCol}>
-          <Text style={styles.bold}>{min_away}</Text>
-          <Text style={styles.text}>Minutes</Text>
+          <Text style={styles.bold}>{duration}</Text>
+          <Text style={styles.text}>{time}</Text>
           <Text style={styles.text}>Away</Text>
         </View>
       </View>

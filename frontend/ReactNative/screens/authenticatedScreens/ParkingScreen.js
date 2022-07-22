@@ -18,6 +18,7 @@ const ParkingScreen = ({ route, navigation }) => {
   const [myParking, setMyParking] = useState();
   // Should get it later from params
   const [parkingId, setParkingId] = useState();
+  const [duration, setDuration] = useState();
   // console.log(cityName);
   // console.log("cityName");
 
@@ -27,6 +28,7 @@ const ParkingScreen = ({ route, navigation }) => {
       if (param?.city) {
         setCityName(param.city);
         setParkingId(param.id);
+        setDuration(param.duration)
       }
     }
   });
@@ -117,6 +119,7 @@ const ParkingScreen = ({ route, navigation }) => {
           parkingId={parkingId}
           setTitle={setTitle}
           cityName={cityName}
+          duration={duration}
         />
       ) : (
         <View style={styles.notFoundTxt}>

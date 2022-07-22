@@ -57,6 +57,7 @@ const PopupParking = ({ parking, city }) => {
               navigation.navigate("Parking", {
                 city: city,
                 id: id,
+                duration:duration,
               });
             }}
           />
