@@ -10,6 +10,8 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use App\Models\History;
 use App\Models\Favourite;
 use App\Models\UserType;
+use App\Models\Reservation;
+use App\Models\SearchRequest;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -58,5 +60,13 @@ class User extends Authenticatable implements JWTSubject
     public function type()
     {
         return $this->hasOne(UserType::class);
+    }
+
+    public function reservations(){
+        return $this->hasMany(Reservation::class);
+    }
+
+    public function searchRequests(){
+        return $this->hasMany(SearchRequest::class);
     }
 }

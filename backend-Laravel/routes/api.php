@@ -38,6 +38,7 @@ Route::group(['prefix' => 'v1'], function(){
             Route::delete('/removeFromFavorite/{id}', [UserController::class, 'removeFromFavorite']);
             Route::post('/searchRequest', [UserController::class, 'searchRequest']);
             Route::post('/addReview', [UserController::class, 'addReview']);
+            Route::get('/getOverviewInfo', [UserController::class, 'getOverviewInfo']);
         });
     });
 

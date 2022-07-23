@@ -14,6 +14,7 @@ use App\Models\Favourite;
 use App\Models\SearchRequest;
 use App\Models\Review;
 use App\Models\City;
+use App\Models\Reservation;
 use Auth;
 
 
@@ -87,7 +88,15 @@ class UserController extends Controller
         $slot->is_reserved = '1';
         $slot->save();
 
-        // Push job to queue to reset reservation after 5 mins
+        // Register reservation is table
+        $user = Auth::user();
+        $reservation = new Reservation;
+        $reservation->user_id = $user->id;
+        $reservation->slot_id = $slot->id;
+        $reservation->save();
+
+
+        // Push job to queue to reset reservation; should be after 5 mins
         ResetReservation::dispatch($slot)->delay(9);
 
         return response()->json([
@@ -259,6 +268,20 @@ class UserController extends Controller
         return response()->json([
             "status" => "Success",
             "res"   => $review
+        ], 200);
+    }
+
+    public function getOverviewInfo(){
+        $user = Auth::user();
+        $total_reservations = $user->reservations()->count();
+        $total_requests = $user->searchRequests()->count();
+
+        $user->total_reservations = $total_reservations;
+        $user->total_requests = $total_requests;
+        
+        return response()->json([
+            "status" => "Success",
+            "res"   => $user
         ], 200);
     }
 }
