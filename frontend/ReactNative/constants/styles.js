@@ -9,6 +9,7 @@ export const Colors = {
   error200: "#F34913",
   error500: "#F34913",
   marked400: "#ff78f1",
+  earning500: "#f1c232",
 };
 
 export const ProfilePicSize = {
