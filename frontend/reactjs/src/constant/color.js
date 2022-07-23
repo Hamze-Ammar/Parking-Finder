@@ -8,4 +8,5 @@ export const Colors = {
   error500: "#F34913",
   marked400: "#ff78f1",
   earning500: "#f1c232",
+  fontPrimary: "#2e2626",
 };
