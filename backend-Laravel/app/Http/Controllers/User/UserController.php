@@ -276,12 +276,18 @@ class UserController extends Controller
         $total_reservations = $user->reservations()->count();
         $total_requests = $user->searchRequests()->count();
 
-        $user->total_reservations = $total_reservations;
-        $user->total_requests = $total_requests;
-        
+        // $user->total_reservations = $total_reservations;
+        // $user->total_requests = $total_requests;
+        $myResponse = array(
+            "total_reservations" => $total_reservations,
+            "total_requests"    => $total_requests
+        );
+        // $response->total_reservations = $total_reservations;
+        // $response->total_requests = $total_requests;
+
         return response()->json([
             "status" => "Success",
-            "res"   => $user
+            "res"   => $myResponse
         ], 200);
     }
 }
