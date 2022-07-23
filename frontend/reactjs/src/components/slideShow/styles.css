@@ -1,0 +1,22 @@
+.each-slide {
+  height: 100%;
+  width: 100%;
+  /* min-height: 600px; */
+  /* background-size: cover; */
+}
+.each-slide-caption {
+  height: 100%;
+  width: 100%;
+  /* min-height: 600px; */
+  /* background-size: cover; */
+}
+.each-slide-img {
+  height: 600px;
+  width: 280px;
+  background-size: cover;
+  border-radius: 20px;
+}
+.slide-container {
+  height: 100%;
+  width: 100%;
+}
