@@ -4,6 +4,7 @@ import {
   View,
   KeyboardAvoidingView,
   ScrollView,
+  RefreshControl,
 } from "react-native";
 import React, { useState } from "react";
 import { Colors, dimensions, ProfilePicSize } from "../../../constants/styles";
@@ -15,12 +16,28 @@ import ButtonUpdate from "../../../ui/ButtonUpdate";
 import EditCredentials from "./EditCredentials";
 import OverviewProfile from "./OverviewProfile";
 
+const wait = (timeout) => {
+  return new Promise((resolve) => setTimeout(resolve, timeout));
+};
+
 const UserProfile = () => {
   const [showInputField, setShowInputField] = useState(false);
 
+  //====RefreshControl====
+  const [refreshing, setRefreshing] = useState(false);
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
+  //====================
+
   return (
     // <KeyboardAvoidingView style={styles.container}>
-    <ScrollView>
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
+    >
       <View style={styles.mainContainer}>
         <View style={styles.header}>
           <View style={styles.profilePic}>
@@ -44,6 +61,7 @@ const UserProfile = () => {
               setShowInputField={() => {
                 setShowInputField(!showInputField);
               }}
+              refreshing={refreshing}
             />
           </View>
         )}

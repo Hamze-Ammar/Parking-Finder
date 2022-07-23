@@ -3,7 +3,7 @@ import React from "react";
 import ButtonUpdate from "../../../ui/ButtonUpdate";
 import CircularUserRequests from "./CircularUserRequests";
 
-const OverviewProfile = ({ setShowInputField }) => {
+const OverviewProfile = ({ setShowInputField, refreshing }) => {
   const handleClick = () => {
     setShowInputField();
   };
@@ -21,7 +21,7 @@ const OverviewProfile = ({ setShowInputField }) => {
           // style={{ width: "100%", height: "100%" }}
         >
           <View style={styles.container}>
-            <CircularUserRequests />
+            <CircularUserRequests refreshing={refreshing} />
           </View>
         </ImageBackground>
       </View>
