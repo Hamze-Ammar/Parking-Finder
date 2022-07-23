@@ -17,6 +17,7 @@ import PopupParking from "../../components/mapFolder/PopupParking";
 import { dimensions } from "../../constants/styles";
 import { displayPopup } from "../../components/mapFolder/mapController";
 import { findNearestParkings } from "../../components/mapFolder/mapController";
+import PopWhatFound from "../../components/mapFolder/PopWhatFound";
 // import RNGestureHandlerButton from "react-native-gesture-handler/lib/typescript/components/GestureHandlerButton";
 
 const MapScreen = ({ route, navigation }) => {
@@ -36,8 +37,9 @@ const MapScreen = ({ route, navigation }) => {
   const [isDark, setIsDark] = useState(false);
   const [parkingPop, setParkingPop] = useState();
   const [radius, setRadius] = useState(1000); // Initial value for the radius
+  const [numOfParkings, setNumOfParkings] = useState(0);
   // console.log(city, token, latitude, longitude);
-  // console.log({ radius });
+  console.log({ numOfParkings });
   useEffect(() => {
     async function reloadData() {
       if (city && token) {
@@ -50,7 +52,7 @@ const MapScreen = ({ route, navigation }) => {
           token
         );
         // console.log(response.length);
-        
+        setNumOfParkings(response.length);
         setParkings(response);
       }
     }
@@ -62,7 +64,7 @@ const MapScreen = ({ route, navigation }) => {
     setNewLatitude(region.latitude);
     setNewLongitude(region.longitude);
     // console.log(region.latitudeDelta);
-    let newRadius = region.longitudeDelta * 69 * 1609; // to miles to meters; it covers a square where square_side = height of the screen
+    let newRadius = region.longitudeDelta * 53 * 1609; // to miles to meters; it covers a square where square_side = height of the screen
     setRadius(newRadius);
   };
   return (
@@ -152,6 +154,11 @@ const MapScreen = ({ route, navigation }) => {
       <View style={styles.popupInfo}>
         {parkingPop && <PopupParking parking={parkingPop} city={city} />}
       </View>
+
+      <View style={[styles.popupInfo, { bottom: 10 }]}>
+        {!parkingPop && <PopWhatFound numOfParkings={numOfParkings} />}
+      </View>
+
       <View style={styles.themIcon}>
         <MaterialCommunityIcons
           name="theme-light-dark"
