@@ -1,8 +1,10 @@
+import { useContext } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import Slot from "../../components/parkingPage/Slot";
 import { Button } from "../../ui/Button";
 import { Colors } from "../../constants/styles";
+import { AuthContext } from "../../store/auth-context";
 
 import { getParkingById } from "./parkingController";
 import ParkingHeader from "./ParkingHeader";
@@ -17,6 +19,9 @@ const ParkingView = ({
   setMyParking,
   duration,
 }) => {
+  const authCtx = useContext(AuthContext);
+  const [token, setToken] = useState(authCtx.token || null);
+
   const [parking, setParking] = useState(null);
   const [parkingName, setParkingName] = useState("");
   const [slots, setSlots] = useState(null);
@@ -35,7 +40,7 @@ const ParkingView = ({
     setLoading(true);
     const fetchData = async () => {
       // console.log({ parkingId });
-      const res = await getParkingById(parkingId);
+      const res = await getParkingById(parkingId, token);
       // console.log("res                  .....       ", res);
       if (res) {
         setParking(res); // To be passed to the child

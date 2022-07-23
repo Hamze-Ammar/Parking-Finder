@@ -9,8 +9,8 @@ import { Alert } from "react-native";
 // AsyncStorage.removeItem("token");
 
 // Get Parking from server
-export const getParkingById = async (id) => {
-  let token = await AsyncStorage.getItem("token");
+export const getParkingById = async (id, token) => {
+  // let token = await AsyncStorage.getItem("token");
   // console.log(token);
   //Just in case
   if (!token) {
@@ -39,9 +39,9 @@ export const getParkingById = async (id) => {
 };
 
 // Send Request make Reservation
-export const sendReservation = async (id) => {
+export const sendReservation = async (id, token) => {
   // console.log("reservation sent on slot:  ", id);
-  let token = await AsyncStorage.getItem("token");
+  // let token = await AsyncStorage.getItem("token");
   if (!token) {
     return;
   }
@@ -90,7 +90,6 @@ export const parseParking = (parking) => {
   return res;
 };
 
-
 export const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
-}
+};
