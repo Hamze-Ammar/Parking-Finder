@@ -9,6 +9,7 @@ import {
 } from "react-icons/fa";
 import Logo from "../../ui/Logo";
 import SlideShow from "../../components/slideShow/SlideShow";
+import SimpleBtn from "../../ui/SimpleBtn";
 
 const LandingPage = () => {
   const classes = useStyles();
@@ -16,7 +17,10 @@ const LandingPage = () => {
     <>
       <div className={classes.layout}>
         <div className={classes.container}>
-          <div className={classes.header}></div>
+          <div className={classes.header}>
+            {" "}
+            <div className={classes.login}><SimpleBtn text='Login'/></div>
+          </div>
           <div className={classes.body}>
             <div className={classes.bodyLeft}>
               <div>
@@ -27,14 +31,14 @@ const LandingPage = () => {
                 around <br /> the world
               </div>
               <div className={classes.bodyLeftLink}>
-                become a partner? <span className={classes.register}>Register Now</span> 
+                become a partner?{" "}
+                <span className={classes.register}>Register Now</span>
               </div>
             </div>
             <div className={classes.slideShowContainer}>
               <SlideShow />
             </div>
             <div className={classes.rightContainer}>
-              <div className={classes.login}>Login</div>
               <div>
                 <div className={classes.bold}>
                   Life is too short <br /> to be spent on <br /> PARKING! <br />
