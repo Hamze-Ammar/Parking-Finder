@@ -3,9 +3,11 @@ import { Colors } from "../../constant/color";
 
 const useStyles = createUseStyles({
   layout: {
-    height: "100vh",
+    // height: "100vh",
+    minHeight: "100vh",
     // backgroundColor: "gray",
     display: "flex",
+    // flexWrap: "wrap",
     flexDirection: "column",
     fontFamily: "Montserrat",
     alignContent: "stretch",
@@ -33,10 +35,12 @@ const useStyles = createUseStyles({
   },
   header: {
     height: "40px",
+    padding: "20px",
+    marginBottom: "10px",
   },
   login: {
+    fontSize: "24px",
     fontWeight: "500",
-    color: Colors.primary500,
     textAlign: "right",
   },
   bodyLeft: {
@@ -59,14 +63,14 @@ const useStyles = createUseStyles({
     display: "flex",
     flexDirection: "column",
     gap: "40px",
-    justifyContent: "space-between",
-    // heigh: "80vh",
+    justifyContent: "flex-end",
     minHeight: "80vh",
   },
   footer: {
     height: "70px",
-    // alignSelf: "end",
-    // alignSelf: "flex-end",
+    position: "fixed",
+    minWidth: "100vw",
+    bottom: "0",
     backgroundColor: Colors.primary500,
     borderTopLeftRadius: "90px",
     borderTopRightRadius: "90px",
