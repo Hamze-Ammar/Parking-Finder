@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import { useStyles } from "./styles";
 import {
   FaFacebook,
@@ -36,7 +38,9 @@ const LandingPage = () => {
               </div>
               <div className={classes.bodyLeftLink}>
                 become a partner?{" "}
-                <span className={classes.register}>Register Now</span>
+                <Link to="/registerParking">
+                  <span className={classes.register}>Register Now</span>
+                </Link>
               </div>
             </div>
             <div className={classes.slideShowContainer}>
