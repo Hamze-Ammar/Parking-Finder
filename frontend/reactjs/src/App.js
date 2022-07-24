@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/landingPage/LandingPage";
 import Login from "./pages/login/Login";
 import SignUp from "./pages/register/SignUp";
-import RegisterParking from "./pages/registerParking/RegisterParking";
 import { AuthContext } from "./store/AuthContext";
+import RegisterParking from "./pages/registerParking/RegisterParking";
 
 function App() {
   const AuthCtx = useContext(AuthContext);
@@ -48,7 +48,7 @@ function App() {
             }
           ></Route>
           <Route
-            path="/registerForm"
+            path="/registerParking"
             element={
               <>
                 <RegisterParking />
