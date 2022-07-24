@@ -9,6 +9,7 @@ export const AuthContext = createContext({
 
 function AuthContextProvider({ children }) {
   const [authToken, setAuthToken] = useState();
+//   console.log(authToken);
 
   function authenticate(token) {
     setAuthToken(token);
