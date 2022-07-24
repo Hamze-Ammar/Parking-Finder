@@ -1,13 +1,16 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { URL } from "../../constant/backend";
+import { AuthContext } from "../../store/AuthContext";
 
 export default function Login() {
+  const AuthCtx = useContext(AuthContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userType, setUserType] = useState("");
@@ -26,18 +29,11 @@ export default function Login() {
       body: JSON.stringify(credentials),
     });
     const data = await res.json();
-    // console.log(data);
-    // data.error ? alert("User Not Found") : alert("You are now signed in!");
     if (data.err) {
       alert(data.err);
     } else if (data.access_token) {
       let token = data.access_token;
-      // console.log(token);
-      let user_info = jwt_decode(token);
-      // console.log(user_info);
-      token && localStorage.setItem("token", token);
-      user_info && localStorage.setItem("user_id", user_info._id);
-      user_info && localStorage.setItem("user_name", user_info.name);
+      token && AuthCtx.authenticate(token);
 
       //redirect user
       alert("You are now logged in");
@@ -124,7 +120,9 @@ export default function Login() {
               </span>
             )}
           </div>
-          <button type="submit">Login</button>
+          <button className="formBtn" type="submit">
+            Login
+          </button>
           <label>
             <input type="checkbox" name="remember" /> Remember me
           </label>
@@ -132,12 +130,15 @@ export default function Login() {
 
         <div className={"containerLogin"}>
           <Link to="/">
-            <button type="button" className={"cancelbtnn"}>
+            <button className="formBtn cancelbtnn" type="button">
               Cancel
             </button>
           </Link>
           <span className={"psw"}>
-            Forgot <a href="#">password?</a>
+            Don't have an account?{" "}
+            <Link to="/signUp">
+              <a href="#">Register</a>
+            </Link>
           </span>
         </div>
       </form>
