@@ -18,14 +18,18 @@ const LandingPage = () => {
       <div className={classes.layout}>
         <div className={classes.container}>
           <div className={classes.header}>
-            {" "}
-            <div className={classes.login}><SimpleBtn text='Login'/></div>
+            <div>
+              <Logo />
+            </div>
+            <div className={classes.login}>
+              <SimpleBtn text="Login" />
+            </div>
           </div>
           <div className={classes.body}>
             <div className={classes.bodyLeft}>
-              <div>
+              {/* <div>
                 <Logo />
-              </div>
+              </div> */}
               <div>
                 Join 802 <br /> Parkings <br />
                 around <br /> the world

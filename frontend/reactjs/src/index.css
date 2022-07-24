@@ -17,6 +17,12 @@
   box-sizing: border-box;
 }
 
+.containerRegister {
+  margin: 0 auto;
+  max-width: 800px;
+  font-family: "Montserrat";
+}
+
 /* Full-width input fields */
 input[type="text"],
 input[type="password"] {
@@ -38,7 +44,7 @@ input[type="password"]:focus {
 }
 
 /* Set a style for all buttons */
-button {
+.formBtn {
   background-color: var(--primary-500);
   color: white;
   padding: 14px 20px;
@@ -52,7 +58,7 @@ button {
   outline: none;
 }
 
-button:hover {
+.formBtn:hover {
   opacity: 1;
 }
 

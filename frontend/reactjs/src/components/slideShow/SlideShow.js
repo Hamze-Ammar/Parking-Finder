@@ -33,7 +33,6 @@ const Slideshow = () => {
                 className="each-slide-img"
                 style={{ backgroundImage: `url(${slideImage.src})` }}
               >
-                {/* <span className="each-slide-caption">{slideImage.caption}</span> */}
               </div>
             </div>
           );
