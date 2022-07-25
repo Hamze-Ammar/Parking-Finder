@@ -16,15 +16,11 @@ export default SimpleBtn;
 
 const useStyles = createUseStyles({
   btn: {
-    // textDecoration: "none",
-    // textDecorationLine: "none",
-    // width: "80px",
     color: Colors.background200,
     padding: "15px 25px",
     fontSize: "20px",
     fontFamily: "Montserrat",
     fontWeight: "700",
-    // backgroundColor: Colors.background200,
     backgroundColor: Colors.primary500,
     border: "none",
     borderRadius: "10px",
