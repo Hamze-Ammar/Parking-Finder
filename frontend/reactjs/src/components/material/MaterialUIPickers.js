@@ -4,7 +4,12 @@ import Stack from "@mui/material/Stack";
 
 export default function NativePickers({ title, setInput }) {
   return (
-    <Stack component="form" noValidate spacing={3}>
+    <Stack
+      component="form"
+      noValidate
+      spacing={3}
+      sx={{ width: "100%", height: "100%" }}
+    >
       <TextField
         onChange={setInput}
         id="time"
@@ -17,7 +22,8 @@ export default function NativePickers({ title, setInput }) {
         inputProps={{
           step: 300, // 5 min
         }}
-        sx={{ width: "25ch" }}
+        sx={{ width: "100%", height: "100%" }}
+        required
       />
     </Stack>
   );
