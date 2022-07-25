@@ -10,8 +10,13 @@ import { Colors } from "../../constant/color";
 import FormContainer from "../../ui/FormContainer";
 import FormRow from "../../ui/FormRow";
 import FormTitle from "../../ui/FormTitle";
+import { saveNewParkingToServer } from "../../pages/registerParking/registerParkingController";
 
-export default function RegisterForm({ pickedLocation }) {
+export default function RegisterForm({
+  setInfo,
+  pickedLocation,
+  setDisableSave,
+}) {
   const classes = useStyles();
 
   const [name, setName] = useState("");
@@ -28,17 +33,54 @@ export default function RegisterForm({ pickedLocation }) {
     if (pickedLocation) {
       setLatitude(pickedLocation[0]);
       setLongitude(pickedLocation[1]);
+      saveNewParkingToServer();
     }
   }, [pickedLocation]);
 
-  console.log(numOfSlots);
-  console.log(latitude);
+  useEffect(() => {
+    if (
+      name &&
+      description &&
+      openFrom &&
+      openTo &&
+      numOfSlots &&
+      country &&
+      city &&
+      latitude &&
+      longitude
+    ) {
+      setDisableSave(false);
+      var info = {
+        name: name,
+        description: description,
+        opening_hr: openFrom,
+        closing_hr: openTo,
+        total_slots: numOfSlots.toString(),
+        country_name: country,
+        city_name: city,
+        latitude: latitude.toString(),
+        longitude: longitude.toString(),
+      };
+      setInfo(info);
+    } else {
+      setDisableSave(true);
+    }
+  }, [
+    name,
+    description,
+    openFrom,
+    openTo,
+    numOfSlots,
+    country,
+    city,
+    latitude,
+    longitude,
+  ]);
 
   return (
     <>
       <FormContainer>
         <FormTitle>Register Your Parking</FormTitle>
-
         <FormRow>
           <TextInput title="Parking Name" setInput={setName} />
         </FormRow>
@@ -50,7 +92,7 @@ export default function RegisterForm({ pickedLocation }) {
             inputProps={{
               maxLength: 13,
               step: 1,
-              min: 10,
+              min: 1,
               max: 150,
             }}
           />
