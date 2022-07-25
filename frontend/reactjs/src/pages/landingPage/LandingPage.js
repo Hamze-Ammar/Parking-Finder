@@ -1,5 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../store/AuthContext";
 
 import { useStyles } from "./styles";
 import {
@@ -12,9 +13,33 @@ import {
 import Logo from "../../ui/Logo";
 import SlideShow from "../../components/slideShow/SlideShow";
 import SimpleBtn from "../../ui/SimpleBtn";
+import SnackBar from "../../ui/SnackBar";
 
 const LandingPage = () => {
+  const AuthCtx = useContext(AuthContext);
   const classes = useStyles();
+  const navigate = useNavigate();
+  const [token, setToken] = useState(AuthCtx.token);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setToken(AuthCtx.token);
+  }, [AuthCtx.token]);
+
+  const navigateToLogin = () => {
+    navigate("/login");
+  };
+  const logout = () => {
+    AuthCtx.logout();
+  };
+  const handleRegisterClick = () => {
+    if (token) {
+      navigate("/registerParking");
+    } else {
+      setOpen(true);
+    }
+  };
+
   return (
     <>
       <div className={classes.layout}>
@@ -24,23 +49,26 @@ const LandingPage = () => {
               <Logo />
             </div>
             <div className={classes.login}>
-              <SimpleBtn text="Login" />
+              {!token ? (
+                <SimpleBtn onClick={navigateToLogin} text="Login" />
+              ) : (
+                <SimpleBtn onClick={logout} text="Logout" />
+              )}
             </div>
           </div>
           <div className={classes.body}>
             <div className={classes.bodyLeft}>
-              {/* <div>
-                <Logo />
-              </div> */}
               <div>
                 Join 802 <br /> Parkings <br />
                 around <br /> the world
               </div>
               <div className={classes.bodyLeftLink}>
-                become a partner?{" "}
-                <Link to="/registerParking">
-                  <span className={classes.register}>Register Now</span>
-                </Link>
+                become a partner?
+                <SimpleBtn
+                  onClick={handleRegisterClick}
+                  className={classes.register}
+                  text="Register Now"
+                />
               </div>
             </div>
             <div className={classes.slideShowContainer}>
@@ -82,6 +110,7 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
+      <SnackBar open={open} setOpen={setOpen} />
     </>
   );
 };
