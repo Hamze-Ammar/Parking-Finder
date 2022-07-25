@@ -1,18 +1,26 @@
 import { createContext, useState } from "react";
+// import {checkForPendingRequest}  from '../pages/login/loginController';
+import { checkForPendingRequest } from "../pages/login/loginController";
 
 export const AuthContext = createContext({
   token: "",
   isAuthenticated: false,
+  hasRequest: false,
+  setRequestStatus: (boolean) => {},
   authenticate: (token) => {},
   logout: () => {},
 });
 
 function AuthContextProvider({ children }) {
   const [authToken, setAuthToken] = useState();
-//   console.log(authToken);
+  const [hasPendingReq, setHasPendingRequest] = useState();
+  console.log(hasPendingReq);
 
-  function authenticate(token) {
+  async function authenticate(token) {
     setAuthToken(token);
+    // Check if the user has pending request
+    setHasPendingRequest(await checkForPendingRequest(token));
+
     localStorage.setItem("token", token);
   }
 
@@ -21,10 +29,16 @@ function AuthContextProvider({ children }) {
     localStorage.removeItem("token");
   }
 
+  function setRequestStatus(boolean) {
+    setHasPendingRequest(boolean);
+  }
+
   const value = {
     token: authToken,
     isAuthenticated: !!authToken,
     authenticate: authenticate,
+    hasRequest: hasPendingReq,
+    setRequestStatus: setRequestStatus,
     logout: logout,
   };
 
