@@ -7,7 +7,7 @@ export default function MyMap({ center, setPickedLocation }) {
     33.891163243590825, 35.505971217496125,
   ]);
   function handleClick(e) {
-    console.log(e.latLng);
+    // console.log(e.latLng);
     setDefaultCenter([e.latLng[0], e.latLng[1]]);
     setPickedLocation(defaultCenter);
   }

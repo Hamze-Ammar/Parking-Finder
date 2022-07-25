@@ -1,1 +1,2 @@
-export const URL = "http://192.168.101.16:8000/api/v1";
+export const URL = "http://192.168.1.126:8000/api/v1";
+// 192.168.1.126

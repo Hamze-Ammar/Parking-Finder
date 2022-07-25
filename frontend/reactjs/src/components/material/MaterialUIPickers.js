@@ -11,7 +11,7 @@ export default function NativePickers({ title, setInput }) {
       sx={{ width: "100%", height: "100%" }}
     >
       <TextField
-        onChange={setInput}
+        onChange={(e) => setInput(e.target.value)}
         id="time"
         label={title}
         type="time"

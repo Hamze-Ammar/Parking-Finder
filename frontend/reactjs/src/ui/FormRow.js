@@ -12,9 +12,6 @@ export default FormRow;
 const useStyles = createUseStyles({
   row: {
     display: "flex",
-    justifyContent: "stretch",
-    alignContent: "stretch",
-    alignItems: "stretch",
     width: "100%",
     gap: "15px",
   },

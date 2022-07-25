@@ -14,19 +14,19 @@ export default function TextInput({
   function handleInput(e) {
     e.preventDefault();
     if (inputProps) {
+      if (e.target.value > 150) {
+        e.target.value = 150;
+      }
       setInput(parseInt(e.target.value));
     } else {
       setInput(e.target.value);
     }
   }
+
   return (
     <Box
-      // fullWidth
       component="form"
       style={{ width: "100%", height: "100%" }}
-      // sx={{
-      //   "& > :not(style)": { m: 1, width: "100%", height: "100%" },
-      // }}
       noValidate
       autoComplete="off"
     >

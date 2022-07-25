@@ -14,9 +14,8 @@ const useStyles = createUseStyles({
   container: {
     border: "2px solid",
     borderColor: Colors.primary500,
-    // margin: "auto",
-    width: "40%",
-    height: "80%",
+    width: "600px",
+    height: "600px",
     backgroundColor: Colors.background200,
     padding: "15px",
     display: "flex",
