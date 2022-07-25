@@ -8,6 +8,7 @@ import { FaEyeSlash } from "react-icons/fa";
 import { URL } from "../../constant/backend";
 import { AuthContext } from "../../store/AuthContext";
 import SpinnerProgress from "../../components/circularProgress/SpinnerProgress";
+import { checkForPendingRequest } from "./loginController";
 
 export default function Login() {
   const AuthCtx = useContext(AuthContext);
@@ -37,8 +38,7 @@ export default function Login() {
       let token = data.access_token;
       token && AuthCtx.authenticate(token);
 
-      //redirect user
-      //   alert("You are now logged in");
+      
       navigate("/");
     }
     setIsloading(false);

@@ -1,9 +1,6 @@
 import { URL } from "../../constant/backend";
 
 export const saveNewParkingToServer = async (token, info) => {
-  console.log(URL);
-  console.log(token);
-  console.log(info);
   if (!URL || !token || !info) {
     return "Missing Values";
   }
