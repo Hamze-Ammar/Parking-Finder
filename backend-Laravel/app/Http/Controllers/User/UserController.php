@@ -14,6 +14,7 @@ use App\Models\Favourite;
 use App\Models\SearchRequest;
 use App\Models\Review;
 use App\Models\City;
+use App\Models\Country;
 use App\Models\Reservation;
 use Auth;
 
@@ -25,6 +26,7 @@ class UserController extends Controller
     // When Users submit a form to become owners/partners
     public function becomePartner(Request $request)
     {
+    
         try {
             $parking = new Parking;
             $parking->name = $request->name;
@@ -34,8 +36,25 @@ class UserController extends Controller
             $parking->closing_hr = $request->closing_hr;
             $parking->description = $request->description;
             $parking->total_slots = $request->total_slots;
-            $parking->city_id = $request->city_id;
             $parking->photo_id = $request->photo_id;
+
+            // register city
+            $city = City::where('name', $request->city_name)->first();
+            if ($city){
+                $cityId =  $city->id;   
+            }
+            else{
+                // If City was not found register new city; Hence this is not the best implementation
+                $country = Country::where('name',$request->country_name)->first();
+                $countryId =  $country->id;
+                $new_city = new City;
+                $new_city->name = $request->city_name;
+                $new_city->country_id = $countryId;
+                $new_city->save();
+                $cityId = $new_city->id;
+            }
+            $parking->city_id = $cityId;
+
 
             //Get user ID
             $user = Auth::user();
@@ -49,8 +68,8 @@ class UserController extends Controller
             ], 200);
         }
         catch (\Exception $e) {
-            // return $e->getMessage();
-            return "Invalid input!";
+            return $e->getMessage();
+            // return "Invalid input!";
         }
         catch (\QueryException $e) {
             // return $e->getMessage();
@@ -276,14 +295,10 @@ class UserController extends Controller
         $total_reservations = $user->reservations()->count();
         $total_requests = $user->searchRequests()->count();
 
-        // $user->total_reservations = $total_reservations;
-        // $user->total_requests = $total_requests;
         $myResponse = array(
             "total_reservations" => $total_reservations,
             "total_requests"    => $total_requests
         );
-        // $response->total_reservations = $total_reservations;
-        // $response->total_requests = $total_requests;
 
         return response()->json([
             "status" => "Success",
