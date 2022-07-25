@@ -9,9 +9,17 @@ import FormTitle from "../../ui/FormTitle";
 import { useStyles } from "./registerStyle";
 import { AuthContext } from "../../store/AuthContext";
 import { saveNewParkingToServer } from "./registerParkingController";
+import CustomModal from "../../ui/CustomModal";
 
 const RegisterParking = () => {
   const AuthCtx = useContext(AuthContext);
+  const [hasPendingRequest, setHasPendingRequest] = useState(
+    AuthCtx.hasRequest
+  );
+  useEffect(() => {
+    setHasPendingRequest(AuthCtx.hasRequest);
+  }, [AuthCtx.hasRequest]);
+
   let navigate = useNavigate();
   const classes = useStyles();
   // console.log(AuthCtx.token);
@@ -20,23 +28,26 @@ const RegisterParking = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [info, setInfo] = useState();
   const [response, setResponse] = useState();
-  // console.log(info);
+
 
   // Send data to server
-  // let response;
   const handleSubmit = async () => {
-    console.log("clicked");
     setIsLoading(!isLoading);
     setResponse(await saveNewParkingToServer(AuthCtx.token, info));
   };
   useEffect(() => {
     if (response === "Success") {
+      AuthCtx.setRequestStatus(true);
       setIsLoading(!isLoading);
     }
   }, [response]);
 
   // On back button press
   const returnBack = () => navigate("/");
+
+  if (hasPendingRequest) {
+    return <CustomModal />;
+  }
 
   return (
     <div className={classes.outerContainer}>
