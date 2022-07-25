@@ -1,14 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { createUseStyles } from "react-jss";
 import { Colors } from "../constant/color";
 
-function SimpleBtn({ text }) {
+function SimpleBtn({ text, onClick }) {
   const classes = useStyles();
   return (
-    <Link to="/login">
-      <button className={classes.btn}>{text}</button>
-    </Link>
+    <button onClick={onClick} className={classes.btn}>
+      {text}
+    </button>
   );
 }
 
