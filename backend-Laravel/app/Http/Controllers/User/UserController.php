@@ -305,4 +305,22 @@ class UserController extends Controller
             "res"   => $myResponse
         ], 200);
     }
+
+    public function hasPendingRequest(){
+        $user = Auth::user();
+
+        $parking = Parking::where('user_id', $user->id)->first();
+
+        if ($parking->is_approved ==0){
+            $response = "true";
+        }
+        else{
+            $response = "false";
+        }
+
+        return response()->json([
+            "status" => "Success",
+            "res"   => $response
+        ], 200);
+    }
 }

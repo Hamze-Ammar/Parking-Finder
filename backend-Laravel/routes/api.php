@@ -39,6 +39,7 @@ Route::group(['prefix' => 'v1'], function(){
             Route::post('/searchRequest', [UserController::class, 'searchRequest']);
             Route::post('/addReview', [UserController::class, 'addReview']);
             Route::get('/getOverviewInfo', [UserController::class, 'getOverviewInfo']);
+            Route::get('/hasPendingRequest', [UserController::class, 'hasPendingRequest']);
         });
     });
 
@@ -78,8 +79,3 @@ Route::group(['prefix' => 'v1'], function(){
         Route::get('/not_found', [NotFoundController::class, 'notFound'])->name("not-found");
     });
 });
-
-
-// Route::get('/not_found', [NotFoundController::class, 'notFound'])->name("not-found");
-
-// Route::get('nearplaces', [LocationController::class, 'findNearestParkings']);
