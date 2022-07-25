@@ -11,22 +11,21 @@ export default function MultilineTextFields({ title, setInput }) {
 
   return (
     <Box
+      style={{ width: "100%" }}
       component="form"
-      sx={{
-        "& .MuiTextField-root": { m: 1, width: "25ch" },
-      }}
+      // sx={{
+      //   "& .MuiTextField-root": { m: 1, width: "100%" },
+      // }}
       noValidate
       autoComplete="off"
     >
-      <div>
-        <TextField
-          id="outlined-multiline-static"
-          label={title}
-          multiline
-          rows={4}
-          defaultValue="Description"
-        />
-      </div>
+      <TextField
+        id="outlined-multiline-static"
+        label={title}
+        multiline
+        rows={4}
+        sx={{ width: "100%", height: "100%" }}
+      />
     </Box>
   );
 }
