@@ -9,9 +9,14 @@ import LocalParkingIcon from "@mui/icons-material/LocalParking";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import MarkChatUnreadIcon from "@mui/icons-material/MarkChatUnread";
 import InsertCommentIcon from "@mui/icons-material/InsertComment";
+import { Colors } from "../../constant/color";
+import Notification from "../../ui/Notification";
 
-const DashboardItem = ({ text }) => {
+const DashboardItem = ({ text, onClick, notification }) => {
   const classes = useStyles();
+  if (notification == 0) {
+    notification = false;
+  }
 
   let icon;
   if (text === "Dashboard") {
@@ -35,9 +40,10 @@ const DashboardItem = ({ text }) => {
   }
 
   return (
-    <div className={classes.container}>
+    <div className={classes.container} onClick={() => onClick(text)}>
       {icon}
       {text}
+      {notification && <Notification text={notification} />}
     </div>
   );
 };
@@ -50,11 +56,16 @@ const useStyles = createUseStyles({
     display: "flex",
     justifyContent: "left",
     alignItems: "center",
-    backgroundColor: "lightgreen",
     padding: "25px",
     fontSize: "18px",
     fontFamily: "Montserrat",
     fontWeight: "700",
     gap: "5px",
+    "&:hover": {
+      backgroundColor: Colors.background500,
+      color: Colors.primary500,
+    },
+    cursor: "pointer",
+    color: Colors.secondary500,
   },
 });
