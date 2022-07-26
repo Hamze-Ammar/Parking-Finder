@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../store/AuthContext";
-
 import { useStyles } from "./styles";
 import {
   FaFacebook,
@@ -110,7 +109,12 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
-      <SnackBar open={open} setOpen={setOpen} />
+      <SnackBar
+        severity="info"
+        msg="Please Login First!"
+        open={open}
+        setOpen={setOpen}
+      />
     </>
   );
 };
