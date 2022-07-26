@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Parking;
 use App\Models\User;
 use App\Models\Slot;
+use App\Models\Country;
 use Auth;
 
 
@@ -16,16 +17,35 @@ class AdminController extends Controller
     public function getPendingRequests($id=null)
     {
         if($id){
-            $requests= Parking::find($id);
+            $response= Parking::find($id);
         }
         else{
-            $requests = Parking::where("is_approved", "0")->get();
+            $parkings = Parking::where("is_approved", "0")->get();
+
+            $response = array();
+            foreach ($parkings as $parking) {
+                $city = $parking->city;
+                $user = $parking->user;
+                $country = Country::find($city->country_id);
+                $res = array(
+                    "id"                    => $parking->id,    
+                    "name"                  => $parking->name,
+                    "opening_hr"            => $parking->opening_hr,
+                    "closing_hr"            => $parking->closing_hr,
+                    "total_slots"           => $parking->total_slots,
+                    "country"               => $country->name,
+                    "city"                  => $city->name,
+                    "owner_name"            => $user->name,
+                    "owner_email"           => $user->email,
+                    "owner_phone_number"    => $user->phone_number,
+                );
+                array_push($response, $res);
+              }
         }
-
-
+        
         return response()->json([
             "status" => "Success",
-            "res"   => $requests
+            "res"   => $response
         ], 200);
 
 
