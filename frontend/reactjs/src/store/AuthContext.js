@@ -1,9 +1,9 @@
-import { createContext, useState } from "react";
-// import {checkForPendingRequest}  from '../pages/login/loginController';
+import { createContext, useState, useEffect } from "react";
 import { checkForPendingRequest } from "../pages/login/loginController";
 
 export const AuthContext = createContext({
   token: "",
+  userType: "",
   isAuthenticated: false,
   hasRequest: false,
   setRequestStatus: (boolean) => {},
@@ -13,14 +13,17 @@ export const AuthContext = createContext({
 
 function AuthContextProvider({ children }) {
   const [authToken, setAuthToken] = useState();
-  const [hasPendingReq, setHasPendingRequest] = useState();
-  console.log(hasPendingReq);
+  const [authType, setAuthType] = useState();
+  const [hasPendingRequest, setHasPendingRequest] = useState();
 
-  async function authenticate(token) {
+  async function authenticate(token, userType) {
     setAuthToken(token);
+    if (userType) {
+      setAuthType(userType);
+    }
     // Check if the user has pending request
-    setHasPendingRequest(await checkForPendingRequest(token));
-
+    const res = await checkForPendingRequest(token);
+    setHasPendingRequest(res);
     localStorage.setItem("token", token);
   }
 
@@ -37,9 +40,10 @@ function AuthContextProvider({ children }) {
     token: authToken,
     isAuthenticated: !!authToken,
     authenticate: authenticate,
-    hasRequest: hasPendingReq,
+    hasRequest: hasPendingRequest,
     setRequestStatus: setRequestStatus,
     logout: logout,
+    userType: authType,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
