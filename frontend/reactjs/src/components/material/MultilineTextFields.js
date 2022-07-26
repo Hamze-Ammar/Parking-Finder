@@ -2,11 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
-export default function MultilineTextFields({ title, setInput }) {
-  const handleChange = (event) => {
-    setInput(event.target.value);
-  };
-
+export default function MultilineTextFields({ name, title, setInput }) {
   return (
     <Box
       style={{ width: "100%" }}
@@ -15,12 +11,13 @@ export default function MultilineTextFields({ title, setInput }) {
       autoComplete="off"
     >
       <TextField
+        name={name}
         id="outlined-multiline-static"
         label={title}
         multiline
         rows={4}
         sx={{ width: "100%", height: "100%" }}
-        onChange={handleChange}
+        onChange={setInput}
       />
     </Box>
   );

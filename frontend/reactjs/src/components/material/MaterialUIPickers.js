@@ -2,7 +2,7 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 
-export default function NativePickers({ title, setInput }) {
+export default function NativePickers({ name, title, setInput }) {
   return (
     <Stack
       component="form"
@@ -11,7 +11,8 @@ export default function NativePickers({ title, setInput }) {
       sx={{ width: "100%", height: "100%" }}
     >
       <TextField
-        onChange={(e) => setInput(e.target.value)}
+        name={name}
+        onChange={(e) => setInput(e)}
         id="time"
         label={title}
         type="time"

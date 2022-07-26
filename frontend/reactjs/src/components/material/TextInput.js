@@ -10,6 +10,7 @@ export default function TextInput({
   disabled,
   userInput,
   inputProps,
+  name,
 }) {
   function handleInput(e) {
     e.preventDefault();
@@ -17,11 +18,13 @@ export default function TextInput({
       if (e.target.value > 150) {
         e.target.value = 150;
       }
-      setInput(parseInt(e.target.value));
+      setInput(e);
     } else {
-      setInput(e.target.value);
+      setInput(e);
     }
   }
+  
+  
 
   return (
     <Box
@@ -42,6 +45,7 @@ export default function TextInput({
         style={{ width: "100%", height: "100%" }}
         value={userInput}
         inputProps={inputProps}
+        name={name}
       />
     </Box>
   );
