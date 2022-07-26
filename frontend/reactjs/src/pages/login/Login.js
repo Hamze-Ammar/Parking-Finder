@@ -33,14 +33,19 @@ export default function Login() {
       body: JSON.stringify(credentials),
     });
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
     if (data.error) {
-      // alert(data.error);
       setOpen(true);
     } else if (data.access_token) {
       let token = data.access_token;
-      token && AuthCtx.authenticate(token);
-      navigate("/");
+      let type = data.type;
+      console.log(data);
+      token && AuthCtx.authenticate(token, type);
+      if (type === 3) {
+        navigate("/adminPanel");
+      } else {
+        navigate("/");
+      }
     }
     setIsloading(false);
   };
