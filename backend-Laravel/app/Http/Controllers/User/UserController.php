@@ -311,11 +311,14 @@ class UserController extends Controller
 
         $parking = Parking::where('user_id', $user->id)->first();
 
-        if ($parking->is_approved ==0){
-            $response = "true";
+        if(!$parking){
+            $response = false;
+        }
+        else if ($parking->is_approved ==0){
+            $response = true;
         }
         else{
-            $response = "false";
+            $response = false;
         }
 
         return response()->json([
