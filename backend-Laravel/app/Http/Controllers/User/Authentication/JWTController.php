@@ -115,10 +115,15 @@ class JWTController extends Controller
      */
     protected function respondWithToken($token)
     {
+        $user = Auth::user();
+        $type = $user->user_type_id;
+
         return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 6000
+            'access_token'  => $token,
+            'token_type'    => 'bearer',
+            'expires_in'    => auth()->factory()->getTTL() * 6000,
+            'type'          => $type
+            
         ]);
     }
 }
