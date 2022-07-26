@@ -4,10 +4,16 @@ const Logo = () => {
   const classes = useStyles();
 
   return (
-    <img className="imgLogo" src={require("../assets/images/logoWeb.png")} />
+    <div className={classes.container}>
+      <img className="imgLogo" src={require("../assets/images/logoWeb.png")} />
+    </div>
   );
 };
 
 export default Logo;
 
-const useStyles = createUseStyles({});
+const useStyles = createUseStyles({
+  container: {
+    width: "200px",
+    height: "100px",
+});
