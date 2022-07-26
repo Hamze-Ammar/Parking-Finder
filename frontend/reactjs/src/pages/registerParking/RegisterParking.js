@@ -26,9 +26,37 @@ const RegisterParking = () => {
   const [pickedLocation, setPickedLocation] = useState();
   const [disableSave, setDisableSave] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [info, setInfo] = useState();
   const [response, setResponse] = useState();
+  const [info, setInfo] = useState({
+    name: "",
+    description: "",
+    opening_hr: "",
+    closing_hr: "",
+    total_slots: "",
+    country_name: "",
+    city_name: "",
+    latitude: "",
+    longitude: "",
+  });
 
+  // Disable/Enable the Save Button on form completion
+  useEffect(() => {
+    if (
+      info.name &&
+      info.description &&
+      info.opening_hr &&
+      info.closing_hr &&
+      info.total_slots &&
+      info.country_name &&
+      info.city_name &&
+      info.latitude &&
+      info.longitude
+    ) {
+      setDisableSave(false);
+    } else {
+      setDisableSave(true);
+    }
+  }, [info]);
 
   // Send data to server
   const handleSubmit = async () => {
@@ -56,6 +84,7 @@ const RegisterParking = () => {
       </div>
       <div className={classes.container}>
         <RegisterForm
+          info={info}
           setInfo={setInfo}
           setDisableSave={setDisableSave}
           pickedLocation={pickedLocation}
