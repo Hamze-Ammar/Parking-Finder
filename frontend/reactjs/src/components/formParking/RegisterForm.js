@@ -12,20 +12,8 @@ import FormRow from "../../ui/FormRow";
 import FormTitle from "../../ui/FormTitle";
 import { saveNewParkingToServer } from "../../pages/registerParking/registerParkingController";
 
-export default function RegisterForm({
-  setInfo,
-  pickedLocation,
-  setDisableSave,
-}) {
+export default function RegisterForm({ info, setInfo, pickedLocation }) {
   const classes = useStyles();
-
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [openFrom, setOpenFrom] = useState("");
-  const [openTo, setOpenTo] = useState("");
-  const [numOfSlots, setNumOfSlots] = useState("");
-  const [country, setCountry] = useState("");
-  const [city, setCity] = useState("");
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
 
@@ -33,62 +21,31 @@ export default function RegisterForm({
     if (pickedLocation) {
       setLatitude(pickedLocation[0]);
       setLongitude(pickedLocation[1]);
-      saveNewParkingToServer();
+      setInfo({
+        ...info,
+        ["latitude"]: pickedLocation[0].toString(),
+        ["longitude"]: pickedLocation[1].toString(),
+      });
     }
   }, [pickedLocation]);
 
-  useEffect(() => {
-    if (
-      name &&
-      description &&
-      openFrom &&
-      openTo &&
-      numOfSlots &&
-      country &&
-      city &&
-      latitude &&
-      longitude
-    ) {
-      setDisableSave(false);
-      var info = {
-        name: name,
-        description: description,
-        opening_hr: openFrom,
-        closing_hr: openTo,
-        total_slots: numOfSlots.toString(),
-        country_name: country,
-        city_name: city,
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      };
-      setInfo(info);
-    } else {
-      setDisableSave(true);
-    }
-  }, [
-    name,
-    description,
-    openFrom,
-    openTo,
-    numOfSlots,
-    country,
-    city,
-    latitude,
-    longitude,
-  ]);
+  const handleInput = (e) => {
+    setInfo({ ...info, [e.target.name]: e.target.value });
+  };
 
   return (
     <>
       <FormContainer>
         <FormTitle>Register Your Parking</FormTitle>
         <FormRow>
-          <TextInput title="Parking Name" setInput={setName} />
+          <TextInput name="name" title="Parking Name" setInput={handleInput} />
         </FormRow>
         <FormRow>
           <TextInput
+            name="total_slots"
             type="Number"
             title="Number Of Slots"
-            setInput={setNumOfSlots}
+            setInput={handleInput}
             inputProps={{
               maxLength: 13,
               step: 1,
@@ -99,29 +56,45 @@ export default function RegisterForm({
         </FormRow>
 
         <FormRow>
-          <MultilineTextFields title="Description" setInput={setDescription} />
+          <MultilineTextFields
+            name="description"
+            title="Description"
+            setInput={handleInput}
+          />
         </FormRow>
         <FormRow>
-          <NativePickers title="from" setInput={setOpenFrom} />
-          <NativePickers title="to" setInput={setOpenTo} />
+          <NativePickers
+            name="opening_hr"
+            title="Open at"
+            setInput={handleInput}
+          />
+          <NativePickers
+            name="closing_hr"
+            title="Close at"
+            setInput={handleInput}
+          />
         </FormRow>
 
         <FormRow>
-          <CountrySelect setInput={setCountry} />
-          <TextInput title="City" setInput={setCity} />
+          <CountrySelect name="country_name" setInput={handleInput} />
+          <TextInput name="city_name" title="City" setInput={handleInput} />
         </FormRow>
         <FormRow>
           <TextInput
+            // name="latitude"
             disabled={true}
             type="Number"
             title="Latitude"
             userInput={latitude}
+            // setInput={handleInput}
           />
           <TextInput
+            // name="longitude"
             disabled={true}
             type="Number"
             title="Longitude"
             userInput={longitude}
+            // setInput={handleInput}
           />
         </FormRow>
       </FormContainer>
