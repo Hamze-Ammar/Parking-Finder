@@ -9,10 +9,11 @@ import { URL } from "../../constant/backend";
 import { AuthContext } from "../../store/AuthContext";
 import SpinnerProgress from "../../components/circularProgress/SpinnerProgress";
 import { checkForPendingRequest } from "./loginController";
+import SnackBar from "../../ui/SnackBar";
 
 export default function Login() {
   const AuthCtx = useContext(AuthContext);
-
+  const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userType, setUserType] = useState("");
@@ -32,13 +33,13 @@ export default function Login() {
       body: JSON.stringify(credentials),
     });
     const data = await res.json();
-    if (data.err) {
-      alert(data.err);
+    console.log(data);
+    if (data.error) {
+      // alert(data.error);
+      setOpen(true);
     } else if (data.access_token) {
       let token = data.access_token;
       token && AuthCtx.authenticate(token);
-
-      
       navigate("/");
     }
     setIsloading(false);
@@ -149,6 +150,12 @@ export default function Login() {
           </div>
         </form>
       </div>
+      <SnackBar
+        severity="error"
+        msg="Invalid Email or password!"
+        open={open}
+        setOpen={setOpen}
+      />
     </>
   );
 }
