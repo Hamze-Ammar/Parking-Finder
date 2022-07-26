@@ -11,7 +11,7 @@ export const checkForPendingRequest = async (token) => {
       },
     });
     const data = await res.json();
-    console.log(data.status);
+
     if (data?.status) {
       return data.res;
     }

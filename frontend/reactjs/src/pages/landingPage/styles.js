@@ -3,21 +3,14 @@ import { Colors } from "../../constant/color";
 
 const useStyles = createUseStyles({
   layout: {
-    // height: "100vh",
-    // minHeight: "100vh",
-    // backgroundColor: "gray",
     display: "flex",
-    // flexWrap: "wrap",
     flexDirection: "column",
     fontFamily: "Montserrat",
     alignContent: "stretch",
     color: Colors.fontPrimary,
   },
   container: {
-    // margin: "0 150px",
-    // flexGrow: 1,
     fontFamily: "Montserrat",
-    // backgroundColor: "lightcoral",
     fontSize: "50px",
     display: "flex",
     flexDirection: "column",
@@ -29,9 +22,7 @@ const useStyles = createUseStyles({
     display: "flex",
     flexWrap: "wrap",
     margin: "40px 150px",
-    // height: "80vh",
-    // alignContent: "stretch",
-
+    gap: "25px",
     justifyContent: "space-between",
   },
   header: {
@@ -53,13 +44,10 @@ const useStyles = createUseStyles({
     display: "flex",
     flexDirection: "column",
     alignContent: "stretch",
-    // margin: "40px 0",
     justifyContent: "flex-end",
     gap: "40px",
-    // backgroundColor: "gray",
   },
   bodyLeftLink: {
-    // margin: "40px 0",
     fontSize: "20px",
   },
   rightContainer: {
@@ -68,7 +56,6 @@ const useStyles = createUseStyles({
     flexDirection: "column",
     gap: "40px",
     justifyContent: "flex-end",
-    // minHeight: "80vh",
   },
   footer: {
     height: "70px",
@@ -112,13 +99,8 @@ const useStyles = createUseStyles({
     alignSelf: "center",
   },
   slideShowContainer: {
-    // alignSelf: "center",
-    // width: "280px",
-    // height: "550px",
     height: "500px",
     width: "230px",
-    // backgroundColor: "red",
-    // backgroundSize: "cover",
     borderRadius: "20px",
   },
   register: {
