@@ -1,23 +1,22 @@
-import React from "react";
-import Logo from "../../ui/Logo";
+import React, { useContext } from "react";
 import { createUseStyles } from "react-jss";
 import SimpleBtn from "../../ui/SimpleBtn";
 import { Colors } from "../../constant/color";
+import { AuthContext } from "../../store/AuthContext";
 
 const NavBar = () => {
   const classes = useStyles();
-
-  const logout = () => {
-    console.log("you need to implement logout first");
-  };
-
+  const AuthCtx = useContext(AuthContext);
   return (
     <div className={classes.container}>
-      <div className={classes.logoContainer}>
-        <Logo />
-      </div>
+
       <div>
-        <SimpleBtn onClick={logout} text="Sign out" />
+        <SimpleBtn
+          onClick={() => {
+            AuthCtx.logout();
+          }}
+          text="Sign out"
+        />
       </div>
     </div>
   );
@@ -27,11 +26,14 @@ export default NavBar;
 
 const useStyles = createUseStyles({
   container: {
-    minHeight: "16vh",
+    minHeight: "8vh",
     padding: " 7px",
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
     alignItems: "center",
-    backgroundColor: Colors.background500,
+    background: `linear-gradient(to right, ${Colors.background200} 0%, ${Colors.background500} 100%)`,
+    fallbacks: {
+      background: Colors.secondary500,
+    },
   },
 });
