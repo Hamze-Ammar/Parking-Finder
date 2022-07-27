@@ -16,6 +16,9 @@ const RegisterParking = () => {
   const [hasPendingRequest, setHasPendingRequest] = useState(
     AuthCtx.hasRequest
   );
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
+
   useEffect(() => {
     setHasPendingRequest(AuthCtx.hasRequest);
   }, [AuthCtx.hasRequest]);
@@ -58,6 +61,18 @@ const RegisterParking = () => {
     }
   }, [info]);
 
+  useEffect(() => {
+    if (pickedLocation) {
+      setLatitude(pickedLocation[0]);
+      setLongitude(pickedLocation[1]);
+      setInfo({
+        ...info,
+        ["latitude"]: pickedLocation[0].toString(),
+        ["longitude"]: pickedLocation[1].toString(),
+      });
+    }
+  }, [pickedLocation]);
+
   // Send data to server
   const handleSubmit = async () => {
     setIsLoading(!isLoading);
@@ -87,7 +102,9 @@ const RegisterParking = () => {
           info={info}
           setInfo={setInfo}
           setDisableSave={setDisableSave}
-          pickedLocation={pickedLocation}
+          // pickedLocation={pickedLocation}
+          latitude={latitude}
+          longitude={longitude}
         />
 
         <MyMap setPickedLocation={setPickedLocation} />
