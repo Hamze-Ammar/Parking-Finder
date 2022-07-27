@@ -47,7 +47,7 @@ const Row = ({
           <View style={styles.txtRow}>
             <Ionicons name="time" size={18} color="gray" />
             <Text style={styles.text}>
-              Open from: {openAt}:00am To {closeAt}:00pm
+              Open from: {openAt} To {closeAt}
             </Text>
           </View>
         </View>

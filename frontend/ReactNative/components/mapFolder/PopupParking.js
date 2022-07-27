@@ -43,7 +43,7 @@ const PopupParking = ({ parking, city }) => {
         <Text style={styles.text}>{distance} away</Text>
         <Text style={styles.text}>{duration}</Text>
         <Text style={styles.text}>
-          Hours: {opening_hr}:00 - {closing_hr}:00
+          Hours: {opening_hr} - {closing_hr}
         </Text>
       </View>
       <View style={styles.rightContainer}>
@@ -57,12 +57,11 @@ const PopupParking = ({ parking, city }) => {
               navigation.navigate("Parking", {
                 city: city,
                 id: id,
-                duration:duration,
+                duration: duration,
               });
             }}
           />
         </Pressable>
-        
       </View>
     </View>
   );
