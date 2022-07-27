@@ -38,6 +38,7 @@ export const getFavouriteParkings = async (token) => {
     },
   });
   const data = await res.json();
+  // console.log(data);
   if (data.status === "Success") {
     let response = await handleResGetAllFav(data);
     // console.log("favoriteController, response", response);

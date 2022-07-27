@@ -11,7 +11,7 @@ const ParkingHeader = ({ name, total, available_slots, min_away }) => {
     }
   }, [min_away]);
 
-  console.log(minAway);
+  // console.log(minAway);
 
   return (
     <>

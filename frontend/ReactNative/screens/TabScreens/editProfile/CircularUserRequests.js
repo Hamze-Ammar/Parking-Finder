@@ -137,10 +137,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "500",
     // color: Colors.background500,
-    color: Colors.secondary500,
+    color: "#fff",
   },
   title: {
-    color: Colors.secondary500,
+    color: "#fff",
     fontSize: 10,
     fontWeight: "500",
   },
@@ -159,6 +159,6 @@ const styles = StyleSheet.create({
   smallTitle: {
     fontWeight: "600",
     fontSize: 14,
-    color: Colors.secondary500,
+    color: "#fff",
   },
 });

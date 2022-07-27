@@ -31,6 +31,7 @@ export const loginUser = async (credentials) => {
       body: JSON.stringify(credentials),
     });
     const data = await res.json();
+    // console.log(data);
     return handleResponse(data);
   } catch (err) {
     console.log(err);

@@ -123,7 +123,9 @@ const LandingPage = () => {
         <Title style={styles.subtitleContainer} myFontSize={15}>
           Life is too short to be spent on PARKING!
         </Title>
-        <Button onPress={handleClick}>GO</Button>
+        <View style={styles.btnGoContainer}>
+          <Button onPress={handleClick}>GO</Button>
+        </View>
       </View>
     </View>
   );
@@ -153,5 +155,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     overflow: "hidden",
     opacity: 0.8,
+  },
+  btnGoContainer: {
+    marginTop: 55,
   },
 });

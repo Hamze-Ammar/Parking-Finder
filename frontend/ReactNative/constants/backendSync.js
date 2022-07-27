@@ -1,4 +1,4 @@
-export const URL = "http://192.168.101.16:8000/api/v1";
+export const URL = "http://192.168.1.126:8000/api/v1";
 
 // set timer limit for reservation
 // This value should be fetched from the database? or hard coded to prevent requests

@@ -39,7 +39,7 @@ const MapScreen = ({ route, navigation }) => {
   const [radius, setRadius] = useState(1000); // Initial value for the radius
   const [numOfParkings, setNumOfParkings] = useState(0);
   // console.log(city, token, latitude, longitude);
-  console.log({ numOfParkings });
+  // console.log({ numOfParkings });
   useEffect(() => {
     async function reloadData() {
       if (city && token) {
