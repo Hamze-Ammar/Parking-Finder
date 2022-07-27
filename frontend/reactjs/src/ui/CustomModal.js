@@ -12,7 +12,7 @@ const CustomModal = () => {
         <div className={classes.innerContainer}>
           <CheckCircleOutlineIcon sx={{ fontSize: 32 }} />
           <div>Success!</div>
-          <div>Form has been registered!</div>
+          <div>The form has been registered!</div>
           <div>Your request is under review!</div>
         </div>
       </div>
@@ -37,7 +37,7 @@ const useStyles = createUseStyles({
     top: "0",
   },
   innerContainer: {
-    width: "350px",
+    width: "380px",
     height: "200px",
     backgroundColor: "white",
     borderRadius: "10px",
