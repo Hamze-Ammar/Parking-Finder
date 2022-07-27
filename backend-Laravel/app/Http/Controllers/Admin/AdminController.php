@@ -101,4 +101,61 @@ class AdminController extends Controller
         ], 200);
 
     }
+
+    public function deleteParking($id)
+    {
+        $parking = Parking::find($id);
+        if($parking){
+            $parking->delete();
+        }else{
+            return response()->json(["res"=>"Parking not found"]);
+        }
+
+        // Once deleted we need to delete all its slots if any
+        $slots = Slot::where('parking_id', $id)->get();
+        $count = 0;
+        if($slots){
+            $count = count($slots);
+            foreach ($slots as $slot) {
+                $slot->delete();
+            }
+        }
+
+        $msg = "1 Parking and ". $count . " Slots have been permanently deleted!";
+        
+        return response()->json([
+            "status" => "Success",
+            "msg"   => $msg,
+            "res"   => $parking
+        ], 200);
+
+    }
+    
+
+    public function getAllParkings(){
+
+        $parkings = Parking::all();
+
+        foreach ($parkings as $parking) {
+            $num_of_total_slots = $parking->totalSlots()->count();
+            $parking->num_of_active_slots = $num_of_total_slots;
+
+            $city = $parking->city;
+            $city_name = $city->name;
+            $user = $parking->user;
+            $user_name = $user->name;
+            $country = Country::find($city->country_id);
+            $country_name = $country->name;
+
+            $parking->city_name = $city_name;
+            $parking->country_name =  $country_name;
+            $parking->user_name = $user_name;
+
+        }
+
+        return response()->json([
+            "status" => "Success",
+            "res"   => $parkings
+        ], 200);
+    }
 }
