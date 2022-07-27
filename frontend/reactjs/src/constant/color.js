@@ -9,5 +9,9 @@ export const Colors = {
   marked400: "#ff78f1",
   earning500: "#f1c232",
   fontPrimary: "#2e2626",
+  fontSecondary: "#fff",
   success: "#2E7D32",
+  accepted: "#5ad152",
+  declined: "#f53636",
+  pending: "#f2b468",
 };
