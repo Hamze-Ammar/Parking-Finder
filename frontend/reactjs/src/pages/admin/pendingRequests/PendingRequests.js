@@ -2,21 +2,29 @@ import React, { useContext, useState, useEffect } from "react";
 import { createUseStyles } from "react-jss";
 import { getPendingRequests } from "./pendingRequestsController";
 import { AuthContext } from "../../../store/AuthContext";
+import { AdminPanelContext } from "../../../store/AdminPanelContext";
 import TableRow from "./TableRow";
 
-const PendingRequests = ({ setNumberOfRequests, pendingReq }) => {
+const PendingRequests = () => {
   const classes = useStyles();
   const AuthCtx = useContext(AuthContext);
+  const AdminCtx = useContext(AdminPanelContext);
 
   const [pendingRequests, setPendingRequests] = useState();
 
   useEffect(() => {
-    setPendingRequests(pendingReq);
-  }, [pendingReq]);
+    const fetchRequests = async () => {
+      let res = await getPendingRequests(AuthCtx.token);
+      setPendingRequests(res);
+    };
+    fetchRequests();
+  }, [AuthCtx.token]);
+
+
 
   const refreshTable = (id) => {
     setPendingRequests(pendingRequests.filter((request) => request.id !== id));
-    setNumberOfRequests(pendingRequests.length - 1);
+    AdminCtx.updatePendingRequests();
   };
 
   return (
@@ -40,7 +48,13 @@ const PendingRequests = ({ setNumberOfRequests, pendingReq }) => {
         <tbody>
           {pendingRequests &&
             pendingRequests.map((request) => {
-              return <TableRow request={request} refreshTable={refreshTable} />;
+              return (
+                <TableRow
+                  key={request.id}
+                  request={request}
+                  refreshTable={refreshTable}
+                />
+              );
             })}
         </tbody>
       </table>
