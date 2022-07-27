@@ -229,6 +229,9 @@ th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+  font-family: "Montserrat";
+  font-weight: 500;
+  color: #000;
 }
 
 tr:nth-child(even) {
