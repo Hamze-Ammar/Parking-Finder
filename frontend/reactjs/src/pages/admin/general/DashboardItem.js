@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { createUseStyles } from "react-jss";
+import { AdminPanelContext } from "../../../store/AdminPanelContext";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
@@ -12,11 +13,19 @@ import InsertCommentIcon from "@mui/icons-material/InsertComment";
 import { Colors } from "../../../constant/color";
 import Notification from "../../../ui/Notification";
 
-const DashboardItem = ({ text, onClick, notification }) => {
+const DashboardItem = ({ text, onClick, showPendingReq }) => {
   const classes = useStyles();
-  if (notification == 0) {
-    notification = false;
-  }
+  const AdminCtx = useContext(AdminPanelContext);
+  const [pendingReq, setPendingReq] = useState(0);
+
+  useEffect(() => {
+    if (showPendingReq) {
+      let numOfReq = AdminCtx.pendingRequests;
+      if (numOfReq) {
+        setPendingReq(numOfReq);
+      }
+    }
+  }, [AdminCtx.pendingRequests]);
 
   let icon;
   if (text === "Dashboard") {
@@ -43,7 +52,7 @@ const DashboardItem = ({ text, onClick, notification }) => {
     <div className={classes.container} onClick={() => onClick(text)}>
       {icon}
       {text}
-      {notification && <Notification text={notification} />}
+      {showPendingReq && <Notification text={pendingReq} />}
     </div>
   );
 };
