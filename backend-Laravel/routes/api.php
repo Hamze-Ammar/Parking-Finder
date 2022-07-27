@@ -58,9 +58,10 @@ Route::group(['prefix' => 'v1'], function(){
             Route::get('/getPendingRequests/{id?}', [AdminController::class, 'getPendingRequests']);
             Route::post('/acceptRequest/{id}', [AdminController::class, 'acceptRequest']);
             Route::post('/declineRequest/{id}', [AdminController::class, 'declineRequest']);
+            Route::get('/getAllParkings', [AdminController::class, 'getAllParkings']);
+            Route::post('/deleteParking/{id}', [AdminController::class, 'deleteParking']);
         });
     });
-    
     Route::group(['prefix' => 'info'], function(){
         Route::group(['middleware' => 'role.user'], function(){
             Route::get('/getCitiesByCountryId/{id?}', [CityController::class, 'getCitiesByCountryId']);
