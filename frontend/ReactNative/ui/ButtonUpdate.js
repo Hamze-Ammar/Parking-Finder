@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   button: {
-    width: 283,
+    width: 318,
     height: 40,
     borderRadius: 10,
     paddingVertical: 6,

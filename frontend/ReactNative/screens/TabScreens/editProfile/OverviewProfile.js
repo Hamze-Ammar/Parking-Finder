@@ -7,9 +7,9 @@ const OverviewProfile = ({ setShowInputField, refreshing }) => {
   const handleClick = () => {
     setShowInputField();
   };
-  const image = require("../../../assets/images/earnPoints2.png");
+  const image = require("../../../assets/images/earnPoints4.png");
   return (
-    <View>
+    <View style={styles.mainContainer}>
       <ButtonUpdate mini={true} onPress={handleClick}>
         Edit Profile
       </ButtonUpdate>
@@ -18,7 +18,6 @@ const OverviewProfile = ({ setShowInputField, refreshing }) => {
           source={image}
           resizeMode={"stretch"}
           style={styles.image}
-          // style={{ width: "100%", height: "100%" }}
         >
           <View style={styles.container}>
             <CircularUserRequests refreshing={refreshing} />
@@ -32,6 +31,9 @@ const OverviewProfile = ({ setShowInputField, refreshing }) => {
 export default OverviewProfile;
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    justifyContent: "space-between",
+  },
   container: {
     flex: 1,
   },
@@ -45,8 +47,6 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     flexGrow: 1,
-    // flex: 3,
-    // bottom: 0,
-    // backgroundColor: "red",
+    margin: 15,
   },
 });

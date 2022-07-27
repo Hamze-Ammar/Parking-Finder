@@ -96,6 +96,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   overViewContainer: {
-    flexGrow: 1,
+    // flexGrow: 1,
+    // marginBottom: 35,
+    margin: 5,
+    bottom: 35,
   },
 });
