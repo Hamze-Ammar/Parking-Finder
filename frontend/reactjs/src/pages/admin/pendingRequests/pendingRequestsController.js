@@ -1,7 +1,6 @@
 import { URL } from "../../../constant/backend";
 
 export const getPendingRequests = async (token) => {
-  console.log(token);
   if (!token) {
     return;
   }
@@ -35,7 +34,6 @@ export const acceptRequest = async (token, id) => {
       },
     });
     const data = await res.json();
-    console.log(data);
     if (data?.status) {
       return data.res;
     }
@@ -57,7 +55,6 @@ export const declineRequest = async (token, id) => {
       },
     });
     const data = await res.json();
-    console.log(data);
     if (data?.status) {
       return data.res;
     }

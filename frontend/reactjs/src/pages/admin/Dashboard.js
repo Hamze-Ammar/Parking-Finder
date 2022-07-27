@@ -5,7 +5,7 @@ import { Colors } from "../../constant/color";
 import DashboardHero from "./DashboardHero";
 import Logo from "../../ui/Logo";
 
-const Dashboard = ({ onClick, numberOfRequests }) => {
+const Dashboard = ({ onClick, pendingReq }) => {
   const classes = useStyles();
 
   return (
@@ -24,7 +24,7 @@ const Dashboard = ({ onClick, numberOfRequests }) => {
         <DashboardItem
           text="Requests"
           onClick={onClick}
-          notification={numberOfRequests}
+          notification={pendingReq}
         />
         <DashboardItem text="Reviews" onClick={onClick} />
       </div>

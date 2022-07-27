@@ -26,7 +26,6 @@ const Slideshow = () => {
     <div className="slide-container">
       <Slide>
         {slideImages.map((slideImage, index) => {
-          console.log(slideImage.src);
           return (
             <div className="each-slide" key={index}>
               <div

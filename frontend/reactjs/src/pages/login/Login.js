@@ -33,13 +33,11 @@ export default function Login() {
       body: JSON.stringify(credentials),
     });
     const data = await res.json();
-    // console.log(data);
     if (data.error) {
       setOpen(true);
     } else if (data.access_token) {
       let token = data.access_token;
       let type = data.type;
-      console.log(data);
       token && AuthCtx.authenticate(token, type);
       if (type === 3) {
         navigate("/adminPanel");
@@ -147,10 +145,7 @@ export default function Login() {
               </button>
             </Link>
             <span className={"psw"}>
-              Don't have an account?{" "}
-              <Link to="/signUp">
-                <a href="#">Register</a>
-              </Link>
+              Don't have an account? <Link to="/signUp">Register</Link>
             </span>
           </div>
         </form>
