@@ -9,6 +9,7 @@ import { AuthContext } from "../../../store/AuthContext";
 import { AdminPanelContext } from "../../../store/AdminPanelContext";
 import ComingSoon from "./ComingSoon";
 import { getPendingRequests } from "../pendingRequests/pendingRequestsController";
+import AllParkings from "../allParkings/AllParkings";
 
 function AdminPanel() {
   const classes = useStyles();
@@ -16,7 +17,7 @@ function AdminPanel() {
   const AdminCtx = useContext(AdminPanelContext);
   const navigate = useNavigate();
   const [route, setRoute] = useState();
-  const [pendingReq, setPendingReq] = useState(0);
+  // const [pendingReq, setPendingReq] = useState(0);
 
   // check if there are pending requests to alert
   // a notification in Dashboard
@@ -28,17 +29,19 @@ function AdminPanel() {
     AdminCtx.fetchPendingRequests();
   }, [AuthCtx.token]);
 
-  useEffect(() => {
-    let numOfRequests = AdminCtx?.pendingRequests;
-    if (numOfRequests || numOfRequests === 0) {
-      setPendingReq(numOfRequests);
-    }
-  }, [AdminCtx.pendingRequests]);
+  // useEffect(() => {
+  //   let numOfRequests = AdminCtx?.pendingRequests;
+  //   if (numOfRequests || numOfRequests === 0) {
+  //     setPendingReq(numOfRequests);
+  //   }
+  // }, [AdminCtx.pendingRequests]);
 
   const handleNavigation = (route) => {
     console.log("route ", route);
     if (route === "Requests") {
       setRoute(<PendingRequests />);
+    } else if (route === "Parkings") {
+      setRoute(<AllParkings />);
     } else {
       setRoute(<ComingSoon />);
     }
@@ -46,7 +49,7 @@ function AdminPanel() {
 
   return (
     <div className={classes.container}>
-      <Dashboard onClick={handleNavigation} pendingReq={pendingReq} />
+      <Dashboard onClick={handleNavigation} />
       <div className={classes.rightSide}>
         <NavBar />
         <div className={classes.display}>{route}</div>

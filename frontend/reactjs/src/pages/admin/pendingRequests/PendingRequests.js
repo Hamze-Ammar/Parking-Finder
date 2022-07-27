@@ -20,8 +20,6 @@ const PendingRequests = () => {
     fetchRequests();
   }, [AuthCtx.token]);
 
-
-
   const refreshTable = (id) => {
     setPendingRequests(pendingRequests.filter((request) => request.id !== id));
     AdminCtx.updatePendingRequests();
