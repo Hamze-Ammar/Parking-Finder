@@ -47,12 +47,12 @@ const ParkingsTableRow = ({ parking, refreshTable, setOpen }) => {
         <td>{parking.user_name}</td>
         <td>{parking.user.email}</td>
         <td className={statusColor}>{status}</td>
-        <td style={{ textAlign: "right" }}>
+        {/* <td style={{ textAlign: "right" }}>
           <DeleteForeverIcon
             onClick={handleDelete}
             className={[classes.icon, classes.decline]}
           />
-        </td>
+        </td> */}
       </tr>
     </>
   );

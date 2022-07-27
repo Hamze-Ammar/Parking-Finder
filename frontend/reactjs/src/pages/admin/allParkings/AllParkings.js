@@ -47,7 +47,6 @@ const AllParkings = () => {
             <th>Owner name</th>
             <th>Email</th>
             <th>Status</th>
-            <th>Permanent Delete</th>
           </tr>
         </thead>
         <tbody>
