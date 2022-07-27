@@ -23,8 +23,11 @@ function AdminPanel() {
     if (!AuthCtx.token) {
       navigate("/");
     }
-    AdminCtx.fetchPendingRequests();
   }, [AuthCtx.token]);
+
+  useEffect(() => {
+    AdminCtx.fetchPendingRequests();
+  });
 
   const handleNavigation = (route) => {
     // console.log("route ", route);

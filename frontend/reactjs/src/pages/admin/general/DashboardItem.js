@@ -11,14 +11,10 @@ const DashboardItem = ({ icon, text, onClick, showPendingReq }) => {
 
   useEffect(() => {
     if (showPendingReq) {
-      let numOfReq = AdminCtx.pendingRequests;
-      if (numOfReq) {
-        setPendingReq(numOfReq);
-      }
+      setPendingReq(AdminCtx.pendingRequests);
     }
   }, [AdminCtx.pendingRequests]);
-
-
+  
   return (
     <div className={classes.container} onClick={() => onClick(text)}>
       {icon}
