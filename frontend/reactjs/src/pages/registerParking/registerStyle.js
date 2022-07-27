@@ -6,7 +6,7 @@ const useStyles = createUseStyles({
     minHeight: "100vh",
     display: "flex",
     flexDirection: "column",
-    backgroundColor: "lemonchiffon",
+    backgroundColor: "#f5f5f5",
     justifyContent: "center",
     gap: "20px",
   },

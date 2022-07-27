@@ -57,43 +57,44 @@ const LandingPage = () => {
           </div>
           <div className={classes.body}>
             <div className={classes.bodyLeft}>
-              <div>
-                Join 802 <br /> Parkings <br />
-                around <br /> the world
-              </div>
-              <div className={classes.bodyLeftLink}>
-                become a partner?
-                <SimpleBtn
-                  onClick={handleRegisterClick}
-                  className={classes.register}
-                  text="Register Now"
-                />
+              <div>Join 802 Parkings around the world!</div>
+              <div className={classes.rightContainer}>
+                <div>
+                  <div className={classes.bold}>
+                    Life is too short <br /> to be spent on <br /> PARKING!{" "}
+                    <br />
+                  </div>
+                  <div className={classes.bodyLeftLink}>
+                    become a partner?{" "}
+                    <span
+                      onClick={handleRegisterClick}
+                      className={classes.register}
+                    >
+                      Register Now
+                    </span>
+                  </div>
+                  <div className={classes.rightBottom}>
+                    <div style={{ fontSize: "24px" }}>
+                      Download <br /> Our App <br /> For Free
+                    </div>
+                    <div className={classes.logosContainer}>
+                      <div>
+                        <img
+                          src={require("../../assets/images/GooglePlay.png")}
+                        />
+                      </div>
+                      <div>
+                        <img
+                          src={require("../../assets/images/AppStore.png")}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div className={classes.slideShowContainer}>
               <SlideShow />
-            </div>
-            <div className={classes.rightContainer}>
-              <div>
-                <div className={classes.bold}>
-                  Life is too short <br /> to be spent on <br /> PARKING! <br />
-                </div>
-                <div className={classes.rightBottom}>
-                  <div style={{ fontSize: "24px" }}>
-                    Download <br /> Our App <br /> For Free
-                  </div>
-                  <div className={classes.logosContainer}>
-                    <div>
-                      <img
-                        src={require("../../assets/images/GooglePlay.png")}
-                      />
-                    </div>
-                    <div>
-                      <img src={require("../../assets/images/AppStore.png")} />
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

@@ -18,8 +18,7 @@
 }
 
 .containerRegister {
-  margin: 0 auto;
-  max-width: 800px;
+  margin: auto;
   font-family: "Montserrat";
 }
 
@@ -38,7 +37,6 @@ input[type="password"] {
 /* Add a background color when the inputs get focus */
 input[type="text"]:focus,
 input[type="password"]:focus {
-  /* background-color: var(--background-500); */
   border-bottom: var(--secondary-500);
   outline: none;
 }
@@ -96,10 +94,9 @@ input[type="password"]:focus {
 
 /* Modal Content/Box */
 .modalContent {
+  border-radius: 15px;
   background-color: var(--background-500);
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 700px; /* Could be more or less, depending on screen size */
 }
 
 /* Style the horizontal ruler */
@@ -140,14 +137,19 @@ input[type="password"]:focus {
 }
 
 /* =====Login===== */
-
+.ScreenCenter {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
 .loginContainer {
   padding: 15px;
   width: 500px;
-  margin: 100px auto;
-  border: 3px solid var(--primary-500);
+  margin: auto;
   background-color: var(--background-500);
   font-family: "Montserrat";
+  border-radius: 15px;
 }
 
 .cancelbtnn {

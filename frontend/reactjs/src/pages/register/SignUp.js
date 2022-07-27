@@ -81,7 +81,7 @@ export default function SignUp() {
   };
 
   return (
-    <>
+    <div className="ScreenCenter">
       {isLoading && <SpinnerProgress />}
       <div className="containerRegister">
         <form className="modalContent" onSubmit={onSubmit}>
@@ -185,6 +185,6 @@ export default function SignUp() {
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 }

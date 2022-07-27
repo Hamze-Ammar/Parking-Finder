@@ -84,7 +84,7 @@ const useStyles = createUseStyles({
   bold: {
     fontFamily: "Montserrat",
     fontWeight: "700",
-    fontSize: "38px",
+    fontSize: "32px",
   },
   rightBottom: {
     marginTop: "60px",
@@ -105,6 +105,7 @@ const useStyles = createUseStyles({
   },
   register: {
     color: Colors.primary500,
+    cursor: "pointer",
   },
 });
 
