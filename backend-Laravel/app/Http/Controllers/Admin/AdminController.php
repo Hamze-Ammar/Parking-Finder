@@ -8,6 +8,7 @@ use App\Models\Parking;
 use App\Models\User;
 use App\Models\Slot;
 use App\Models\Country;
+use App\Models\Favourite;
 use Auth;
 
 
@@ -118,6 +119,14 @@ class AdminController extends Controller
             $count = count($slots);
             foreach ($slots as $slot) {
                 $slot->delete();
+            }
+        }
+
+        // Delete all favourites that have this parking id
+        $favourites = Favourite::where('parking_id', $id);
+        if($favourites){
+            foreach ($favourites as $favourite){
+                $favourite->delete();
             }
         }
 
