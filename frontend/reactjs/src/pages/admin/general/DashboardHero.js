@@ -1,7 +1,7 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import { Colors } from "../../constant/color";
+import { Colors } from "../../../constant/color";
 
 const DashboardHero = ({ text }) => {
   const classes = useStyles();

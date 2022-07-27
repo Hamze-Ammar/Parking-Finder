@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { createUseStyles } from "react-jss";
-import SimpleBtn from "../../ui/SimpleBtn";
-import { Colors } from "../../constant/color";
-import { AuthContext } from "../../store/AuthContext";
+import SimpleBtn from "../../../ui/SimpleBtn";
+import { Colors } from "../../../constant/color";
+import { AuthContext } from "../../../store/AuthContext";
 
 const NavBar = () => {
   const classes = useStyles();

@@ -1,9 +1,9 @@
 import React from "react";
 import DashboardItem from "./DashboardItem";
 import { createUseStyles } from "react-jss";
-import { Colors } from "../../constant/color";
+import { Colors } from "../../../constant/color";
 import DashboardHero from "./DashboardHero";
-import Logo from "../../ui/Logo";
+import Logo from "../../../ui/Logo";
 
 const Dashboard = ({ onClick, pendingReq }) => {
   const classes = useStyles();

@@ -5,7 +5,7 @@ import Login from "./pages/login/Login";
 import SignUp from "./pages/register/SignUp";
 import { AuthContext } from "./store/AuthContext";
 import RegisterParking from "./pages/registerParking/RegisterParking";
-import AdminPanel from "./pages/admin/AdminPanel";
+import AdminPanel from "./pages/admin/general/AdminPanel";
 
 function App() {
   const AuthCtx = useContext(AuthContext);

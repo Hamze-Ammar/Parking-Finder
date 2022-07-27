@@ -9,8 +9,8 @@ import LocalParkingIcon from "@mui/icons-material/LocalParking";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import MarkChatUnreadIcon from "@mui/icons-material/MarkChatUnread";
 import InsertCommentIcon from "@mui/icons-material/InsertComment";
-import { Colors } from "../../constant/color";
-import Notification from "../../ui/Notification";
+import { Colors } from "../../../constant/color";
+import Notification from "../../../ui/Notification";
 
 const DashboardItem = ({ text, onClick, notification }) => {
   const classes = useStyles();

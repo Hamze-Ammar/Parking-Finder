@@ -1,6 +1,6 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
-import { Colors } from "../../constant/color";
+import { Colors } from "../../../constant/color";
 
 const ComingSoon = () => {
   const classes = useStyles();
@@ -15,7 +15,7 @@ const useStyles = createUseStyles({
     fontFamily: "Montserrat",
     fontSize: "25px",
     fontWeight: "700",
-    
+
     marginTop: "300px",
     textAlign: "center",
   },

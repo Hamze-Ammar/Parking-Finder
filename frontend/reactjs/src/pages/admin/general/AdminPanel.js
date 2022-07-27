@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import Dashboard from "./Dashboard";
 import { createUseStyles } from "react-jss";
-import PendingRequests from "./pendingRequests/PendingRequests";
-import { Colors } from "../../constant/color";
-import { AuthContext } from "../../store/AuthContext";
-import { AdminPanelContext } from "../../store/AdminPanelContext";
+import PendingRequests from "../pendingRequests/PendingRequests";
+import { Colors } from "../../../constant/color";
+import { AuthContext } from "../../../store/AuthContext";
+import { AdminPanelContext } from "../../../store/AdminPanelContext";
 import ComingSoon from "./ComingSoon";
-import { getPendingRequests } from "./pendingRequests/pendingRequestsController";
+import { getPendingRequests } from "../pendingRequests/pendingRequestsController";
 
 function AdminPanel() {
   const classes = useStyles();
