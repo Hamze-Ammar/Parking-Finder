@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { LogBox } from "react-native";
-
+import * as SplashScreen from "expo-splash-screen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -28,6 +28,7 @@ import MapScreen from "./screens/authenticatedScreens/MapScreen";
 // Handling error/warning Require cycle && reanimatedWorklet
 LogBox.ignoreLogs(["Require cycle:"]);
 global.__reanimatedWorkletInit = () => {};
+SplashScreen.preventAutoHideAsync();
 
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -209,6 +210,7 @@ function Navigation() {
     <NavigationContainer>
       {!authCtx.isAuthenticated && <AuthStack />}
       {authCtx.isAuthenticated && <BottomTabNavigator />}
+      {/* <BottomTabNavigator /> */}
     </NavigationContainer>
   );
 }
