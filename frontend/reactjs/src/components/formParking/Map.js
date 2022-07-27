@@ -7,15 +7,13 @@ export default function MyMap({ center, setPickedLocation }) {
     33.891163243590825, 35.505971217496125,
   ]);
   function handleClick(e) {
-    // console.log(e.latLng);
     setDefaultCenter([e.latLng[0], e.latLng[1]]);
-    setPickedLocation(defaultCenter);
+    setPickedLocation([e.latLng[0], e.latLng[1]]);
   }
+
   return (
     <FormContainer>
       <Map
-        // height={100}
-        // width={100}
         defaultCenter={defaultCenter}
         defaultZoom={14}
         onClick={handleClick}

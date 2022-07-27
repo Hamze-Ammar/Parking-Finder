@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
 import { createUseStyles } from "react-jss";
 
 import TextInput from "../material/TextInput";
@@ -10,24 +9,9 @@ import { Colors } from "../../constant/color";
 import FormContainer from "../../ui/FormContainer";
 import FormRow from "../../ui/FormRow";
 import FormTitle from "../../ui/FormTitle";
-import { saveNewParkingToServer } from "../../pages/registerParking/registerParkingController";
 
-export default function RegisterForm({ info, setInfo, pickedLocation }) {
+export default function RegisterForm({ info, setInfo, latitude, longitude }) {
   const classes = useStyles();
-  const [latitude, setLatitude] = useState("");
-  const [longitude, setLongitude] = useState("");
-
-  useEffect(() => {
-    if (pickedLocation) {
-      setLatitude(pickedLocation[0]);
-      setLongitude(pickedLocation[1]);
-      setInfo({
-        ...info,
-        ["latitude"]: pickedLocation[0].toString(),
-        ["longitude"]: pickedLocation[1].toString(),
-      });
-    }
-  }, [pickedLocation]);
 
   const handleInput = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });
