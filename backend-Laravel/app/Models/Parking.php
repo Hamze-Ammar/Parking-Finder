@@ -16,6 +16,11 @@ class Parking extends Model
         return $this->hasMany(Slot::class);
     }
 
+    public function totalSlots()
+    {
+        return $this->hasMany(Slot::class);
+    }
+
     public function availableSlots()
     {
         return $this->hasMany(Slot::class)
@@ -37,5 +42,7 @@ class Parking extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+
 
 }
