@@ -11,6 +11,8 @@ use App\Http\Controllers\General\ParkingController;
 use App\Http\Controllers\General\SensorController;
 use App\Http\Controllers\General\HistoryController;
 use App\Http\Controllers\General\FavouriteController;
+use App\Http\Controllers\General\SearchRequestController;
+use App\Http\Controllers\General\ReservationController;
 use App\Http\Controllers\System\NotFoundController;
 use App\Http\Controllers\LocationController;
 
@@ -72,6 +74,8 @@ Route::group(['prefix' => 'v1'], function(){
             Route::post('/addToHistory', [HistoryController::class, 'addToHistory']);
             Route::post('/updateHistory', [HistoryController::class, 'updateHistory']);
             Route::get('/getFavouriteParkings', [FavouriteController::class, 'getFavouriteParkings']);
+            Route::get('/getSearchRequests', [SearchRequestController::class, 'getSearchRequests']);
+            Route::get('/getAllReservations', [ReservationController::class, 'getAllReservations']);
         });
     });
 
