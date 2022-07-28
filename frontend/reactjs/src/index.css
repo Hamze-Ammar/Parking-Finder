@@ -236,6 +236,10 @@ th {
   color: #000;
 }
 
+th {
+  font-weight: bold;
+}
+
 tr:nth-child(even) {
   background-color: #dddddd;
 }

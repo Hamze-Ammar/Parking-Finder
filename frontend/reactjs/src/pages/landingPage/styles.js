@@ -6,12 +6,12 @@ const useStyles = createUseStyles({
     display: "flex",
     flexDirection: "column",
     fontFamily: "Montserrat",
-    alignContent: "stretch",
+    // alignContent: "stretch",
     color: Colors.fontPrimary,
   },
   container: {
     fontFamily: "Montserrat",
-    fontSize: "50px",
+    fontSize: "58px",
     display: "flex",
     flexDirection: "column",
     height: "100%",
@@ -21,14 +21,14 @@ const useStyles = createUseStyles({
   body: {
     display: "flex",
     flexWrap: "wrap",
-    margin: "40px 150px",
+    margin: "90px 150px 0 150px",
     gap: "25px",
     justifyContent: "space-between",
   },
   header: {
     height: "40px",
     padding: "20px",
-    marginBottom: "50px",
+    marginBottom: "10px",
     display: "flex",
     justifyContent: "space-between",
   },
@@ -43,8 +43,6 @@ const useStyles = createUseStyles({
     fontWeight: "700",
     display: "flex",
     flexDirection: "column",
-    alignContent: "stretch",
-    justifyContent: "flex-end",
     gap: "40px",
   },
   bodyLeftLink: {
@@ -84,7 +82,7 @@ const useStyles = createUseStyles({
   bold: {
     fontFamily: "Montserrat",
     fontWeight: "700",
-    fontSize: "32px",
+    fontSize: "36px",
   },
   rightBottom: {
     marginTop: "60px",
@@ -99,8 +97,7 @@ const useStyles = createUseStyles({
     alignSelf: "center",
   },
   slideShowContainer: {
-    height: "500px",
-    width: "230px",
+    width: "330px",
     borderRadius: "20px",
   },
   register: {
