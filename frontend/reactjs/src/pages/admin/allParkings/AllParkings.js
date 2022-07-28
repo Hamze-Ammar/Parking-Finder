@@ -71,7 +71,7 @@ export default AllParkings;
 
 const useStyles = createUseStyles({
   tableContainer: {
-    fontSize: "14px",
+    fontSize: "16px",
     fontFamily: "Montserrat",
   },
 });

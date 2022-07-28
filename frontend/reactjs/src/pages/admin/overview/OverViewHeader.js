@@ -1,4 +1,3 @@
-import { borderTopColor } from "@mui/system";
 import React from "react";
 import { createUseStyles } from "react-jss";
 import { Colors } from "../../../constant/color";
@@ -17,7 +16,6 @@ const OverViewHeader = () => {
     <>
       <div className={classes.container}>
         <div>Overview</div>
-        {/* <hr /> */}
         <div className={classes.infoContainer}>
           <OverviewSnippet icon={<FiUsers />} title="Users" info="239" />
           <OverviewSnippet
@@ -27,7 +25,7 @@ const OverViewHeader = () => {
           />
           <OverviewSnippet icon={<AiOutlineCar />} title="Spots" info="439" />
           <OverviewSnippet icon={<FaRegFlag />} title="Countries" info="4" />
-          <OverviewSnippet icon={<FaCity />} title="Citie" info="14" />
+          <OverviewSnippet icon={<FaCity />} title="Cities" info="14" />
         </div>
       </div>
     </>

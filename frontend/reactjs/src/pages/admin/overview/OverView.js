@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import OverViewHeader from "./OverViewHeader";
+import WeeklyChart from "../statistics/WeeklyChart";
 
 const OverView = () => {
   return (
@@ -7,7 +8,7 @@ const OverView = () => {
       <div>
         <OverViewHeader />
       </div>
-      OverView
+      
     </div>
   );
 };

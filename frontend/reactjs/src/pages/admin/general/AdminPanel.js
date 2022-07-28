@@ -11,13 +11,14 @@ import ComingSoon from "./ComingSoon";
 import { getPendingRequests } from "../pendingRequests/pendingRequestsController";
 import AllParkings from "../allParkings/AllParkings";
 import OverView from "../overview/OverView";
+import Statistics from "../statistics/Statistics";
 
 function AdminPanel() {
   const classes = useStyles();
   const AuthCtx = useContext(AuthContext);
   const AdminCtx = useContext(AdminPanelContext);
   const navigate = useNavigate();
-  const [route, setRoute] = useState("Overview");
+  const [route, setRoute] = useState(<OverView />);
 
   useEffect(() => {
     if (!AuthCtx.token) {
@@ -30,13 +31,15 @@ function AdminPanel() {
   });
 
   const handleNavigation = (route) => {
-    // console.log("route ", route);
+    console.log("route ", route);
     if (route === "Requests") {
       setRoute(<PendingRequests />);
     } else if (route === "Parkings") {
       setRoute(<AllParkings />);
     } else if (route === "Overview") {
       setRoute(<OverView />);
+    } else if (route === "Statistics") {
+      setRoute(<Statistics />);
     } else {
       setRoute(<ComingSoon />);
     }
