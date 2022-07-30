@@ -7,11 +7,11 @@ const OverviewSnippet = ({ icon, title, info }) => {
 
   return (
     <div className={classes.flexRow}>
-      <h1>{icon}</h1>
+      <h2>{icon}</h2>
 
       <div>
-        <h5>{title}</h5>
-        <h2>{info}</h2>
+        <h6>{title}</h6>
+        <h3>{info}</h3>
       </div>
     </div>
   );
