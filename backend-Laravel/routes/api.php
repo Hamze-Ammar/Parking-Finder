@@ -80,7 +80,8 @@ Route::group(['prefix' => 'v1'], function(){
     });
 
     Route::group(['prefix' => 'system'], function(){
-        Route::get('/changeSlotState/{id}', [SensorController::class, 'changeSlotState']);
+        Route::get('/setSlotToFree/{id}', [SensorController::class, 'setSlotToFree']);
+        Route::get('/setSlotToBusy/{id}', [SensorController::class, 'setSlotToBusy']);
         Route::get('/not_found', [NotFoundController::class, 'notFound'])->name("not-found");
     });
 });

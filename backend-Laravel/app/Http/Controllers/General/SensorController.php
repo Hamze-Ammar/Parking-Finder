@@ -9,17 +9,32 @@ use App\Models\Slot;
 class SensorController extends Controller
 {
     // mainly from the sensors
-    public function changeSlotState($id)
+    public function setSlotToFree($id)
     {
 
         $slot = Slot::find($id);
 
-        $curr_state = $slot->is_available;
-        if ($curr_state == 0){
+        if($slot){
             $slot->is_available = 1;
-        }else{
+        }
+
+        $slot->save();
+
+        return response()->json([
+            "status" => "Success",
+            "res"   => $slot
+        ], 200);
+    }
+
+    public function setSlotToBusy($id)
+    {
+
+        $slot = Slot::find($id);
+
+        if($slot){
             $slot->is_available = 0;
         }
+        
         $slot->save();
 
         return response()->json([
