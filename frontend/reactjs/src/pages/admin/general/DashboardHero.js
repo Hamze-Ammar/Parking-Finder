@@ -8,7 +8,7 @@ const DashboardHero = ({ text }) => {
 
   return (
     <div className={classes.container}>
-      <DashboardIcon />
+      {/* <DashboardIcon /> */}
       {text}
     </div>
   );

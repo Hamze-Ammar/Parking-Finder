@@ -44,7 +44,7 @@ const useStyles = createUseStyles({
     flexWrap: "wrap",
     gap: "15px",
     justifyContent: "space-evenly",
-    padding: "35px",
+    padding: "25px",
     borderTop: {
       width: "3px",
       style: "solid",

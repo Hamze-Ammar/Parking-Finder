@@ -73,6 +73,6 @@ const useStyles = createUseStyles({
     borderColor: Colors.background500,
     height: "100%",
     backgroundColor: Colors.background200,
-    padding: "15px",
+    padding: "25px",
   },
 });

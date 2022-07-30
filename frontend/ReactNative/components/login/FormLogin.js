@@ -106,7 +106,7 @@ const FormLogin = ({ setIsAuthenticating }) => {
       >
         Sign In
       </Button>
-      <SpecialButton>Continue with google</SpecialButton>
+      <SpecialButton>Continue with Google</SpecialButton>
     </View>
   );
 };

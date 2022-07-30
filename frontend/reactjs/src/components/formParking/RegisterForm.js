@@ -65,20 +65,16 @@ export default function RegisterForm({ info, setInfo, latitude, longitude }) {
         </FormRow>
         <FormRow>
           <TextInput
-            // name="latitude"
             disabled={true}
             type="Number"
             title="Latitude"
             userInput={latitude}
-            // setInput={handleInput}
           />
           <TextInput
-            // name="longitude"
             disabled={true}
             type="Number"
             title="Longitude"
             userInput={longitude}
-            // setInput={handleInput}
           />
         </FormRow>
       </FormContainer>

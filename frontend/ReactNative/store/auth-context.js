@@ -7,7 +7,6 @@ export const AuthContext = createContext({
   isAuthenticated: false,
   authenticate: (token) => {},
   logout: () => {},
-  // favouriteParkings: [],
 });
 
 function AuthContextProvider({ children }) {

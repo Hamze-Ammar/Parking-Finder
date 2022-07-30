@@ -94,6 +94,7 @@ input[type="password"]:focus {
 
 /* Modal Content/Box */
 .modalContent {
+  padding: 20px;
   border-radius: 15px;
   background-color: var(--background-500);
   width: 700px; /* Could be more or less, depending on screen size */
@@ -144,7 +145,7 @@ input[type="password"]:focus {
   align-items: center;
 }
 .loginContainer {
-  padding: 15px;
+  padding: 30px 15px;
   width: 500px;
   margin: auto;
   background-color: var(--background-500);

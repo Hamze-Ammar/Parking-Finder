@@ -34,16 +34,16 @@ const Dashboard = ({ onClick }) => {
           text="Users"
           onClick={onClick}
         />
-        <DashboardItem
+        {/* <DashboardItem
           icon={<QueryStatsIcon />}
           text="Analytics"
           onClick={onClick}
-        />
-        <DashboardItem
+        /> */}
+        {/* <DashboardItem
           icon={<ControlCameraIcon />}
           text="Management"
           onClick={onClick}
-        />
+        /> */}
         <DashboardItem
           icon={<DonutSmallIcon />}
           text="Statistics"
@@ -60,11 +60,11 @@ const Dashboard = ({ onClick }) => {
           onClick={onClick}
           showPendingReq={true}
         />
-        <DashboardItem
+        {/* <DashboardItem
           icon={<InsertCommentIcon />}
           text="Reviews"
           onClick={onClick}
-        />
+        /> */}
       </div>
     </>
   );

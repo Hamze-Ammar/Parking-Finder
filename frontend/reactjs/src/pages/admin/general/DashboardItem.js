@@ -14,7 +14,7 @@ const DashboardItem = ({ icon, text, onClick, showPendingReq }) => {
       setPendingReq(AdminCtx.pendingRequests);
     }
   }, [AdminCtx.pendingRequests]);
-  
+
   return (
     <div className={classes.container} onClick={() => onClick(text)}>
       {icon}
@@ -33,6 +33,7 @@ const useStyles = createUseStyles({
     justifyContent: "left",
     alignItems: "center",
     padding: "25px",
+    marginLeft: "15px",
     fontSize: "18px",
     fontFamily: "Montserrat",
     fontWeight: "700",
