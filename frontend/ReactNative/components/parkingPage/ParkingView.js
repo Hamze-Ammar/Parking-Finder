@@ -5,6 +5,7 @@ import Slot from "../../components/parkingPage/Slot";
 import { Button } from "../../ui/Button";
 import { Colors } from "../../constants/styles";
 import { AuthContext } from "../../store/auth-context";
+import { ParkingContext } from "../../store/parkingContext";
 
 import { getParkingById } from "./parkingController";
 import ParkingHeader from "./ParkingHeader";
@@ -20,8 +21,9 @@ const ParkingView = ({
   duration,
 }) => {
   const authCtx = useContext(AuthContext);
-  const [token, setToken] = useState(authCtx.token || null);
+  const parkingCtx = useContext(ParkingContext);
 
+  const [token, setToken] = useState(authCtx.token || null);
   const [parking, setParking] = useState(null);
   const [parkingName, setParkingName] = useState("");
   const [slots, setSlots] = useState(null);
@@ -31,13 +33,14 @@ const ParkingView = ({
   const [loading, setLoading] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const [showTimer, setShowTimer] = useState(false);
-  console.log({ parking });
+  // console.log({ parking });
+
+  // useEffect(() => {
+  //   console.log("hello, world");
+  //   fetchData();
+  // }, [parkingCtx.refresh]);
+
   useEffect(() => {
-    setNotFound(false);
-    if (!parkingId) {
-      return;
-    }
-    setLoading(true);
     const fetchData = async () => {
       // console.log({ parkingId });
       const res = await getParkingById(parkingId, token);
@@ -50,8 +53,14 @@ const ParkingView = ({
       }
       setLoading(false);
     };
+    setNotFound(false);
+    if (!parkingId) {
+      return;
+    }
+    setLoading(true);
+
     fetchData();
-  }, [parkingId, refresh]);
+  }, [parkingId, refresh, parkingCtx.refresh]);
 
   useEffect(() => {
     if (parking) {
@@ -76,26 +85,28 @@ const ParkingView = ({
 
   return (
     <>
-      {parking && (
-        <ParkingHeader
-          name={parkingName}
-          total={numberOfSlots}
-          available_slots={availableSlots}
-          min_away={duration}
-        />
-      )}
-      {slots && (
-        <Slots
-          slots={slots}
-          setRefresh={() => {
-            setRefresh(!refresh);
-          }}
-          setShowTimer={(boolean) => {
-            setShowTimer(boolean);
-          }}
-          showTimer={showTimer}
-        />
-      )}
+      <View>
+        {parking && (
+          <ParkingHeader
+            name={parkingName}
+            total={numberOfSlots}
+            available_slots={availableSlots}
+            min_away={duration}
+          />
+        )}
+        {slots && (
+          <Slots
+            slots={slots}
+            setRefresh={() => {
+              setRefresh(!refresh);
+            }}
+            setShowTimer={(boolean) => {
+              setShowTimer(boolean);
+            }}
+            showTimer={showTimer}
+          />
+        )}
+      </View>
     </>
   );
 };
