@@ -12,6 +12,7 @@ import AuthContextProvider, { AuthContext } from "./store/auth-context";
 import FavoritesContextProvider, {
   FavoritesContext,
 } from "./store/favorites-context";
+import ParkingContextProvider from "./store/parkingContext";
 import AppLoading from "expo-app-loading";
 import { Colors } from "./constants/styles";
 import IconLogout from "./ui/IconLogout";
@@ -76,6 +77,7 @@ function HomeStackNavigator() {
 }
 function BottomTabNavigator() {
   const authCtx = useContext(AuthContext);
+  // const ParkingCtx = useContext(ParkingContext);
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
@@ -252,7 +254,9 @@ export default function App() {
       <StatusBar style="light" />
       <AuthContextProvider>
         <FavoritesContextProvider>
-          <Root />
+          <ParkingContextProvider>
+            <Root />
+          </ParkingContextProvider>
         </FavoritesContextProvider>
       </AuthContextProvider>
     </>
