@@ -6,12 +6,11 @@ const useStyles = createUseStyles({
     display: "flex",
     flexDirection: "column",
     fontFamily: "Montserrat",
-    // alignContent: "stretch",
     color: Colors.fontPrimary,
   },
   container: {
     fontFamily: "Montserrat",
-    fontSize: "58px",
+    fontSize: "52px",
     display: "flex",
     flexDirection: "column",
     height: "100%",
@@ -81,8 +80,9 @@ const useStyles = createUseStyles({
   },
   bold: {
     fontFamily: "Montserrat",
-    fontWeight: "700",
-    fontSize: "36px",
+    fontWeight: "500",
+    fontSize: "30px",
+    marginBottom: "30px",
   },
   rightBottom: {
     marginTop: "60px",
