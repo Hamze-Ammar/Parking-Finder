@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { View, StyleSheet, Pressable, Text } from "react-native";
+import { ParkingContext } from "../../store/parkingContext";
 import ParkingView from "../../components/parkingPage/ParkingView";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Colors } from "../../constants/styles";
@@ -7,20 +8,18 @@ import { Ionicons } from "@expo/vector-icons";
 import { checkIfSaved } from "../../components/parkingPage/parkingController";
 import { FavoritesContext } from "../../store/favorites-context";
 import { parseParking } from "../../components/parkingPage/parkingController";
+import { FontAwesome } from "@expo/vector-icons";
 import Title from "../../ui/Title";
 
 const ParkingScreen = ({ route, navigation }) => {
+  const parkingCtx = useContext(ParkingContext);
   const favoritesCtx = useContext(FavoritesContext);
   const [title, setTitle] = useState();
-  // const [isAddingFavorite, setIsAddingFavorite] = useState(false);
   const [cityName, setCityName] = useState();
   const [isSaved, setIsSaved] = useState();
   const [myParking, setMyParking] = useState();
-  // Should get it later from params
   const [parkingId, setParkingId] = useState();
   const [duration, setDuration] = useState();
-  // console.log(cityName);
-  // console.log("cityName");
 
   useEffect(() => {
     if (route?.params) {
@@ -28,7 +27,7 @@ const ParkingScreen = ({ route, navigation }) => {
       if (param?.city) {
         setCityName(param.city);
         setParkingId(param.id);
-        setDuration(param.duration)
+        setDuration(param.duration);
       }
     }
   });
@@ -64,26 +63,49 @@ const ParkingScreen = ({ route, navigation }) => {
     let parking = parseParking(myParking);
     await favoritesCtx.deleteFavorite(parking.id);
     setIsSaved(false);
-    // console.log("removing......");
   };
 
   const filledBookmark = (
-    <Ionicons
-      style={{ marginRight: 15 }}
-      name="bookmark"
-      color={Colors.marked400}
-      size={30}
-      onPress={removeFromFavorite}
-    />
+    <>
+      <View style={styles.iconHeaderContainer}>
+        <Ionicons
+          style={{ marginRight: 15 }}
+          name="bookmark"
+          color={Colors.marked400}
+          size={30}
+          onPress={removeFromFavorite}
+        />
+        <FontAwesome
+          onPress={() => {
+            parkingCtx.toggleRefresh();
+          }}
+          name="refresh"
+          size={24}
+          color="white"
+        />
+      </View>
+    </>
   );
   const emptyBookmark = (
-    <Ionicons
-      style={{ marginRight: 15 }}
-      name="bookmark-outline"
-      color="white"
-      size={30}
-      onPress={addToFavorite}
-    />
+    <>
+      <View style={styles.iconHeaderContainer}>
+        <Ionicons
+          style={{ marginRight: 15 }}
+          name="bookmark-outline"
+          color="white"
+          size={30}
+          onPress={addToFavorite}
+        />
+        <FontAwesome
+          onPress={() => {
+            parkingCtx.toggleRefresh();
+          }}
+          name="refresh"
+          size={24}
+          color="white"
+        />
+      </View>
+    </>
   );
 
   useEffect(() => {
@@ -141,5 +163,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+  },
+  iconHeaderContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 15,
   },
 });
