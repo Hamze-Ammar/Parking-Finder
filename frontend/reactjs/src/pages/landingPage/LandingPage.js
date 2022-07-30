@@ -57,14 +57,11 @@ const LandingPage = () => {
           </div>
           <div className={classes.body}>
             <div className={classes.bodyLeft}>
-              <div>
-                Join 802 Parkings around <br /> the world!
-              </div>
+              <div>Join 802 Parkings around the world!</div>
               <div className={classes.rightContainer}>
                 <div>
                   <div className={classes.bold}>
-                    When life is too short <br /> to be spent on <br /> PARKING!{" "}
-                    <br />
+                    Life is too short to be spent on PARKING! <br />
                   </div>
                   <div className={classes.bodyLeftLink}>
                     become a partner?{" "}
