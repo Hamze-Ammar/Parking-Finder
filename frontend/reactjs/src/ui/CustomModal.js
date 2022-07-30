@@ -1,10 +1,12 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
+import { useNavigate } from "react-router-dom";
 import { Colors } from "../constant/color";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 const CustomModal = () => {
   const classes = useStyles();
+  let navigate = useNavigate();
 
   return (
     <div className={classes.outerContainer}>
@@ -14,6 +16,14 @@ const CustomModal = () => {
           <div>Success!</div>
           <div>The form has been registered!</div>
           <div>Your request is under review!</div>
+          <span
+            onClick={() => {
+              navigate("/");
+            }}
+            className={classes.closeBtn}
+          >
+            x
+          </span>
         </div>
       </div>
     </div>
@@ -37,6 +47,7 @@ const useStyles = createUseStyles({
     top: "0",
   },
   innerContainer: {
+    position: "relative",
     width: "380px",
     height: "200px",
     backgroundColor: "white",
@@ -51,5 +62,15 @@ const useStyles = createUseStyles({
     backgroundColor: Colors.success,
     color: "white",
     fontSize: "22px",
+  },
+  closeBtn: {
+    color: "#bbb",
+    position: "absolute",
+    right: "15px",
+    top: "10px",
+    cursor: "pointer",
+    "&:hover": {
+      color: "#fff",
+    },
   },
 });
