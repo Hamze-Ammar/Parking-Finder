@@ -1,6 +1,6 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useContext } from "react";
-import { AuthContext } from "../../store/auth-context";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
+// import { useContext } from "react";
+// import { AuthContext } from "../../store/auth-context";
 import { URL } from "../../constants/backendSync";
 import { Alert } from "react-native";
 
