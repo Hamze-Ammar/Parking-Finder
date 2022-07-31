@@ -42,6 +42,7 @@ Route::group(['prefix' => 'v1'], function(){
             Route::post('/addReview', [UserController::class, 'addReview']);
             Route::get('/getOverviewInfo', [UserController::class, 'getOverviewInfo']);
             Route::get('/hasPendingRequest', [UserController::class, 'hasPendingRequest']);
+            Route::get('/getUserType', [UserController::class, 'getUserType']);
         });
     });
 

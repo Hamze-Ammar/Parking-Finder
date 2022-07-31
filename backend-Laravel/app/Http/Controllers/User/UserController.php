@@ -326,4 +326,15 @@ class UserController extends Controller
             "res"   => $response
         ], 200);
     }
+
+    public function getUserType(){
+        $user = Auth::user();
+
+        $user_type = $user->user_type_id;
+
+        return response()->json([
+            "status" => "Success",
+            "res"   => $user_type
+        ], 200);
+    }
 }
