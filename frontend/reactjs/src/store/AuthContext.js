@@ -1,11 +1,13 @@
 import { createContext, useState, useEffect } from "react";
 import { checkForPendingRequest } from "../pages/login/loginController";
+import { getUserTypeFromServer } from "../pages/login/loginController";
 
 export const AuthContext = createContext({
   token: "",
   userType: "",
   isAuthenticated: false,
   hasRequest: false,
+  getUserType: (token) => {},
   setRequestStatus: (boolean) => {},
   authenticate: (token) => {},
   logout: () => {},
@@ -36,6 +38,12 @@ function AuthContextProvider({ children }) {
     setHasPendingRequest(boolean);
   }
 
+  async function getUserType(token) {
+    let type = await getUserTypeFromServer(token);
+    setAuthType(type);
+    return type;
+  }
+
   const value = {
     token: authToken,
     isAuthenticated: !!authToken,
@@ -44,6 +52,7 @@ function AuthContextProvider({ children }) {
     setRequestStatus: setRequestStatus,
     logout: logout,
     userType: authType,
+    getUserType: getUserType,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
