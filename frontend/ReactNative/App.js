@@ -218,21 +218,6 @@ function AuthStack() {
   );
 }
 
-// function AuthenticatedStack() {
-//   return (
-//     <Stack.Navigator
-//       initialRouteName="landing"
-//       screenOptions={{
-//         headerStyle: { backgroundColor: Colors.primary500 },
-//         headerTintColor: "white",
-//         contentStyle: { backgroundColor: Colors.primary500 },
-//         // headerBackButtonMenuEnabled: true,
-//       }}
-//     >
-//     </Stack.Navigator>
-//   );
-// }
-
 export default function App() {
   return (
     <>
