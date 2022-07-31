@@ -69,11 +69,10 @@ class UserController extends Controller
         }
         catch (\Exception $e) {
             return $e->getMessage();
-            // return "Invalid input!";
+
         }
         catch (\QueryException $e) {
-            // return $e->getMessage();
-            return "Invalid input!";
+            return $e->getMessage();
 
         }
     }
@@ -115,7 +114,6 @@ class UserController extends Controller
         $reservation->user_id = $user->id;
         $reservation->slot_id = $slot->id;
         $reservation->save();
-
 
         // Push job to queue to reset reservation; should be after 5 mins
         ResetReservation::dispatch($slot)->delay($duration-2);
