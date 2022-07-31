@@ -2,17 +2,21 @@ import React from "react";
 import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
 import CircularProgress from "react-native-circular-progress-indicator";
 import { Colors } from "../constants/styles";
-import {TIMER} from '../constants/backendSync'
+import { TIMER } from "../constants/backendSync";
 
 global.__reanimatedWorkletInit = () => {};
 
-const DashedCircle = ({ setRefresh, setShowTimer }) => {
+const DashedCircle = ({ setRefresh, setShowTimer, duration }) => {
+  if (!duration) {
+    duration = 5;
+  }
+  console.log({ duration });
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <CircularProgress
           radius={160}
-          initialValue={10}
+          initialValue={duration}
           value={0}
           inActiveStrokeOpacity={0.5}
           activeStrokeWidth={35}
@@ -27,7 +31,7 @@ const DashedCircle = ({ setRefresh, setShowTimer }) => {
           }}
           activeStrokeSecondaryColor={Colors.primary500}
           inActiveStrokeColor="rgba(255,255,255,0.4)"
-          duration={TIMER}
+          duration={duration * 1000}
           dashedStrokeConfig={{
             count: 40,
             width: 7,
