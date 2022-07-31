@@ -1,11 +1,20 @@
 import { StyleSheet, Text, View, Image, Pressable, Alert } from "react-native";
-import React, { useState , useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Colors } from "../../constants/styles";
 import { sendReservation } from "./parkingController";
 import { useFonts } from "expo-font";
 import { AuthContext } from "../../store/auth-context";
 
-const Slot = ({ id, state, side, number, setRefresh, setShowTimer }) => {
+const Slot = ({
+  id,
+  state,
+  side,
+  number,
+  setRefresh,
+  setShowTimer,
+  setShowPopupOptions,
+  setReservedSlotID,
+}) => {
   // Preparing images
   const images = {
     empty: require("../../assets/images/emptySlot.png"),
@@ -17,13 +26,12 @@ const Slot = ({ id, state, side, number, setRefresh, setShowTimer }) => {
   const authCtx = useContext(AuthContext);
   const [token, setToken] = useState(authCtx.token || null);
   const [localState, setLocalState] = useState(state);
-  // console.log(localState, number);
+
   function onPress() {
     if (localState === "empty") {
       setLocalState("reserved"); // Changed here
-      sendReservation(id, token);
-      setRefresh();
-      setShowTimer(true);
+      setReservedSlotID(id);
+      setShowPopupOptions(true);
     }
   }
 
