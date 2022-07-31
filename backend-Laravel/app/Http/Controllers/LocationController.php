@@ -8,26 +8,6 @@ use App\Models\Parking;
 
 class LocationController extends Controller
 {
-        // ---------------- [ Load View ] ----------------
-        public function index(Request $request) {
-    
-            $lat = 33.8911736;
-            $lon = 35.5059611;
-            // die($lat);
-        
-            // $data = DB::table("parkings")
-            //     ->select("parkings.id"
-            //         ,DB::raw("6371 * acos(cos(radians(" . $lat . ")) 
-            //         * cos(radians(parkings.lat)) 
-            //         * cos(radians(parkings.lon) - radians(" . $lon . ")) 
-            //         + sin(radians(" .$lat. ")) 
-            //         * sin(radians(parkings.lat))) AS distance"))
-            //         ->groupBy("parkings.id")
-            //         ->get();
-
-
-            // dd($data);
-    }
 
     public function findNearestParkings(Request $request)
     {
