@@ -10,8 +10,6 @@ const Slot = ({
   state,
   side,
   number,
-  setRefresh,
-  setShowTimer,
   setShowPopupOptions,
   setReservedSlotID,
 }) => {
@@ -24,7 +22,6 @@ const Slot = ({
   };
 
   const authCtx = useContext(AuthContext);
-  const [token, setToken] = useState(authCtx.token || null);
   const [localState, setLocalState] = useState(state);
 
   function onPress() {
@@ -90,25 +87,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    // position: "absolute",
-    // left: 23,
     marginHorizontal: 8,
     color: Colors.secondary500,
-    // color: 'Colors.secondary500',
     fontSize: 24,
-    // transform: [{ rotate: "90deg" }],
     fontFamily: "montserratBold",
   },
   slotContainerReverse: {
     flexDirection: "row-reverse",
   },
   textReverse: {
-    // transform: [{ rotate: "-90deg" }],
     fontFamily: "montserratBold",
   },
   colored: {
     color: Colors.primary500,
-    // display: 'none',
   },
   pressed: {
     opacity: 0.7,
