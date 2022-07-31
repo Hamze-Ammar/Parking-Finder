@@ -39,22 +39,29 @@ export const getParkingById = async (id, token) => {
 };
 
 // Send Request make Reservation
-export const sendReservation = async (id, token) => {
-  // console.log("reservation sent on slot:  ", id);
-  // let token = await AsyncStorage.getItem("token");
+export const sendReservation = async (id, duration, token) => {
+
   if (!token) {
     return;
   }
-  const res = await fetch(`${URL}/user/makeReservation/${id}`, {
-    method: "PUT",
+  let info = {
+    id: id,
+    duration: duration,
+  };
+  console.log({ info });
+  // return;
+  const res = await fetch(`${URL}/user/makeReservation`, {
+    method: "POST",
     headers: {
-      Authorization: "Bearer " + token,
       "Content-type": "application/json",
+      Authorization: "Bearer " + token,
+      Accept: "application/json",
     },
+    body: JSON.stringify(info),
   });
   const data = await res.json();
+  console.log(data);
   if (data.status === "Success") {
-    // console.log(data);
     return data;
   } else {
     return false;
