@@ -100,20 +100,8 @@ class UserController extends Controller
     public function makeReservation(Request $request){
         $id = $request->id;
         $duration = $request->duration;
-        // $x = $request->id;
-        // return response()->json([
-        //     "status" => "Success",
-        //     // "res1"   => $id,
-        //     "res"   => $x,
-        // ], 200);
 
         $slot = Slot::find($id);
-
-        //        return response()->json([
-        //     "status" => "Success",
-        //     // "res1"   => $id,
-        //     "res"   => $request,
-        // ], 200);
 
         if(!$slot){
             return redirect(route("not-found"));
