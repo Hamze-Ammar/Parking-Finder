@@ -10,7 +10,15 @@ import Slot from "./Slot";
 import { Colors } from "../../constants/styles";
 import DashedCircle from "../../ui/DashedCircle";
 
-const Slots = ({ slots, setRefresh, setShowTimer, showTimer }) => {
+const Slots = ({
+  slots,
+  setRefresh,
+  setShowTimer,
+  showTimer,
+  reservationDuration,
+  setShowPopupOptions,
+  setReservedSlotID,
+}) => {
   function displayTimer() {
     setShowTimer(true);
   }
@@ -22,7 +30,11 @@ const Slots = ({ slots, setRefresh, setShowTimer, showTimer }) => {
     <>
       {showTimer && (
         <View style={styles.DashedCircle}>
-          <DashedCircle setShowTimer={hideTimer} setRefresh={setRefresh} />
+          <DashedCircle
+            duration={reservationDuration}
+            setShowTimer={hideTimer}
+            setRefresh={setRefresh}
+          />
         </View>
       )}
       <ScrollView>
@@ -51,6 +63,8 @@ const Slots = ({ slots, setRefresh, setShowTimer, showTimer }) => {
                           is_reserved={slot.is_reserved}
                           setRefresh={setRefresh}
                           setShowTimer={displayTimer}
+                          setShowPopupOptions={setShowPopupOptions}
+                          setReservedSlotID={setReservedSlotID}
                         />
                       );
                     })}
@@ -75,6 +89,8 @@ const Slots = ({ slots, setRefresh, setShowTimer, showTimer }) => {
                           is_reserved={slot.is_reserved}
                           setRefresh={setRefresh}
                           setShowTimer={displayTimer}
+                          setShowPopupOptions={setShowPopupOptions}
+                          setReservedSlotID={setReservedSlotID}
                         />
                       );
                     })}
