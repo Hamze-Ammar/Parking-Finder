@@ -37,7 +37,7 @@ export default function Login() {
       if (type === 3) {
         navigate("/adminPanel");
       } else {
-        navigate("/");
+      navigate("/");
       }
     }
     setIsloading(false);

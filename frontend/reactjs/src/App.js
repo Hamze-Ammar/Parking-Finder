@@ -11,8 +11,8 @@ function App() {
   const AuthCtx = useContext(AuthContext);
 
   useEffect(() => {
-    function fetchToken() {
-      const storedToken = localStorage.getItem("token");
+    async function fetchToken() {
+      const storedToken = await localStorage.getItem("token");
       if (storedToken) {
         AuthCtx.authenticate(storedToken);
       }

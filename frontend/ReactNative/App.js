@@ -56,20 +56,6 @@ function HomeStackNavigator() {
       <Stack.Screen
         name="map"
         component={MapScreen}
-        // options={{
-        //   headerStyle: {
-        //     backgroundColor: Colors.primary500,
-        //   },
-        //   headerTitleStyle: {
-        //     fontWeight: "bold",
-        //     display: "none",
-        //   },
-
-        //   headerTintColor: "white",
-        //   tabBarHideOnKeyboard: true,
-        //   tabBarActiveTintColor: Colors.primary500,
-        //   tabBarInactiveTintColor: "gray",
-        // }}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
@@ -212,7 +198,6 @@ function Navigation() {
     <NavigationContainer>
       {!authCtx.isAuthenticated && <AuthStack />}
       {authCtx.isAuthenticated && <BottomTabNavigator />}
-      {/* <BottomTabNavigator /> */}
     </NavigationContainer>
   );
 }
