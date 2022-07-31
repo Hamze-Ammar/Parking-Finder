@@ -97,9 +97,23 @@ class UserController extends Controller
     }
 
     // Takes the slot id as parameter
-    public function makeReservation($id){
+    public function makeReservation(Request $request){
+        $id = $request->id;
+        $duration = $request->duration;
+        // $x = $request->id;
+        // return response()->json([
+        //     "status" => "Success",
+        //     // "res1"   => $id,
+        //     "res"   => $x,
+        // ], 200);
 
         $slot = Slot::find($id);
+
+        //        return response()->json([
+        //     "status" => "Success",
+        //     // "res1"   => $id,
+        //     "res"   => $request,
+        // ], 200);
 
         if(!$slot){
             return redirect(route("not-found"));
@@ -116,7 +130,7 @@ class UserController extends Controller
 
 
         // Push job to queue to reset reservation; should be after 5 mins
-        ResetReservation::dispatch($slot)->delay(9);
+        ResetReservation::dispatch($slot)->delay($duration-2);
 
         return response()->json([
             "status" => "Success",

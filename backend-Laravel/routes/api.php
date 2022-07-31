@@ -29,7 +29,7 @@ Route::group(['prefix' => 'v1'], function(){
         Route::group(['middleware' => 'role.user'], function(){
             Route::post('/becomePartner', [UserController::class, 'becomePartner']);
             Route::get('/viewParking/{id}', [UserController::class, 'viewParking']);
-            Route::put('/makeReservation/{id}', [UserController::class, 'makeReservation']);
+            Route::post('/makeReservation', [UserController::class, 'makeReservation']);
             Route::put('/resetReservation/{id}', [UserController::class, 'resetReservation']);
             Route::get('/getHistories', [UserController::class, 'getHistories']);
             Route::delete('/clearHistories', [UserController::class, 'clearHistories']);
