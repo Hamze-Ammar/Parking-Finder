@@ -82,6 +82,14 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     borderLeftWidth: 15,
     borderLeftColor: Colors.secondary500,
+    shadowColor: Colors.secondary500,
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4.84,
+    elevation: 5,
   },
   left: {
     flex: 5,
