@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Models\Parking;
 use App\Models\User;
 use App\Models\Slot;
@@ -165,6 +166,37 @@ class AdminController extends Controller
         return response()->json([
             "status" => "Success",
             "res"   => $parkings
+        ], 200);
+    }
+
+    public function getOverviewHeader(){
+        $num_of_users = User::all()->count();
+        $num_of_parkings = Parking::all()->count();
+        $num_of_slots = Slot::all()->count();
+        $num_of_cities = DB::table('parkings')->distinct('city_id')->count('name');
+
+        // Get the actual number of countries where we still have active parkings
+        // Since we dont have a col country_id in the parkings table
+        // we need to track the city_id column
+        $cities_ids = DB::table('parkings')->distinct('city_id')->get('city_id');
+        $array_of_cities_ids = [];
+        foreach ($cities_ids as $city_id){
+            array_push($array_of_cities_ids, $city_id->city_id);
+        };
+        $num_of_countries = DB::table('cities')->whereIn('id', $array_of_cities_ids)->distinct('country_id')->count('country_id');
+
+
+        $response = array(
+            'num_of_users' => $num_of_users,
+            'num_of_parkings' => $num_of_parkings,
+            'num_of_slots' => $num_of_slots,
+            'num_of_countries' => $num_of_countries,
+            'num_of_cities' => $num_of_cities,
+        );
+
+        return response()->json([
+            "status" => "Success",
+            "res"   => $response
         ], 200);
     }
 }

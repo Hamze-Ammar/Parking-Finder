@@ -63,6 +63,7 @@ Route::group(['prefix' => 'v1'], function(){
             Route::post('/declineRequest/{id}', [AdminController::class, 'declineRequest']);
             Route::get('/getAllParkings', [AdminController::class, 'getAllParkings']);
             Route::post('/deleteParking/{id}', [AdminController::class, 'deleteParking']);
+            Route::get('/getOverviewHeader', [AdminController::class, 'getOverviewHeader']);
         });
     });
     Route::group(['prefix' => 'info'], function(){
