@@ -6,11 +6,16 @@ import { Ionicons } from "@expo/vector-icons";
 import { dimensions } from "../../../constants/styles";
 import { getUserProfile, editProfile } from "./overviewController";
 import { AuthContext } from "../../../store/auth-context";
+import ImagePicker from "./ImagePicker";
 
-const EditCredentials = ({ setShowInputField }) => {
+const EditCredentials = ({
+  setShowInputField,
+  setPickedImage,
+  pickedImage,
+}) => {
   const authCtx = useContext(AuthContext);
   const [profile, setProfile] = useState({});
-  console.log(profile);
+  const [pickedImageBase64, setPickedImageBase64] = useState();
 
   useEffect(() => {
     const fetchInfo = async (token) => {
@@ -22,8 +27,13 @@ const EditCredentials = ({ setShowInputField }) => {
     fetchInfo(authCtx.token);
   }, []);
 
+  useEffect(() => {
+    if (pickedImageBase64) {
+      setProfile({ ...profile, photo_src: pickedImageBase64 });
+    }
+  }, [pickedImageBase64]);
+
   const handlePress = async () => {
-    console.log("clicked");
     let msg = await editProfile(authCtx.token, profile);
     if (msg) {
       Alert.alert("Message", "Your profile has been successfully updated");
@@ -60,7 +70,6 @@ const EditCredentials = ({ setShowInputField }) => {
       <View>
         <InputEdit
           label="Name"
-          // placeholder={profile.name}
           value={profile?.name ? profile.name : null}
           onUpdateValue={updateInputValueHandler.bind(this, "name")}
         />
@@ -81,6 +90,10 @@ const EditCredentials = ({ setShowInputField }) => {
         />
       </View>
       <ButtonUpdate onPress={handlePress}>Update</ButtonUpdate>
+      <ImagePicker
+        setPickedImage={setPickedImage}
+        setPickedImageBase64={setPickedImageBase64}
+      />
     </>
   );
 };
