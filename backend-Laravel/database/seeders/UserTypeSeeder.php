@@ -19,9 +19,9 @@ class UserTypeSeeder extends Seeder
         DB::table('user_types')->delete();
 
         $Records = [
-            ['id'=>1, 'type'=>'user'],
-            ['id'=>2, 'type'=>'owner'],
-            ['id'=>3, 'type'=>'admin']
+            ['id'=>1, 'type'=>'user',    'created_at'=>date("Y-m-d H:i:s")],
+            ['id'=>2, 'type'=>'owner',   'created_at'=>date("Y-m-d H:i:s")],
+            ['id'=>3, 'type'=>'admin',   'created_at'=>date("Y-m-d H:i:s")],
         ];
         UserType::insert($Records);
         
