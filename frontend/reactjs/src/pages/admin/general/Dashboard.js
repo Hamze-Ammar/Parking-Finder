@@ -4,15 +4,15 @@ import { createUseStyles } from "react-jss";
 import { Colors } from "../../../constant/color";
 import DashboardHero from "./DashboardHero";
 import Logo from "../../../ui/Logo";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import QueryStatsIcon from "@mui/icons-material/QueryStats";
-import ControlCameraIcon from "@mui/icons-material/ControlCamera";
+// import DashboardIcon from "@mui/icons-material/Dashboard";
+// import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+// import QueryStatsIcon from "@mui/icons-material/QueryStats";
+// import ControlCameraIcon from "@mui/icons-material/ControlCamera";
 import DonutSmallIcon from "@mui/icons-material/DonutSmall";
 import LocalParkingIcon from "@mui/icons-material/LocalParking";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import MarkChatUnreadIcon from "@mui/icons-material/MarkChatUnread";
-import InsertCommentIcon from "@mui/icons-material/InsertComment";
+// import InsertCommentIcon from "@mui/icons-material/InsertComment";
 
 const Dashboard = ({ onClick }) => {
   const classes = useStyles();
@@ -30,21 +30,6 @@ const Dashboard = ({ onClick }) => {
           onClick={onClick}
         />
         <DashboardItem
-          icon={<PeopleAltIcon />}
-          text="Users"
-          onClick={onClick}
-        />
-        {/* <DashboardItem
-          icon={<QueryStatsIcon />}
-          text="Analytics"
-          onClick={onClick}
-        /> */}
-        {/* <DashboardItem
-          icon={<ControlCameraIcon />}
-          text="Management"
-          onClick={onClick}
-        /> */}
-        <DashboardItem
           icon={<DonutSmallIcon />}
           text="Statistics"
           onClick={onClick}
@@ -60,11 +45,6 @@ const Dashboard = ({ onClick }) => {
           onClick={onClick}
           showPendingReq={true}
         />
-        {/* <DashboardItem
-          icon={<InsertCommentIcon />}
-          text="Reviews"
-          onClick={onClick}
-        /> */}
       </div>
     </>
   );
