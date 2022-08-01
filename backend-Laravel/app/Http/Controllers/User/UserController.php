@@ -163,9 +163,16 @@ class UserController extends Controller
 
         $user = Auth::user();
 
+        $response = array(
+            'name'    => $user->name,
+            'email'    => $user->email,
+            'address'    => $user->address,
+            'plate_number'    => $user->plate_number,
+        );
+
         return response()->json([
             "status" => "Success",
-            "res"   => $user
+            "res"   => $response
         ], 200);
     }
 
@@ -174,13 +181,13 @@ class UserController extends Controller
             $user = Auth::user();
             $user->name = $request->name;
             $user->email = $request->email;
-            if($request->password){
-                $user->password = Hash::make($request->password);
-            }
+            // if($request->password){
+            //     $user->password = Hash::make($request->password);
+            // }
             $user->address = $request->address;
             $user->plate_number = $request->plate_number;
-            $user->phone_number = $request->phone_number;
-            $user->city_id = $request->city_id;
+            // $user->phone_number = $request->phone_number;
+            // $user->city_id = $request->city_id;
 
             // Check if profile pic was uploaded
             if($request->photo_src){
