@@ -36,6 +36,8 @@ const WeeklyChart = () => {
     },
   });
 
+  // Some dummy data to display onloading for a second
+  // while waiting for the real data to be fetched
   const [series, setSeries] = useState([
     {
       name: "test",
@@ -51,7 +53,6 @@ const WeeklyChart = () => {
     const fetchData = async (token) => {
       const searchRequests = await getSearchRequests(token);
       const reservations = await getAllReservations(token);
-      // console.log({ reservations });
       setSeries([
         {
           name: "Search Requests",
@@ -73,7 +74,6 @@ const WeeklyChart = () => {
       type="bar"
       width={900}
       height={500}
-      // fontSize={40}
     />
   );
 };

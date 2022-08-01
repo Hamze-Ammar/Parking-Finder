@@ -15,7 +15,8 @@ const OverViewHeader = () => {
   // authCtx.token
   const classes = useStyles();
   const [info, setInfo] = useState({});
-  console.log(info);
+  // console.log(info);
+
   useEffect(() => {
     const fetchInfo = async (token) => {
       setInfo(await getOverviewHeaderInfo(token));
