@@ -43,7 +43,7 @@ const LineChart = () => {
     },
   });
 
-  // Some dummy data to display onloading for a second
+  // Some dummy data to display onloading for like a second
   // while waiting for the real data to be fetched
   const [series, setSeries] = useState([
     {

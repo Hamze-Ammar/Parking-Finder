@@ -1,22 +1,14 @@
-// import AsyncStorage from "@react-native-async-storage/async-storage";
-// import { useContext } from "react";
-// import { AuthContext } from "../../store/auth-context";
+
 import { URL } from "../../constants/backendSync";
 import { Alert } from "react-native";
 
-// const authCtx = useContext(AuthContext);
-
-// AsyncStorage.removeItem("token");
 
 // Get Parking from server
 export const getParkingById = async (id, token) => {
-  // let token = await AsyncStorage.getItem("token");
-  // console.log(token);
   //Just in case
   if (!token) {
     return;
   }
-  // console.log(token, id);
 
   const res = await fetch(`${URL}/user/viewParking/${id}`, {
     method: "GET",
@@ -26,12 +18,10 @@ export const getParkingById = async (id, token) => {
     },
   });
   const data = await res.json();
-  // console.log(data);
   if (data.status === "Failure") {
     Alert.alert("Connection Timed Out", "Please Try again");
   }
   if (data.status === "Success") {
-    // console.log("fetch      ", data.res.id);
     return data;
   } else {
     return false;
@@ -48,8 +38,6 @@ export const sendReservation = async (id, duration, token) => {
     id: id,
     duration: duration,
   };
-  console.log({ info });
-  // return;
   const res = await fetch(`${URL}/user/makeReservation`, {
     method: "POST",
     headers: {
@@ -68,7 +56,6 @@ export const sendReservation = async (id, duration, token) => {
   }
 };
 
-// sendReservation("67");
 
 export const checkIfSaved = (list, id) => {
   if (list.length === 0 || !id) {
