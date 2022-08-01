@@ -199,4 +199,17 @@ class AdminController extends Controller
             "res"   => $response
         ], 200);
     }
+
+    // Table::select('name','surname')->where('id', 1)->get();
+
+    public function getAllUsersAndSlots(){
+        $users = User::select('created_at')->get();
+        $slots = Slot::select('created_at')->get();
+
+        return response()->json([
+            "status" => "Success",
+            "users"   => $users,
+            "slots"   => $slots,
+        ], 200);
+    }
 }
