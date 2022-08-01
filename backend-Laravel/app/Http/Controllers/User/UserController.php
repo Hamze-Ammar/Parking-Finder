@@ -179,17 +179,22 @@ class UserController extends Controller
     public function editProfile(Request $request){
         try {
             $user = Auth::user();
-            $user->name = $request->name;
-            $user->email = $request->email;
-            // if($request->password){
-            //     $user->password = Hash::make($request->password);
-            // }
-            $user->address = $request->address;
-            $user->plate_number = $request->plate_number;
-            // $user->phone_number = $request->phone_number;
-            // $user->city_id = $request->city_id;
 
-            // Check if profile pic was uploaded
+            if($request->name){
+                $user->name = $request->name;
+            };
+            if($request->email){
+                $user->email = $request->email;
+            };
+            if($request->address){
+                $user->address = $request->address;
+
+            };
+            if($request->plate_number){
+                $user->plate_number = $request->plate_number;
+
+            };
+
             if($request->photo_src){
                 $photo = new Photo;
                 $photo->src = $request->photo_src;
@@ -342,6 +347,18 @@ class UserController extends Controller
         return response()->json([
             "status" => "Success",
             "res"   => $user_type
+        ], 200);
+    }
+
+    public function getUserProfilePic(){
+        $user = Auth::user();
+        $photo_id = $user->photo_id;
+        $profile = Photo::find($photo_id);
+        $src = $profile->src;
+
+        return response()->json([
+            "status" => "Success",
+            "res"   => $src
         ], 200);
     }
 }

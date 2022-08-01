@@ -43,6 +43,7 @@ Route::group(['prefix' => 'v1'], function(){
             Route::get('/getOverviewInfo', [UserController::class, 'getOverviewInfo']);
             Route::get('/hasPendingRequest', [UserController::class, 'hasPendingRequest']);
             Route::get('/getUserType', [UserController::class, 'getUserType']);
+            Route::get('/getUserProfilePic', [UserController::class, 'getUserProfilePic']);
         });
     });
 
