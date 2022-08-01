@@ -56,9 +56,30 @@ export const editProfile = async (token, credentials) => {
   const data = await res.json();
   if (data.status === "Success") {
     // console.log(data);
-     if(data?.res){
-      return(data.res)
-    };
+    if (data?.res) {
+      return data.res;
+    }
+  } else {
+    return false;
+  }
+};
+
+export const getUserProfilePic = async (token) => {
+  if (!token) {
+    return;
+  }
+  const res = await fetch(`${URL}/user/getUserProfilePic`, {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + token,
+      "Content-type": "application/json",
+    },
+  });
+  const data = await res.json();
+  if (data.status === "Success") {
+    if (data?.res) {
+      return data.res;
+    }
   } else {
     return false;
   }
