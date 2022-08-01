@@ -4,7 +4,7 @@
     "slug": "ParkingFinder",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/iconP.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -29,10 +29,9 @@
     },
     "plugins": [
       [
-        "expo-notifications",
+        "expo-image-picker",
         {
-          "icon": "./local/assets/images/iconP.png",
-          "color": "#ffffff"
+          "cameraPermission": "The app accesses your camera to let you share them with your friends."
         }
       ]
     ]
