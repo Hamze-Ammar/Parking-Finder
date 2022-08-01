@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import { Colors } from "../../../constant/color";
-import { getSearchRequests } from "./statisticsController";
-import { getAllReservations } from "./statisticsController";
 import { AuthContext } from "../../../store/AuthContext";
+import { getAllUsersAndSlots } from "./statisticsController";
 
 const LineChart = () => {
-  const AuthCtx = useContext(AuthContext);
+  const authCtx = useContext(AuthContext);
 
   const [options, setOptions] = useState({
     plotOptions: {
@@ -44,6 +43,8 @@ const LineChart = () => {
     },
   });
 
+  // Some dummy data to display onloading for a second
+  // while waiting for the real data to be fetched
   const [series, setSeries] = useState([
     {
       name: "Active Users",
@@ -55,6 +56,24 @@ const LineChart = () => {
     },
   ]);
 
+  useEffect(() => {
+    const fetchInfo = async (token) => {
+      const info = await getAllUsersAndSlots(token);
+
+      setSeries([
+        {
+          name: "Active Users",
+          data: info?.usersYearly,
+        },
+        {
+          name: "Total Slots",
+          data: info?.slotsYearly,
+        },
+      ]);
+    };
+    fetchInfo(authCtx.token);
+  }, []);
+
   return (
     <Chart
       options={options}
@@ -62,7 +81,6 @@ const LineChart = () => {
       type="line"
       width={900}
       height={500}
-      // fontSize={40}
     />
   );
 };
