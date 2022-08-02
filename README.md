@@ -81,6 +81,10 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 | ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
 | ![Landing Desktop](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Desktop/Landing.gif) | ![Become Partner](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Desktop/BecomePartner.gif) |
 
+| Admin Overview                                                                                              | Admin Requests                                                                                              |
+| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| ![Admin Overview](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Desktop/AdminOverview.gif) | ![Admin Requests](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Desktop/AdminRequests.gif) |
+
 <br><br>
 <img src="./readme/title6.svg"/>
 
