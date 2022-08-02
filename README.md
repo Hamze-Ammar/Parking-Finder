@@ -40,7 +40,7 @@
 > | Login | Landing | Map Search |
 > | ------- | ------- | ------- |
 > | ![Login]
- | ![Landing](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/landingMobile.png) | ![Map Search](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/map1Mobile.png) |
+> | ![Landing](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/landingMobile.png) | ![Map Search](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/map1Mobile.png) |
 
 > | Map Direction                                                                                         | Parking                                                                                                   | History                                                                                            |
 > | ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
@@ -70,9 +70,9 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 <img src="./readme/title5.svg"/>
 
 > Using the above mentioned tech stacks and the wireframes built with Figma, the implementation of the app is shown as below, these are screen recordings from the real app
-> | Landing | Search | Reserve Parking |
+> | Landing | Map Search | Reserve Parking |
 > | ------- | ------- | ------- |
-> | ![Landing](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/landingMobile.png) | ![Map Search](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/map1Mobile.png) |
+> | ![Landing](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Mobile/Landing-Mobile.gif) | ![Map Search](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Mobile/Map-Search.gif) | ![Reserve Parking](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Mobile/reserveParking.gif) |
 
 <br><br>
 <img src="./readme/title6.svg"/>
