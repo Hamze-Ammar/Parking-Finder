@@ -45,9 +45,13 @@
 > | ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 > | ![Map Direction](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/map2Mobile.png) | ![Parking](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/displayParkingMobile.png) | ![History](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/historyMobile.png) |
 
-| Artists results                                                                                | Artist's Albums                                                                               |
-| ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| ![Artists results](https://github.com/julescript/spotifyndr/blob/master/demo/Artists_Page.jpg) | ![Artist's Albums](https://github.com/julescript/spotifyndr/blob/master/demo/Albums_Page.jpg) |
+| Landing-Desktop                                                                                             | Admin-Parkings                                                                                         |
+| ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| ![Landing-Desktop](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/landingDesktop.png) | ![Admin-Parkings](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/dashboard2.png) |
+
+| Admin-Overview                                                                                         |
+| ------------------------------------------------------------------------------------------------------ |
+| ![Admin-Overview](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/dashboard1.png) |
 
 <br><br>
 
