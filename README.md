@@ -11,7 +11,7 @@
 
 <img src="./readme/title2.svg"/>
 
-> Parking Finder app is a revolutionary solution to reinvent the parking experience. It is more than just another navigation app; it allows you to access you parking lot on the go using the pre-reservation feature among many others.
+> Parking Finder app is a revolutionary solution to reinvent the parking experience. It is more than just another navigation app; it allows you to access your parking lot on the go using the pre-reservation feature among many others.
 >
 > Features include Google Maps-powered guidance to find a car park, as well as providing detailed, live information around hours and availability, directions and distance. While using a network of installed sensors we can allow access to each lot our sensors are installed in.
 
@@ -36,7 +36,7 @@
 <img src="./readme/title3.svg"/>
 
 > This design was planned before on paper, then moved to Figma app for the fine details.
-> Note that I did not use any styling library or theme, all from scratch and using pure css modules
+<br>
 > | Landing | Home/Search |
 > | -----------------| -----|
 > | ![Landing](https://github.com/julescript/spotifyndr/blob/master/demo/Landing_Page.jpg) | ![Home/Search](https://github.com/julescript/spotifyndr/blob/master/demo/Search_Page.jpg) |
