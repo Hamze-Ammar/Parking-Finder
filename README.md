@@ -39,7 +39,8 @@
 > <br>
 > | Login | Landing | Map Search |
 > | ------- | ------- | ------- |
-> | ![Login](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/login-mobile.png) | ![Landing](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/landingMobile.png) | ![Map Search](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/map1Mobile.png) |
+> | ![Login]
+ | ![Landing](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/landingMobile.png) | ![Map Search](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/map1Mobile.png) |
 
 > | Map Direction                                                                                         | Parking                                                                                                   | History                                                                                            |
 > | ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
@@ -68,10 +69,10 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 <br><br>
 <img src="./readme/title5.svg"/>
 
-> Uing the above mentioned tecch stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
-> | Landing | Home/Search |
-> | -----------------| -----|
-> | ![Landing](https://github.com/julescript/spotifyndr/blob/master/demo/Landing_Page.jpg) | ![Home/Search](https://github.com/julescript/spotifyndr/blob/master/demo/Search_Page.jpg) |
+> Using the above mentioned tech stacks and the wireframes built with Figma, the implementation of the app is shown as below, these are screen recordings from the real app
+> | Landing | Search | Reserve Parking |
+> | ------- | ------- | ------- |
+> | ![Landing](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/landingMobile.png) | ![Map Search](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/map1Mobile.png) |
 
 <br><br>
 <img src="./readme/title6.svg"/>
