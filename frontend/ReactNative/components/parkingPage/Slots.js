@@ -26,6 +26,8 @@ const Slots = ({
     setShowTimer(false);
   }
 
+  console.log(slots?.length, slots?.length / 2);
+
   return (
     <>
       {showTimer && (
@@ -45,55 +47,59 @@ const Slots = ({
               <View style={styles.outerContainer}>
                 <View style={styles.container}>
                   {slots &&
-                    slots.slice(0, slots.length / 2).map((slot) => {
-                      let state;
-                      let side = "left";
-                      if (!slot.is_available || slot.is_reserved) {
-                        state = "left";
-                      } else {
-                        state = "empty";
-                      }
-                      return (
-                        <Slot
-                          key={slot.id}
-                          id={slot.id}
-                          state={state}
-                          side={side}
-                          number={slot.number}
-                          is_reserved={slot.is_reserved}
-                          setRefresh={setRefresh}
-                          setShowTimer={displayTimer}
-                          setShowPopupOptions={setShowPopupOptions}
-                          setReservedSlotID={setReservedSlotID}
-                        />
-                      );
-                    })}
+                    slots
+                      .slice(0, parseInt(slots.length / 2) + 1)
+                      .map((slot) => {
+                        let state;
+                        let side = "left";
+                        if (!slot.is_available || slot.is_reserved) {
+                          state = "left";
+                        } else {
+                          state = "empty";
+                        }
+                        return (
+                          <Slot
+                            key={slot.id}
+                            id={slot.id}
+                            state={state}
+                            side={side}
+                            number={slot.number}
+                            is_reserved={slot.is_reserved}
+                            setRefresh={setRefresh}
+                            setShowTimer={displayTimer}
+                            setShowPopupOptions={setShowPopupOptions}
+                            setReservedSlotID={setReservedSlotID}
+                          />
+                        );
+                      })}
                 </View>
                 <View style={styles.container}>
                   {slots &&
-                    slots.slice(slots.length / 2, slots.length).map((slot) => {
-                      let state;
-                      let side = "right";
-                      if (!slot.is_available || slot.is_reserved) {
-                        state = "right";
-                      } else {
-                        state = "empty";
-                      }
-                      return (
-                        <Slot
-                          key={slot.id}
-                          id={slot.id}
-                          state={state}
-                          side={side}
-                          number={slot.number}
-                          is_reserved={slot.is_reserved}
-                          setRefresh={setRefresh}
-                          setShowTimer={displayTimer}
-                          setShowPopupOptions={setShowPopupOptions}
-                          setReservedSlotID={setReservedSlotID}
-                        />
-                      );
-                    })}
+                    slots
+                      .slice(parseInt(slots.length / 2), slots.length)
+                      .map((slot) => {
+                        let state;
+                        let side = "right";
+                        if (!slot.is_available || slot.is_reserved) {
+                          state = "right";
+                        } else {
+                          state = "empty";
+                        }
+                        return (
+                          <Slot
+                            key={slot.id}
+                            id={slot.id}
+                            state={state}
+                            side={side}
+                            number={slot.number}
+                            is_reserved={slot.is_reserved}
+                            setRefresh={setRefresh}
+                            setShowTimer={displayTimer}
+                            setShowPopupOptions={setShowPopupOptions}
+                            setReservedSlotID={setReservedSlotID}
+                          />
+                        );
+                      })}
                 </View>
               </View>
             </View>
