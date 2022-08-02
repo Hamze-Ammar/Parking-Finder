@@ -77,6 +77,10 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 > | ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 > | ![Map Dark Mode](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Mobile/MapDarkMode.gif) | ![Favorites Display](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Mobile/favoriteDisplay.gif) | ![Favorites Delete](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Mobile/favoritesDelete.gif) | ![Profile](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Mobile/Profile.gif) |
 
+| Landing Desktop                                                                                        | Become Partner                                                                                              |
+| ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| ![Landing Desktop](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Desktop/Landing.gif) | ![Become Partner](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Desktop/BecomePartner.gif) |
+
 <br><br>
 <img src="./readme/title6.svg"/>
 
