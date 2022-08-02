@@ -39,8 +39,7 @@
 > <br>
 > | Login | Landing | Map Search |
 > | ------- | ------- | ------- |
-> | ![Login]
-> | ![Landing](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/landingMobile.png) | ![Map Search](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/map1Mobile.png) |
+> | ![Login] (https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/login-mobile.png) | ![Landing](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/landingMobile.png) | ![Map Search](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/map1Mobile.png) |
 
 > | Map Direction                                                                                         | Parking                                                                                                   | History                                                                                            |
 > | ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
