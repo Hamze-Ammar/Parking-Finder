@@ -37,13 +37,12 @@
 
 > This design was planned before on paper, then moved to Figma app for the fine details.
 > <br>
-> | Login | Landing | mapSearch |
+> | Login | Landing | Map Search |
 > | ------- | ------- | ------- |
 > | ![Login](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/login-mobile.png) | ![Landing](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/landingMobile.png) | ![Map Search](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/map1Mobile.png) |
 
-> <br>
-> | mapDirection | Parking | History |
-> | ------- | ------- | ------- |
+> | Map Direction                                                                                         | Parking                                                                                                   | History                                                                                            |
+> | ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 > | ![Map Direction](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/map2Mobile.png) | ![Parking](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/displayParkingMobile.png) | ![History](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Figma/historyMobile.png) |
 
 | Artists results                                                                                | Artist's Albums                                                                               |
