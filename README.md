@@ -69,9 +69,9 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 <img src="./readme/title5.svg"/>
 
 > Using the above mentioned tech stacks and the wireframes built with Figma, the implementation of the app is shown as below, these are screen recordings from the real app
-> | Landing | Map Search | Reserve Parking |
-> | ------- | ------- | ------- |
-> | ![Landing](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Mobile/Landing-Mobile.gif) | ![Map Search](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Mobile/Map-Search.gif) | ![Reserve Parking](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Mobile/reserveParking.gif) |
+> | Landing | Map Search | Display Parking | Reserve Parking |
+> | ------- | ------- | ------- | ------- |
+> | ![Landing](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Mobile/Landing-Mobile.gif) | ![Map Search](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Mobile/Map-Search.gif) | ![Display Parking](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Mobile/displayParking.gif) | ![Reserve Parking](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Mobile/reserveParking.gif) |
 
 <br><br>
 <img src="./readme/title6.svg"/>
