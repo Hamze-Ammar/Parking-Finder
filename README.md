@@ -3,13 +3,13 @@
 <div align="center">
 
 > Hello world! This is the project’s summary that describes the project plain and simple, limited to the space available.  
-> **[PROJECT PHILOSOPHY](https://github.com/julescript/well_app#-project-philosophy) • [WIREFRAMES](https://github.com/julescript/well_app#-wireframes) • [TECH STACK](https://github.com/julescript/well_app#-tech-stack) • [IMPLEMENTATION](https://github.com/julescript/well_app#-impplementation) • [HOW TO RUN?](https://github.com/julescript/well_app#-how-to-run)**
+> **[PROJECT PHILOSOPHY](https://github.com/Hamze-Ammar/Parking-Finder#project-philosophy) • [WIREFRAMES](https://github.com/Hamze-Ammar/Parking-Finder#wireframes) • [TECH STACK](https://github.com/Hamze-Ammar/Parking-Finder#tech-stack) • [IMPLEMENTATION](https://github.com/Hamze-Ammar/Parking-Finder#implementation) • [HOW TO RUN?](https://github.com/Hamze-Ammar/Parking-Finder#how-to-run)**
 
 </div>
 
 <br><br>
 
-<img src="./readme/title2.svg"/>
+<img id ="project-philosophy" src="./readme/title2.svg"/>
 
 > Parking Finder app is a revolutionary solution to reinvent the parking experience. It is more than just another navigation app; it allows you to access your parking lot on the go using the pre-reservation feature among many others.
 >
@@ -36,7 +36,7 @@
 
 <br><br>
 
-<img src="./readme/title3.svg"/>
+<img id ="wireframes" src="./readme/title3.svg"/>
 
 > This design was planned before on paper, then moved to Figma app for the fine details.
 > <br>
@@ -58,7 +58,7 @@
 
 <br><br>
 
-<img src="./readme/title4.svg"/>
+<img id="tech-stack" src="./readme/title4.svg"/>
 
 Here's a brief high-level overview of the tech stack the Parking Finder app uses:
 
@@ -70,7 +70,7 @@ Here's a brief high-level overview of the tech stack the Parking Finder app uses
 - The app uses the font ["Montserrat"](https://fonts.google.com/specimen/Montserrat) as its main font, and the design of the app adheres to the material design guidelines.
 
 <br><br>
-<img src="./readme/title5.svg"/>
+<img id="implementation" src="./readme/title5.svg"/>
 
 > Using the above mentioned tech stacks and the wireframes built with Figma, the implementation of the app is shown as below, these are screen recordings from the real app
 > | Landing | Map Search | Display Parking | Reserve Parking |
@@ -90,7 +90,7 @@ Here's a brief high-level overview of the tech stack the Parking Finder app uses
 | ![Admin Overview](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Desktop/AdminOverview.gif) | ![Admin Requests](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Desktop/AdminRequests.gif) |
 
 <br><br>
-<img src="./readme/title6.svg"/>
+<img id="how-to-run" src="./readme/title6.svg"/>
 
 > This is an example of how you may give instructions on setting up your project locally.
 > To get a local copy up and running follow these simple example steps.
