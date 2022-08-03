@@ -117,7 +117,7 @@ Here's a brief high-level overview of the tech stack the Parking Finder app uses
    git clone https://github.com/Hamze-Ammar/Parking-Finder.git
    ```
 
-   > To Run The Mobile App
+##### To Run The Mobile App
 
 2. Navigate to the Frontend folder then ReactNative folder and install dependencies
    ```sh
@@ -130,7 +130,7 @@ Here's a brief high-level overview of the tech stack the Parking Finder app uses
    ```
 4. Scan the generated QR code with your camera (ios) or through the Expo Go application (android)
 
-   > To Run The Desktop App
+##### To Run The Desktop App
 
 5. Navigate to the Frontend folder then reactjs folder and install dependencies
    ```sh
