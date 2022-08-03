@@ -92,32 +92,52 @@ Here's a brief high-level overview of the tech stack the Parking Finder app uses
 <br><br>
 <img id="how-to-run" src="./readme/title6.svg"/>
 
-> This is an example of how you may give instructions on setting up your project locally.
-> To get a local copy up and running follow these simple example steps.
+> To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-
+- Download and Install [Node.js](https://nodejs.org/en/)
 - npm
   ```sh
   npm install npm@latest -g
   ```
+- Expo CLI
+  ```sh
+  npm install --global expo-cli
+  ```
+- Expo Go app for iOS and Android
+  > 🤖 [Android Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent) - Android Lollipop (5) and greater.  
+  > 🍎 [iOS App Store](https://apps.apple.com/app/expo-go/id982107779) - iOS 11 and greater.
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+1. Clone the repo
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/Hamze-Ammar/Parking-Finder.git
    ```
-3. Install NPM packages
+
+   > To Run The Mobile App
+
+2. Navigate to the Frontend folder then ReactNative folder and install dependencies
    ```sh
+   cd Parking-Finder/frontend/ReactNative
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = "ENTER YOUR API";
+3. Run the start up command
+   ```sh
+   npm start
+   ```
+4. Scan the generated QR code with your camera (ios) or through the Expo Go application (android)
+
+   > To Run The Desktop App
+
+5. Navigate to the Frontend folder then reactjs folder and install dependencies
+   ```sh
+   cd Parking-Finder/frontend/reactjs
+   npm install
+   ```
+6. Run the start up command
+   ```sh
+   npm start
    ```
