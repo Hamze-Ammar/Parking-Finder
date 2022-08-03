@@ -20,6 +20,9 @@
 - As a user, I want to search fo the nearest parkings, so that I am aware of the distance and duration
 - As a user, I want to display each parking, so that I can choose the one that have available spots
 - As a user, I want to reserve a parking lot on the go, so that I can secure myself a spot
+- As a user, I want to mark parkings as favorite, to find them faster
+- As a user, I want to edit my profile and update my credentials
+- As a user, I want to review previous searches and reservations, so that I can keep track of my experience and histories
 
 ### Owner Stories
 
