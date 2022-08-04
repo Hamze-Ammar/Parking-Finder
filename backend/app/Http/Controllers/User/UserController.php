@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,14 +19,29 @@ use App\Models\Country;
 use App\Models\Reservation;
 use Auth;
 
-
-
-
 class UserController extends Controller
 {
     // When Users submit a form to become owners/partners
     public function becomePartner(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+            'opening_hr' => 'required|size:5',
+            'closing_hr' => 'required|size:5',
+            'description' => 'nullable',
+            'total_slots' => 'required|integer|min:10|max:150',
+            'city_name' => 'required',
+            'photo_id' => 'nullable',
+        ]);
+
+        if($validator->fails()) {
+            return response()->json([
+                'res' => $validator->errors(),
+                "status" => "Failure",
+            ], 400);
+        }
     
         try {
             $parking = new Parking;
@@ -38,7 +54,7 @@ class UserController extends Controller
             $parking->total_slots = $request->total_slots;
             $parking->photo_id = $request->photo_id;
 
-            // register city
+            // register city since if not yet registered
             $city = City::where('name', $request->city_name)->first();
             if ($city){
                 $cityId =  $city->id;   
@@ -54,11 +70,7 @@ class UserController extends Controller
                 $cityId = $new_city->id;
             }
             $parking->city_id = $cityId;
-
-
-            //Get user ID
-            $user = Auth::user();
-            $parking->user_id = $user->id;
+            $parking->user_id = Auth::id();
 
             $parking->save();
 
@@ -115,7 +127,7 @@ class UserController extends Controller
         $reservation->slot_id = $slot->id;
         $reservation->save();
 
-        // Push job to queue to reset reservation; should be after 5 mins
+        // Push job to queue to reset reservation; minus 2 seconds for delay issues
         ResetReservation::dispatch($slot)->delay($duration-2);
 
         return response()->json([
@@ -222,9 +234,8 @@ class UserController extends Controller
     }
 
     public function addToFavorite($id){
-        $user = Auth::user();
         $favourite = new Favourite;
-        $favourite->user_id = $user->id;
+        $favourite->user_id = Auth::id();
         $favourite->parking_id = $id;
 
         $favourite->save();
