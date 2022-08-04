@@ -106,9 +106,10 @@ Here's a brief high-level overview of the tech stack the Parking Finder app uses
 > | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
 > | ![Gray Car ](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/GrayCar.jpg) | ![Pedestrian View](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/Pedestrian.jpg) | ![Side View](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/SideView.jpg) | ![Tree](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/Tree.jpg) |
 
-> |                                                                                                       |                                                                                                    |                                                                                                          |                                                                                                                  |
-> | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-> | ![PassingBy ](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/PassingBy.gif) | ![Overview](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/Overview.gif) | ![LiveTesting](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/LiveTesting.gif) | ![LiveTestingSide](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/liveTestingSide.gif) |
+> | | | | |
+
+> | ------- | ------- | ------- | ------- |
+> | ![PassingBy](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/PassingBy.gif) | ![Overview](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/Overview.gif) | ![LiveTesting](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/LiveTesting.gif) | ![LiveTestingSide](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/LiveTestingSide.gif) |
 
 <br><br>
 <img id="how-to-run" src="./readme/title6.svg"/>
@@ -166,7 +167,7 @@ Here's a brief high-level overview of the tech stack the Parking Finder app uses
    npm start
    ```
 
-#### To Run The Laravel Server
+#### To Run Laravel Server on your machine
 
 1. Create a database locally named parkingfinderdb
 
