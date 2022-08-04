@@ -106,9 +106,8 @@ Here's a brief high-level overview of the tech stack the Parking Finder app uses
 > | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
 > | ![Gray Car ](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/GrayCar.jpg) | ![Pedestrian View](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/Pedestrian.jpg) | ![Side View](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/SideView.jpg) | ![Tree](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/Tree.jpg) |
 
-> | | | | |
-
-> | ------- | ------- | ------- | ------- |
+> |                                                                                                      |                                                                                                    |                                                                                                          |                                                                                                                  |
+> | ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 > | ![PassingBy](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/PassingBy.gif) | ![Overview](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/Overview.gif) | ![LiveTesting](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/LiveTesting.gif) | ![LiveTestingSide](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/LiveTestingSide.gif) |
 
 <br><br>
