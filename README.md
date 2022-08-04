@@ -100,6 +100,12 @@ Here's a brief high-level overview of the tech stack the Parking Finder app uses
 | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | ![Admin Overview](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Desktop/AdminOverview.gif) | ![Admin Requests](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Desktop/AdminRequests.gif) |
 
+### Prototype
+
+> | Gray Car                                                                                         | Pedestrian View                                                                                        | Side View                                                                                               | Tree                                                                                                |
+> | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+> | ![Landing](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/GrayCar.gif) | ![Map Search](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/Pedestrian.gif) | ![Map Dark Mode](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/SideView.gif) | ![Map Dark Mode](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/Tree.gif) |
+
 <br><br>
 <img id="how-to-run" src="./readme/title6.svg"/>
 
