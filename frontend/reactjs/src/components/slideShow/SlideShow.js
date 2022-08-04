@@ -9,15 +9,12 @@ import pic3 from "../../assets/images/App3.jpeg";
 const slideImages = [
   {
     src: pic,
-    // caption: "Slide 1",
   },
   {
     src: pic2,
-    // caption: "Slide 2",
   },
   {
     src: pic3,
-    // caption: "Slide 3",
   },
 ];
 

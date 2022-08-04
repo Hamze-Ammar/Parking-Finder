@@ -12,10 +12,8 @@ import { getOverviewHeaderInfo } from "./overviewController";
 
 const OverViewHeader = () => {
   const authCtx = useContext(AuthContext);
-  // authCtx.token
   const classes = useStyles();
   const [info, setInfo] = useState({});
-  // console.log(info);
 
   useEffect(() => {
     const fetchInfo = async (token) => {

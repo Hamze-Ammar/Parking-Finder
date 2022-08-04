@@ -14,7 +14,6 @@ export const getOverviewHeaderInfo = async (token) => {
     });
     const data = await res.json();
     if (data?.status === "Success") {
-    //   console.log(data.res);
       return data.res;
     }
   } catch (err) {

@@ -15,7 +15,6 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [isLoading, setIsloading] = useState(false);
   let navigate = useNavigate();
-  //show password
   const [passwordDisplay, setPasswordDisplay] = useState(false);
 
   //Login User

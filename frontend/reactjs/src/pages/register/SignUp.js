@@ -27,7 +27,6 @@ export default function SignUp() {
     });
     const data = await res.json();
     if (data.user) {
-      // alert("You've successfully registered");
       loginUser({ email, password });
     }
     if (data.error) {

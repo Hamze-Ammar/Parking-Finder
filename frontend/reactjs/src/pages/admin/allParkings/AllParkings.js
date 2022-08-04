@@ -11,7 +11,6 @@ const AllParkings = () => {
   const [open, setOpen] = useState(false);
 
   const [allParkings, setAllParkings] = useState();
-  //   console.log(allParkings);
 
   useEffect(() => {
     const fetchRequests = async () => {

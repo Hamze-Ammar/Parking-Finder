@@ -26,6 +26,5 @@ const useStyles = createUseStyles({
   },
   chartContainer: {
     marginTop: "40px",
-    // height: "100%",
   },
 });
