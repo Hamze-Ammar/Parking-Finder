@@ -25,7 +25,6 @@ const RegisterParking = () => {
 
   let navigate = useNavigate();
   const classes = useStyles();
-  // console.log(AuthCtx.token);
   const [pickedLocation, setPickedLocation] = useState();
   const [disableSave, setDisableSave] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -77,10 +76,13 @@ const RegisterParking = () => {
   const handleSubmit = async () => {
     setIsLoading(!isLoading);
     setResponse(await saveNewParkingToServer(AuthCtx.token, info));
+    console.log(response);
   };
   useEffect(() => {
     if (response === "Success") {
       AuthCtx.setRequestStatus(true);
+      setIsLoading(!isLoading);
+    } else if (response === "Failure") {
       setIsLoading(!isLoading);
     }
   }, [response]);
@@ -102,7 +104,6 @@ const RegisterParking = () => {
           info={info}
           setInfo={setInfo}
           setDisableSave={setDisableSave}
-          // pickedLocation={pickedLocation}
           latitude={latitude}
           longitude={longitude}
         />
