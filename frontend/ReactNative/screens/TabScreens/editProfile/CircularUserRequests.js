@@ -14,7 +14,7 @@ const CircularUserRequests = ({ refreshing }) => {
   const [totalRequests, setTotalRequests] = useState(0);
   const [totalReservations, setTotalReservations] = useState(0);
   const [score, setScore] = useState(0);
-  // console.log({ refreshing });
+
   useEffect(() => {
     const getInfo = async () => {
       let res = await getOverviewInfo(token);
@@ -65,7 +65,6 @@ const CircularUserRequests = ({ refreshing }) => {
               activeStrokeColor={Colors.primary500}
               maxValue={65}
               title={"Requests"}
-              // titleColor={Colors.marked400}
               titleStyle={styles.title}
             />
           </View>
@@ -108,18 +107,13 @@ export default CircularUserRequests;
 const styles = StyleSheet.create({
   container: {
     height: 400,
-    // bottom: 0,
     flexGrow: 1,
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    // backgroundColor: "rgba(0,0,0,0.74)",
   },
   scrollContainer: {
-    // minWidth: "100%",
     flexGrow: 1,
-    // alignItems: "center",
-    // justifyContent: "center",
   },
   circularOuterContainer: {
     flexDirection: "row",
@@ -128,7 +122,6 @@ const styles = StyleSheet.create({
   },
   upperTxtWrapper: {
     flexDirection: "row",
-    // margin: 15,
     marginTop: 25,
     marginLeft: 10,
   },
@@ -136,7 +129,6 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     fontSize: 18,
     fontWeight: "500",
-    // color: Colors.background500,
     color: "#fff",
   },
   title: {
@@ -147,9 +139,6 @@ const styles = StyleSheet.create({
   circularContainer: {
     padding: 5,
     margin: 5,
-  },
-  left: {
-    // marginRight: 220,
   },
   bigTitle: {
     fontSize: 40,

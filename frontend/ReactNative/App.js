@@ -24,7 +24,6 @@ import ParkingScreen from "./screens/authenticatedScreens/ParkingScreen";
 import Favorites from "./screens/TabScreens/Favorites";
 import ProfileScreen from "./screens/TabScreens/editProfile/ProfileScreen";
 import MapScreen from "./screens/authenticatedScreens/MapScreen";
-// import HomeStackNavigator from "./stacks/HomeStackNavigator";
 
 // Handling error/warning Require cycle && reanimatedWorklet
 LogBox.ignoreLogs(["Require cycle:"]);
@@ -63,7 +62,6 @@ function HomeStackNavigator() {
 }
 function BottomTabNavigator() {
   const authCtx = useContext(AuthContext);
-  // const ParkingCtx = useContext(ParkingContext);
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
@@ -94,16 +92,6 @@ function BottomTabNavigator() {
           ),
         }}
       />
-      {/* <BottomTab.Screen
-        name="map"
-        component={MapScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="map-outline" color={color} size={size} />
-          ),
-          headerShown: false
-        }}
-      /> */}
       <BottomTab.Screen
         name="Favorite Parkings"
         component={Favorites}
@@ -168,13 +156,10 @@ function Root() {
   useEffect(() => {
     async function fetchToken() {
       const storedToken = await AsyncStorage.getItem("token");
-      // const storedFavorites = await AsyncStorage.getItem("favorites");
-      // console.log({ storedFavorites });
 
       if (storedToken) {
         let parkings = await getFavouriteParkings(storedToken);
         if (parkings) {
-          // const myStoredFavorites = JSON.parse(storedFavorites);
           favoritesCtx.storeFavorites(parkings);
         }
         authCtx.authenticate(storedToken);

@@ -8,7 +8,6 @@ const PopWhatFound = ({ numOfParkings }) => {
     setTotal(numOfParkings);
   }, [numOfParkings]);
 
-  // console.log(total);
   return (
     <View style={styles.container}>
       {total ? (

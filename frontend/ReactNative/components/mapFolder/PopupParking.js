@@ -23,7 +23,6 @@ const PopupParking = ({ parking, city }) => {
     ? (duration = `${Math.ceil(duration)} minutes`)
     : (duration = `${Math.ceil(duration / 60)} hr`);
 
-  // console.log(distance, duration);
 
   const [loaded] = useFonts({
     montserratBold: require("../../assets/fonts/Montserrat-ExtraBold.ttf"),

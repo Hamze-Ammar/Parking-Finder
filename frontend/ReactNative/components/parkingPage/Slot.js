@@ -1,7 +1,6 @@
-import { StyleSheet, Text, View, Image, Pressable, Alert } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React, { useState, useContext } from "react";
 import { Colors } from "../../constants/styles";
-import { sendReservation } from "./parkingController";
 import { useFonts } from "expo-font";
 import { AuthContext } from "../../store/auth-context";
 

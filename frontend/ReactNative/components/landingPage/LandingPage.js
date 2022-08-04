@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { View, Text, StyleSheet, Alert, Image } from "react-native";
+import { View, StyleSheet, Alert, Image } from "react-native";
 import {
   getCurrentPositionAsync,
   PermissionStatus,
@@ -11,9 +11,7 @@ import LoadingOverlay from "../../ui/LoadingOverlay";
 import Title from "../../ui/Title";
 import { Button } from "../../ui/Button";
 import { saveRequestToServer } from "./landingController";
-
 import { useNavigation } from "@react-navigation/native";
-// import DashedCircle from "../../ui/DashedCircle";
 
 const LandingPage = () => {
   const authCtx = useContext(AuthContext);
@@ -23,7 +21,6 @@ const LandingPage = () => {
     useForegroundPermissions();
 
   async function verifyPermissions() {
-    // console.log(PermissionStatus);
     if (
       locationPermissionInformation.status === PermissionStatus.UNDETERMINED
     ) {
@@ -48,7 +45,6 @@ const LandingPage = () => {
       return;
     }
     const location = await getCurrentPositionAsync();
-    // console.log(location);
     let latitude = location.coords.latitude;
     let longitude = location.coords.longitude;
 
@@ -58,7 +54,6 @@ const LandingPage = () => {
     });
     if (regionName) {
       let response = {
-        // address: regionName,
         address: regionName,
         latitude: latitude,
         longitude: longitude,
@@ -72,7 +67,6 @@ const LandingPage = () => {
     if (!locationPermissionInformation?.status) {
       return;
     }
-    // console.log(locationPermissionInformation.status);
     setIsLoading(true);
     if (locationPermissionInformation.status === "denied") {
       const permissionResponse = await requestPermission();
@@ -82,18 +76,14 @@ const LandingPage = () => {
     // Should navigate to map screen
 
     if (response?.address) {
-      // console.log(response.latitude);
       let cityName = response.address[0].city;
-      // console.log(cityName);
       // CityName here could differ from request to another
       // Should check all possibilities or find another way to getParkings than by cityName
       if (["Beirut", "Bayrut", "بيروت"].includes(cityName)) {
         cityName = "Beirut";
       }
       saveRequestToServer(cityName, authCtx.token);
-      // console.log(cityName);
       navigation.navigate("map", {
-        // city: cityName,
         city: "beirut",
         latitude: response.latitude,
         longitude: response.longitude,

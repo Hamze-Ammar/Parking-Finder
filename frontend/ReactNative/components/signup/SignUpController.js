@@ -45,7 +45,6 @@ export const RegisterNewUser = async (credentials) => {
 };
 
 function handleResponse(data) {
-  // console.log(data);
   if (data?.email) {
     Alert.alert("Invalid Email", "Email has already been taken");
     return;

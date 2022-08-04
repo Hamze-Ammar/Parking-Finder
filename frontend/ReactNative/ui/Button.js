@@ -23,10 +23,8 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadius.primary,
     paddingVertical: 6,
     paddingHorizontal: 12,
-    // marginHorizontal: 10,
     marginVertical: 10,
     backgroundColor: Colors.primary500,
-    // backgroundColor: "#7862FF",
     elevation: 2,
     shadowColor: "black",
     shadowOffset: { width: 1, height: 1 },
@@ -46,6 +44,5 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 24,
     fontWeight: "500",
-    // fontFamily: "Montserrat",
   },
 });

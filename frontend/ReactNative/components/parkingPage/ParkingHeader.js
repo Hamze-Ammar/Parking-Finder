@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState, useEffect } from "react";
 import { Colors } from "../../constants/styles";
-import { capitalizeFirstLetter } from "./parkingController";
 
 const ParkingHeader = ({ name, total, available_slots, min_away }) => {
   const [minAway, setMinAway] = useState(["-", "Minutes"]);
@@ -10,8 +9,6 @@ const ParkingHeader = ({ name, total, available_slots, min_away }) => {
       setMinAway(min_away.split(" "));
     }
   }, [min_away]);
-
-  // console.log(minAway);
 
   return (
     <>
@@ -47,21 +44,17 @@ const styles = StyleSheet.create({
     margin: 8,
   },
   title: {
-    // marginLeft: 10,
     marginHorizontal: 10,
     textAlign: "center",
     fontSize: 24,
     fontWeight: "bold",
     color: Colors.secondary500,
-    // marginBottom: 8,
   },
   info: {
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-around",
     backgroundColor: Colors.background500,
-    // marginHorizontal: 20,
-    // marginBottom: 5,
     padding: 5,
     borderRadius: 10,
     borderColor: Colors.secondary500,

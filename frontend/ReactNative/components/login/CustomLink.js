@@ -15,7 +15,6 @@ const CustomLink = ({ text, navigateTo }) => {
 
   return (
     <Pressable
-      // style={({ pressed }) => [styles.button, pressed && styles.pressed]}
       style={styles.button}
       onPress={handleNavigation}
       android_ripple={{ color: "#64eee3" }}

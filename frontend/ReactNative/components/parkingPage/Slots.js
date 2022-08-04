@@ -26,8 +26,6 @@ const Slots = ({
     setShowTimer(false);
   }
 
-  console.log(slots?.length, slots?.length / 2);
-
   return (
     <>
       {showTimer && (

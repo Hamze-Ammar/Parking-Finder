@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import MapView, { Marker } from "react-native-maps";
-import { getParkingByCityName } from "../../components/mapFolder/mapController";
 import { FavoritesContext } from "../../store/favorites-context";
 import { AuthContext } from "../../store/auth-context";
 import { mapStyleLight, mapStyleDark } from "../../constants/mapStyle";
@@ -18,7 +17,6 @@ import { dimensions } from "../../constants/styles";
 import { displayPopup } from "../../components/mapFolder/mapController";
 import { findNearestParkings } from "../../components/mapFolder/mapController";
 import PopWhatFound from "../../components/mapFolder/PopWhatFound";
-// import RNGestureHandlerButton from "react-native-gesture-handler/lib/typescript/components/GestureHandlerButton";
 
 const MapScreen = ({ route, navigation }) => {
   const favoritesCtx = useContext(FavoritesContext);
@@ -38,20 +36,16 @@ const MapScreen = ({ route, navigation }) => {
   const [parkingPop, setParkingPop] = useState();
   const [radius, setRadius] = useState(1000); // Initial value for the radius
   const [numOfParkings, setNumOfParkings] = useState(0);
-  // console.log(city, token, latitude, longitude);
-  // console.log({ numOfParkings });
+
   useEffect(() => {
     async function reloadData() {
       if (city && token) {
-        // let radius = 2160; // initial screen radius
-        // let response = await getParkingByCityName({ city: city, token: token });
         let response = await findNearestParkings(
           newLatitude,
           newLongitude,
           radius,
           token
         );
-        // console.log(response.length);
         setNumOfParkings(response.length);
         setParkings(response);
       }
@@ -59,11 +53,10 @@ const MapScreen = ({ route, navigation }) => {
     reloadData();
   }, [newLatitude, radius]);
 
-  // Testing
+
   const updateRadiusAndFetch = (region) => {
     setNewLatitude(region.latitude);
     setNewLongitude(region.longitude);
-    // console.log(region.latitudeDelta);
     let newRadius = region.longitudeDelta * 53 * 1609; // to miles to meters; it covers a square where square_side = height of the screen
     setRadius(newRadius);
   };
@@ -94,8 +87,6 @@ const MapScreen = ({ route, navigation }) => {
       >
         {parkings &&
           parkings.map((parking) => {
-            // console.log(parking);
-            // let location = JSON.parse(parking.location);
             let latitudeDes = parking.latitude;
             let longitudeDes = parking.longitude;
             let description = parking.freeSlots + " Available Slots";
@@ -137,19 +128,8 @@ const MapScreen = ({ route, navigation }) => {
           title="PIN"
           description="You are here!"
           onCalloutPress={() => handleClick()}
-          // onPress={handleClick}
         />
 
-        {/* <Marker
-          draggable
-          coordinate={{
-            latitude: parseFloat(33.8811743),
-            longitude: parseFloat(35.5059504),
-          }}
-          onDragEnd={(e) => {
-            console.log(e.nativeEvent.coordinate);
-          }}
-        /> */}
       </MapView>
       <View style={styles.popupInfo}>
         {parkingPop && <PopupParking parking={parkingPop} city={city} />}

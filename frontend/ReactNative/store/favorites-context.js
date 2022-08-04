@@ -1,8 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-// import { registerRootComponent } from "expo";
 
 import { createContext, useState, useContext } from "react";
-// import { flingGestureHandlerProps } from "react-native-gesture-handler/lib/typescript/handlers/FlingGestureHandler";
 import {
   addToFavorite,
   delFavFromServer,
@@ -22,13 +20,9 @@ function FavoritesContextProvider({ children }) {
 
   //should be an array of objects
   const [savedParkings, setSavedParkings] = useState([]);
-  // console.log("===========================================");
-  // console.log(savedParkings);
-  // console.log("===========================================");
 
   // on sign in
   function storeFavorites(favorites) {
-    // console.log({ favorites });
     setSavedParkings(favorites);
     AsyncStorage.setItem("favorites", JSON.stringify(favorites));
   }
@@ -48,8 +42,6 @@ function FavoritesContextProvider({ children }) {
       savedParkings.filter((item) => String(item.id) !== String(id))
     );
     await delFavFromServer(id, authCtx.token);
-    // await AsyncStorage.setItem("favorites", JSON.stringify(savedParkings));
-    // console.log("line 43", savedParkings);
     return id;
   }
 

@@ -8,7 +8,6 @@ import { validateInput } from "./loginController";
 import { loginUser } from "./loginController";
 import { getFavouriteParkings } from "../favorites/favoriteController";
 import { FavoritesContext } from "../../store/favorites-context";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "../../store/auth-context";
 
 const FormLogin = ({ setIsAuthenticating }) => {
@@ -75,7 +74,6 @@ const FormLogin = ({ setIsAuthenticating }) => {
         // After successfully signedIn send request to get favourite parkings
         let parkings = await getFavouriteParkings(token);
         // Store favourite parkings in store
-        // console.log(parkings);
         await favCtx.storeFavorites(parkings);
         await authCtx.authenticate(token);
       }

@@ -48,7 +48,6 @@ export const sendReservation = async (id, duration, token) => {
     body: JSON.stringify(info),
   });
   const data = await res.json();
-  console.log(data);
   if (data.status === "Success") {
     return data;
   } else {

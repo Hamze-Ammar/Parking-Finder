@@ -110,9 +110,7 @@ Here's a brief high-level overview of the tech stack the Parking Finder app uses
 > | ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 > | ![PassingBy](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/PassingBy.gif) | ![Overview](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/Overview.gif) | ![LiveTesting](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/LiveTesting.gif) |
 
-<!-- > |                                                                                                              |
-> | ------------------------------------------------------------------------------------------------------------ |
-> | ![LiveRecording](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/LiveRecording.gif) | -->
+
 <img width="100%" src="https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/LiveRecording.gif"/>
 
 <br><br>

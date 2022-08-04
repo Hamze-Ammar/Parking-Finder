@@ -6,7 +6,6 @@ import { Colors } from "../../../constants/styles";
 const ImagePicker = ({ setPickedImage, setPickedImageBase64 }) => {
   async function takeImageHandler() {
     const image = await launchCameraAsync({
-      //   allowsEditing: true,
       aspect: [4, 4],
       quality: 0.2,
       base64: true,

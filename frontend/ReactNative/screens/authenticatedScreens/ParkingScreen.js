@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { View, StyleSheet, Pressable, Text } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { ParkingContext } from "../../store/parkingContext";
 import ParkingView from "../../components/parkingPage/ParkingView";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -37,7 +37,6 @@ const ParkingScreen = ({ route, navigation }) => {
     const RefreshMemory = async () => {
       const favorites = await favoritesCtx.favoriteParkings;
       const res = checkIfSaved(favorites, parkingId);
-      // console.log("res      ", res);
       setIsSaved(res);
     };
     RefreshMemory();
@@ -51,9 +50,7 @@ const ParkingScreen = ({ route, navigation }) => {
     }
     let parking = parseParking(myParking);
     let response = await favoritesCtx.addNewFavorite(parking);
-    // console.log({ response });
     setIsSaved(response);
-    // console.log("adding......");
   };
 
   const removeFromFavorite = async () => {

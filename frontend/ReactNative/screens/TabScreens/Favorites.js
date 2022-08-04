@@ -2,9 +2,7 @@ import React from "react";
 import {
   StyleSheet,
   FlatList,
-  Pressable,
   View,
-  Text,
   SafeAreaView,
   ActivityIndicator,
   RefreshControl,
@@ -26,8 +24,6 @@ const Favorites = () => {
   const [parkingList, setParkingList] = useState(
     favCtx.favoriteParkings || null
   );
-  // console.log("context: ", favCtx.favoriteParkings);
-  // console.log("mylist: ", parkingList);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -49,7 +45,6 @@ const Favorites = () => {
   }, [refreshing]);
 
   function renderFavorites(itemData) {
-    // console.log(itemData);
     const item = itemData.item;
     const parkings = {
       id: item.id,
@@ -72,7 +67,6 @@ const Favorites = () => {
         )}
 
         <View style={styles.container}>
-          {/* {refreshing ? <ActivityIndicator /> : null} */}
           {parkingList && (
             <FlatList
               data={parkingList}

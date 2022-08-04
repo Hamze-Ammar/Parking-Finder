@@ -37,14 +37,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  image: {
-    // margin: 10,
-    // flex: 1,
-    // justifyContent: "center",
-    // opacity: 0.5,
-    // borderRadius: 10,
-    // overflow: "hidden",
-  },
   imageContainer: {
     flexGrow: 1,
     margin: 15,

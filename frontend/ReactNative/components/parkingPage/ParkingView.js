@@ -71,7 +71,6 @@ const ParkingView = ({
 
   // Handle set Timer and reservation
   const handleSetTimer = (duration) => {
-    console.log(duration);
     setShowPopupOptions(false);
     setReservationDuration(duration);
     setShowTimer(true);

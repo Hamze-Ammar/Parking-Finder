@@ -59,7 +59,6 @@ const UserProfile = () => {
   }
 
   return (
-    // <KeyboardAvoidingView style={styles.container}>
     <ScrollView
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -89,7 +88,6 @@ const UserProfile = () => {
         )}
       </View>
     </ScrollView>
-    // </KeyboardAvoidingView>
   );
 };
 

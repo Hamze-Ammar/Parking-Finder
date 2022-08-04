@@ -10,7 +10,6 @@ const DashedCircle = ({ setRefresh, setShowTimer, duration }) => {
   if (!duration) {
     duration = 5;
   }
-  console.log({ duration });
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -36,7 +35,6 @@ const DashedCircle = ({ setRefresh, setShowTimer, duration }) => {
             count: 40,
             width: 7,
           }}
-          //   subtitle='Slot has been Reserved for 5 min.'
           title="Seconds Left"
           titleStyle={styles.title}
         />

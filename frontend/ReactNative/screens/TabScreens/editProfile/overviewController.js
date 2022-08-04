@@ -33,7 +33,6 @@ export const getUserProfile = async (token) => {
   const data = await res.json();
   if (data.status === "Success") {
     if (data?.res) {
-      // console.log(data.res);
       return data?.res;
     }
   } else {
@@ -55,7 +54,6 @@ export const editProfile = async (token, credentials) => {
   });
   const data = await res.json();
   if (data.status === "Success") {
-    // console.log(data);
     if (data?.res) {
       return data.res;
     }

@@ -24,7 +24,6 @@ export const findNearestParkings = async (latitude, longitude, radius, token) =>
   if (!latitude || !longitude || !token) {
     return;
   }
-  // console.log(info);
   const res = await fetch(
     `${URL}/info/nearestParkings?lat=${latitude}&long=${longitude}&radius=${radius}`,
     {
@@ -33,13 +32,11 @@ export const findNearestParkings = async (latitude, longitude, radius, token) =>
         Authorization: "Bearer " + token,
         "Content-type": "application/json",
       },
-      // body: JSON.stringify(info),
     }
   );
   const data = await res.json();
   if (data.status === "Success") {
     let response = await handleResponse(data);
-    // console.log(response);
     return response;
   } else {
     return false;
@@ -50,12 +47,10 @@ function handleResponse(data) {
   if (!!data.res) {
     let parkings = [];
     data.res.map((item) => {
-      //   console.log("idparkingcheck: ", item.opening_hr);
       let parking = {
         id: item.id,
         name: item.name,
         freeSlots: item.freeSlots,
-        // location: item.location,
         latitude: item.latitude,
         longitude: item.longitude,
         opening_hr: item.opening_hr,
@@ -63,10 +58,6 @@ function handleResponse(data) {
       };
       parkings.push(parking);
     });
-    // console.log(parkings[0].location["latitude"]);
-    // let test = JSON.parse(parkings[0].location);
-    // console.log(test.latitude);
-    // console.log({ parkings });
     return parkings;
   }
 }
@@ -75,11 +66,8 @@ export const displayPopup = async ({ parking, latitude, longitude }) => {
   if (!parking) {
     return;
   }
-  // let location = JSON.parse(parking.location);
   let latitudeDes = parking.latitude;
   let longitudeDes = parking.longitude;
-  //   console.log(parking);
-  //   console.log(parking.id);
   let response = await calculateDistance(
     latitude,
     longitude,
@@ -101,7 +89,7 @@ export const displayPopup = async ({ parking, latitude, longitude }) => {
   }
 };
 
-//========================================
+//=========
 //https://rapidapi.com/trueway/api/trueway-matrix/details
 const calculateDistance = (
   latitudeOrg,

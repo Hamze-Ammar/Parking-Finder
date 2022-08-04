@@ -1,11 +1,8 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
-// import { useContext } from "react";
 import { Colors } from "../../constants/styles";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-// import { StackActions } from "@react-navigation/native";
-// import { FavoritesContext } from "../store/favorites-context";
 
 const Row = ({
   id,
@@ -19,8 +16,6 @@ const Row = ({
   const navigation = useNavigation();
 
   const navigateToParking = () => {
-    // console.log("navigation");
-    // console.log("from row: id=", id, " city=", address);
     navigation.navigate("Parking", {
       city: address,
       id: id,
