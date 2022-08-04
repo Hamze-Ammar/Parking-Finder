@@ -31,7 +31,6 @@ export const getUserTypeFromServer = async (token) => {
       },
     });
     const data = await res.json();
-    console.log(data);
     if (data?.status) {
       return data.res;
     }

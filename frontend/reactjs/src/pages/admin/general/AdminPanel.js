@@ -31,7 +31,6 @@ function AdminPanel() {
   });
 
   const handleNavigation = (route) => {
-    console.log("route ", route);
     if (route === "Requests") {
       setRoute(<PendingRequests />);
     } else if (route === "Parkings") {

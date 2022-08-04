@@ -76,7 +76,6 @@ const RegisterParking = () => {
   const handleSubmit = async () => {
     setIsLoading(!isLoading);
     setResponse(await saveNewParkingToServer(AuthCtx.token, info));
-    console.log(response);
   };
   useEffect(() => {
     if (response === "Success") {

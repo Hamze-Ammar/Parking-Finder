@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from "react";
 import { createUseStyles } from "react-jss";
 import { Colors } from "../../../constant/color";
 import { AuthContext } from "../../../store/AuthContext";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { deleteParking } from "./allParkingsController";
 import { AdminPanelContext } from "../../../store/AdminPanelContext";
 
@@ -26,7 +25,6 @@ const ParkingsTableRow = ({ parking, refreshTable, setOpen }) => {
 
   const handleDelete = async () => {
     deleteParking(AuthCtx.token, parking.id).then((response) => {
-      //   console.log(response);
       setOpen(response);
     });
     if (parking.is_approved == 0) {
@@ -47,12 +45,6 @@ const ParkingsTableRow = ({ parking, refreshTable, setOpen }) => {
         <td>{parking.user_name}</td>
         <td>{parking.user.email}</td>
         <td className={statusColor}>{status}</td>
-        {/* <td style={{ textAlign: "right" }}>
-          <DeleteForeverIcon
-            onClick={handleDelete}
-            className={[classes.icon, classes.decline]}
-          />
-        </td> */}
       </tr>
     </>
   );
