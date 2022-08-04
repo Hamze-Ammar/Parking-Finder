@@ -74,6 +74,8 @@ Here's a brief high-level overview of the tech stack the Parking Finder app uses
 
 > Using the above mentioned tech stacks and the wireframes built with Figma, the implementation of the app is shown as below, these are screen recordings from the real app
 
+### Mobile App
+
 > | Landing                                                                                              | Map Search                                                                                          | Map Dark Mode                                                                                           |
 > | ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
 > | ![Landing](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Mobile/Landing-Mobile.gif) | ![Map Search](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Mobile/Map-Search.gif) | ![Map Dark Mode](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Mobile/MapDarkMode.gif) |
@@ -86,9 +88,13 @@ Here's a brief high-level overview of the tech stack the Parking Finder app uses
 > | ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 > | ![Reserve Parking](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Mobile/reserveParking.gif) | ![Profile](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Mobile/Profile.gif) | ![Upload Image](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Mobile/uploadPic.gif) |
 
+### Desktop App
+
 | Landing Desktop                                                                                        | Become Partner                                                                                              |
 | ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
 | ![Landing Desktop](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Desktop/Landing.gif) | ![Become Partner](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Desktop/BecomePartner.gif) |
+
+### Admin Panel
 
 | Admin Overview                                                                                              | Admin Requests                                                                                              |
 | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
