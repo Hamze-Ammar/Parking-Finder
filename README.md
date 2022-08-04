@@ -102,9 +102,10 @@ Here's a brief high-level overview of the tech stack the Parking Finder app uses
 
 ### Prototype
 
-> | Gray Car                                                                                         | Pedestrian View                                                                                        | Side View                                                                                               | Tree                                                                                                |
-> | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-> | ![Landing](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/GrayCar.jpg) | ![Map Search](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/Pedestrian.jpg) | ![Map Dark Mode](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/SideView.jpg) | ![Map Dark Mode](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/Tree.jpg) |
+<!-- > | Gray Car                                                                                           | Pedestrian View                                                                                             | Side View                                                                                           | Tree                                                                                       |
+> | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | -->
+
+> | ![Gray Car ](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/GrayCar.jpg) | ![Pedestrian View](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/Pedestrian.jpg) | ![Side View](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/SideView.jpg) | ![Tree](https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/Tree.jpg) |
 
 <br><br>
 <img id="how-to-run" src="./readme/title6.svg"/>
