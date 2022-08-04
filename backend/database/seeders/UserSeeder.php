@@ -19,11 +19,11 @@ class UserSeeder extends Seeder
         DB::table('users')->delete();
 
         $Records = [
-            ['id'=>1, 'name'=>'user',    'email'=>'user@user.com',       'password'=>'$2y$10$WE5tIVBeIvueu3WkVzhGqeERfB2T8WNnH9eOY51ilkvzkWzJRjW6W', 'user_type_id'=>'1', 'created_at'=>date("Y-m-d H:i:s")],
-            ['id'=>2, 'name'=>'owner10', 'email'=>'owner10@owner.com',   'password'=>'$2y$10$WE5tIVBeIvueu3WkVzhGqeERfB2T8WNnH9eOY51ilkvzkWzJRjW6W', 'user_type_id'=>'2', 'created_at'=>date("Y-m-d H:i:s")],
-            ['id'=>3, 'name'=>'owner20', 'email'=>'owner20@owner.com',   'password'=>'$2y$10$WE5tIVBeIvueu3WkVzhGqeERfB2T8WNnH9eOY51ilkvzkWzJRjW6W', 'user_type_id'=>'2', 'created_at'=>date("Y-m-d H:i:s")],
-            ['id'=>4, 'name'=>'owner30', 'email'=>'owner30@owner.com',   'password'=>'$2y$10$WE5tIVBeIvueu3WkVzhGqeERfB2T8WNnH9eOY51ilkvzkWzJRjW6W', 'user_type_id'=>'2', 'created_at'=>date("Y-m-d H:i:s")],
-            ['id'=>5, 'name'=>'admin',   'email'=>'admin@admin.com',     'password'=>'$2y$10$WE5tIVBeIvueu3WkVzhGqeERfB2T8WNnH9eOY51ilkvzkWzJRjW6W', 'user_type_id'=>'3', 'created_at'=>date("Y-m-d H:i:s")],
+            ['id'=>1, 'name'=>'user',    'email'=>'user@user.com',       'password'=>bcrypt('123123') , 'user_type_id'=>'1', 'created_at'=>date("Y-m-d H:i:s")],
+            ['id'=>2, 'name'=>'owner10', 'email'=>'owner10@owner.com',   'password'=>bcrypt('123123') , 'user_type_id'=>'2', 'created_at'=>date("Y-m-d H:i:s")],
+            ['id'=>3, 'name'=>'owner20', 'email'=>'owner20@owner.com',   'password'=>bcrypt('123123') , 'user_type_id'=>'2', 'created_at'=>date("Y-m-d H:i:s")],
+            ['id'=>4, 'name'=>'owner30', 'email'=>'owner30@owner.com',   'password'=>bcrypt('123123') , 'user_type_id'=>'2', 'created_at'=>date("Y-m-d H:i:s")],
+            ['id'=>5, 'name'=>'admin',   'email'=>'admin@admin.com',     'password'=>bcrypt('123123') , 'user_type_id'=>'3', 'created_at'=>date("Y-m-d H:i:s")],
 
         ];
         User::insert($Records);
