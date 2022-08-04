@@ -116,7 +116,7 @@ Here's a brief high-level overview of the tech stack the Parking Finder app uses
 <img src="https://github.com/Hamze-Ammar/Parking-Finder/blob/main/readme/Prototype/LiveRecording.gif"/>
 
 <br><br>
-<img id="how-to-run" src="./readme/title6.svg"/>
+<img width="100%" id="how-to-run" src="./readme/title6.svg"/>
 
 > To get a local copy up and running follow these simple steps.
 
