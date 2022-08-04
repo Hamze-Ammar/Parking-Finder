@@ -118,6 +118,9 @@ Here's a brief high-level overview of the tech stack the Parking Finder app uses
 ### Prerequisites
 
 - Download and Install [Node.js](https://nodejs.org/en/)
+- Download and Install [Composer](https://getcomposer.org/download/)
+- Download and Install [XAMPP](https://www.apachefriends.org/download.html)
+
 - npm
   ```sh
   npm install npm@latest -g
@@ -140,25 +143,58 @@ Here's a brief high-level overview of the tech stack the Parking Finder app uses
 
 ##### To Run The Mobile App
 
-2. Navigate to the Frontend folder then ReactNative folder and install dependencies
+1. Navigate to the Frontend folder then ReactNative folder and install dependencies
    ```sh
    cd Parking-Finder/frontend/ReactNative
    npm install
    ```
-3. Run the start up command
+2. Run the start up command
    ```sh
    npm start
    ```
-4. Scan the generated QR code with your camera (ios) or through the Expo Go application (android)
+3. Scan the generated QR code with your camera (ios) or through the Expo Go application (android)
 
 ##### To Run The Desktop App
 
-5. Navigate to the Frontend folder then reactjs folder and install dependencies
+1. Navigate to the Frontend folder then reactjs folder and install dependencies
    ```sh
    cd Parking-Finder/frontend/reactjs
    npm install
    ```
-6. Run the start up command
+2. Run the start up command
    ```sh
    npm start
+   ```
+
+##### To Run The Laravel Server
+
+1. Create a database locally named parkingfinderdb
+
+2. Inside the .env file in your backend folder
+
+   - Insert the db name as follow -> DB_DATABASE= -> DB_DATABASE=parkingfinderdb
+
+3. Navigate to the backend folder
+   ```sh
+   cd Parking-Finder/backend
+   ```
+4. Run migration
+   ```sh
+   npm start
+   ```
+5. Run the start up command
+   ```sh
+   php artisan migrate
+   ```
+6. Run the seeder
+   ```sh
+   php artisan db:seed
+   ```
+7. Start the worker
+   ```sh
+   php artisan queue:work
+   ```
+8. Start the Server
+   ```sh
+   Run php artisan serve
    ```
