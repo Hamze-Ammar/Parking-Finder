@@ -12,8 +12,6 @@ use App\Models\Country;
 use App\Models\Favourite;
 use Auth;
 
-
-
 class AdminController extends Controller
 {
     public function getPendingRequests($id=null)
@@ -49,7 +47,6 @@ class AdminController extends Controller
             "status" => "Success",
             "res"   => $response
         ], 200);
-
 
     }
 
@@ -199,8 +196,6 @@ class AdminController extends Controller
             "res"   => $response
         ], 200);
     }
-
-    // Table::select('name','surname')->where('id', 1)->get();
 
     public function getAllUsersAndSlots(){
         $users = User::select('created_at')->get();
