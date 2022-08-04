@@ -14,10 +14,11 @@ export const saveNewParkingToServer = async (token, info) => {
       body: JSON.stringify(info),
     });
     const data = await res.json();
-    console.log(data.status)
-      if (data?.status){
-        return data.status;
-      }
+    if (data?.status) {
+      return data.status;
+    } else {
+      return false;
+    }
   } catch (err) {
     console.log(err);
   }
