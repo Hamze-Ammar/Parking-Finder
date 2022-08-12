@@ -189,7 +189,7 @@ Here's a brief high-level overview of the tech stack the Parking Finder app uses
    ```
 6. Start the Server
    ```sh
-   Run php artisan serve
+   php artisan serve
    ```
 7. Start the worker
    ```sh
